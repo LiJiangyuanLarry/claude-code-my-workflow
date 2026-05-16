@@ -1,0 +1,97 @@
+% =============================================================================
+% beamer_preamble.tex — Conference slides: Zero-Sum Game of Mutual Fund Marketing
+% Conference: Dishui Lake Finance Conference International (DFCI) 2026
+% Compile from Projects/MutualFundMarketingSlides/ with:
+%   TEXINPUTS=../../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode <file>.tex
+% =============================================================================
+
+% -----------------------------------------------------------------------------
+% Shared palette + TikZ styles (palette contract: must match theme-template.scss)
+% -----------------------------------------------------------------------------
+\input{header}   % loads from ../../Preambles/header.tex via TEXINPUTS
+
+% -----------------------------------------------------------------------------
+% Beamer theme
+% -----------------------------------------------------------------------------
+\usetheme{Boadilla}
+\usecolortheme{default}
+
+% Override Boadilla palette with project colors
+\setbeamercolor{palette primary}{bg=primary-blue, fg=white}
+\setbeamercolor{palette secondary}{bg=primary-blue!85!black, fg=white}
+\setbeamercolor{palette tertiary}{bg=primary-blue!70!black, fg=white}
+\setbeamercolor{palette quaternary}{bg=primary-blue, fg=white}
+\setbeamercolor{title in head/foot}{bg=primary-blue, fg=white}
+\setbeamercolor{author in head/foot}{bg=primary-blue!85!black, fg=white}
+\setbeamercolor{page number in head/foot}{bg=primary-blue!70!black, fg=white}
+
+% Minimal, clean footer: short authors | short title | X/N
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.40\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+      \usebeamerfont{author in head/foot}Chen, Filippou, Kim, Li
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.45\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      \usebeamerfont{title in head/foot}Zero-Sum Game of Mutual Fund Marketing
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm]{page number in head/foot}%
+      \usebeamerfont{page number in head/foot}\insertframenumber{} / \inserttotalframenumber
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\setbeamertemplate{navigation symbols}{}
+
+% Frametitle styling
+\setbeamertemplate{frametitle}{%
+  \vspace{0.15cm}%
+  \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle%
+  \ifx\insertframesubtitle\empty\else
+    \par\vspace{0.05cm}{\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}%
+  \fi
+}
+
+% -----------------------------------------------------------------------------
+% Packages
+% -----------------------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\usepackage{natbib}
+\bibliographystyle{aer}
+\usepackage{appendixnumberbeamer}   % \appendix resets frame counter
+
+% -----------------------------------------------------------------------------
+% Custom slide environments
+% -----------------------------------------------------------------------------
+
+% keybox: gold-tinted box for key takeaways
+\newtcolorbox{keybox}{
+  enhanced,
+  colback=primary-gold!12!white,
+  colframe=primary-gold,
+  boxrule=0.8pt,
+  arc=3pt,
+  left=4pt, right=4pt, top=3pt, bottom=3pt,
+  fontupper=\small
+}
+
+% resultbox: blue-bordered box for main quantitative results
+\newtcolorbox{resultbox}{
+  enhanced,
+  colback=primary-blue!6!white,
+  colframe=primary-blue,
+  boxrule=0.8pt,
+  arc=3pt,
+  left=4pt, right=4pt, top=3pt, bottom=3pt,
+  fontupper=\small
+}
+
+% -----------------------------------------------------------------------------
+% Convenience macros (already in header.tex but re-exported for clarity)
+% \key{}, \muted{}, \good{}, \bad{} — see header.tex
+% -----------------------------------------------------------------------------
+\newcommand{\highlight}[1]{\textcolor{primary-gold}{\textbf{#1}}}
+\newcommand{\hl}[1]{\textbf{\textcolor{primary-blue}{#1}}}

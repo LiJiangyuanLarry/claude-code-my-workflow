@@ -1,0 +1,748 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\input{beamer_preamble}
+
+% =============================================================================
+% Document metadata
+% =============================================================================
+\title[Zero-Sum Game of Mutual Fund Marketing]{The Zero-Sum Game of Mutual Fund Marketing}
+\author[Chen, Filippou, Kim, Li]{
+  Haiwei Chen\inst{1} \and
+  Ilias Filippou\inst{2} \and
+  Jeong Ho (John) Kim\inst{2} \and
+  \textbf{Jiangyuan Li}\inst{1}
+}
+\institute[SUFE / FSU]{
+  \inst{1} Shanghai University of Finance and Economics \quad
+  \inst{2} Florida State University Herbert Wertheim College of Business
+}
+\date{Dishui Lake Finance Conference International \\ May 2026}
+
+% =============================================================================
+% Document body
+% =============================================================================
+\begin{document}
+
+% ---------------------------------------------------------------------------
+% Title slide
+% ---------------------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------------------
+% Outline
+% ---------------------------------------------------------------------------
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+% ===========================================================================
+\section{Motivation}
+% ===========================================================================
+
+\begin{frame}{Mutual Fund Marketing: What We Know}
+
+\textbf{Asset management has grown dramatically:}
+\begin{itemize}
+  \item U.S.\ AUM and fund count have expanded sharply over three decades
+  \item Investor search costs are a first-order friction in capital allocation \citep{hortacsu2004,huang2007participation}
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{Marketing successfully attracts fund-level inflows:}
+\begin{itemize}
+  \item Funds spend roughly \hl{one-third of fee revenue} on marketing
+  \item Advertising, broker distribution, and visibility drive significant inflows
+  \citep{sirri1998costly,gallaher2008advertising,huang2007participation}
+\end{itemize}
+
+\vspace{0.4cm}
+\begin{keybox}
+\textbf{Implicit assumption in the literature:} fund-level inflows $\Rightarrow$ family-level growth.
+\end{keybox}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{The Gap: Fund vs.\ Family Level}
+
+\textbf{Is the implicit assumption correct?}
+
+\medskip
+If marketing \emph{reallocates} capital within families rather than attracting new investors:
+\begin{itemize}
+  \item Fund-level effects do \emph{not} translate into family growth
+  \item Standard fund-level regressions overstate marketing's role
+  \item Families' incentives to market may be entirely different from what we think
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{Testing this requires:}
+\begin{enumerate}
+  \item A novel marketing channel with \hl{sharp within-family variation}
+  \item Joint observation of fund-level \emph{and} family-level flows
+  \item A setting where we can cleanly identify spillovers to non-promoted funds
+\end{enumerate}
+
+\vspace{0.3cm}
+\muted{$\Rightarrow$ Chinese mutual fund social media livestreaming provides all three.}
+
+\end{frame}
+
+% ===========================================================================
+\section{Setting and Data}
+% ===========================================================================
+
+\transitionslide{Setting and Data}
+
+\begin{frame}{Setting: Mutual Fund Livestreaming in China}
+
+\textbf{A novel, large-scale marketing channel:}
+\begin{itemize}
+  \item Beginning 2020 (COVID-19 disrupted traditional sales channels), fund families adopted \hl{real-time broadcasts} on retail platforms
+  \item Tiantian Fund — leading third-party distribution platform — hosts the broadcasts
+  \item AMAC formalized regulatory guidance in 2021 (disclosure, compliance controls)
+\end{itemize}
+
+\vspace{0.35cm}
+\textbf{Key institutional features:}
+\begin{itemize}
+  \item \textbf{Family-level production:} each family runs its own channel with dedicated staff
+  \item \textbf{Sharp selection:} families feature $<4$ funds per broadcast from $25+$ products
+  \item \textbf{Shopping cart:} viewers can purchase featured funds in one click during the broadcast
+\end{itemize}
+
+\vspace{0.35cm}
+\begin{keybox}
+  \textbf{Identification gift:} within the same family, some funds are featured while others are not — in the \emph{same quarter}.
+\end{keybox}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Data and Sample}
+
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+  \textbf{Livestream data (Tiantian Fund):}
+  \begin{itemize}
+    \item \hl{25,685} livestreaming events
+    \item July 2020 -- June 2025
+    \item Treatment: fund appears in shopping cart $\Rightarrow$ ``featured''
+  \end{itemize}
+  \vspace{0.3cm}
+  \textbf{Fund universe:}
+  \begin{itemize}
+    \item \hl{5,809} actively managed equity/hybrid funds
+    \item \hl{180} fund families
+    \item \hl{90,850} fund-quarter observations
+    \item Exclude: index, closed-end, QDII, umbrella funds
+  \end{itemize}
+\end{column}
+\begin{column}{0.46\textwidth}
+  \textbf{Key variables:}
+  \vspace{0.15cm}
+
+  \textit{Fund flow} (return-adjusted):
+  \[
+  \text{Flow}_{i,q} = \frac{\text{TNA}_{i,q} - \text{TNA}_{i,q-1}(1+r_{i,q})}{\text{TNA}_{i,q-1}}
+  \]
+
+  \textit{Family flow}: AUM-weighted aggregate across all family funds.
+
+  \vspace{0.2cm}
+  \textit{Descriptives:}
+  \begin{itemize}
+    \item Mean flow: 0.38\%, SD: 42\%
+    \item \hl{14\%} of fund-quarters are featured
+    \item Featured funds outperform siblings pre-event
+  \end{itemize}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Empirical Design}
+
+\textbf{Two estimating equations:}
+
+\vspace{0.2cm}
+\textit{Family-level TWFE} (does the family grow?):
+\[
+\text{FamilyFlow}_{j,q} = \alpha_j + \delta_q + \beta_1\,\text{Livestream}_{j,q} + \mathbf{X}'_{j,q-1}\Gamma + \varepsilon_{j,q}
+\]
+
+\vspace{0.2cm}
+\textit{Fund-level TWFE} (who gains, who loses?):
+\[
+\text{FundFlow}_{i,q} = \alpha_i + \delta_q + \beta_1\,\underbrace{\text{FundLivestream}_{i,q}}_{\text{fund featured}} + \beta_2\,\underbrace{\text{FamilyLivestream(Oth)}_{i,q}}_{\text{sibling featured}} + \mathbf{X}'_{i,q-1}\Gamma + \varepsilon_{i,q}
+\]
+
+\vspace{0.3cm}
+\textbf{Key design features:}
+\begin{itemize}
+  \item Fund and family fixed effects absorb time-invariant unobservables
+  \item Year-quarter fixed effects control for aggregate market conditions
+  \item Standard errors clustered at the family level
+  \item Robustness: family-quarter FE (absorbs all time-varying family shocks)
+\end{itemize}
+
+\end{frame}
+
+% ===========================================================================
+\section{Results: Zero-Sum at the Family Level}
+% ===========================================================================
+
+\transitionslide{Results I: Zero-Sum at the Family Level}
+
+\begin{frame}{Family-Level Flows: Null Across All Specifications}
+
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\textbf{Eight specifications, all insignificant:}
+
+\vspace{0.2cm}
+\begin{tabular}{lcc}
+  \toprule
+  Variable & Coef. & Std.\ Err.\ \\
+  \midrule
+  Family First Livestream & 3.77 & (5.12) \\
+  Family Post Livestream  & $-0.66$ & (2.34) \\
+  Family Livestream       & 0.90 & (2.17) \\
+  Family Market Share     & $-15.67$ & (18.43) \\
+  \bottomrule
+\end{tabular}
+
+\vspace{0.25cm}
+\muted{\small All specifications include family FE, quarter FE, and lagged controls. Clustered SE at family level.}
+\end{column}
+\begin{column}{0.43\textwidth}
+\begin{resultbox}
+\textbf{Striking contrast:}
+
+\medskip
+\citet{dehaan2025social} find \hl{$+14$pp} fund-level inflows using the \emph{same dataset}.
+
+\medskip
+We find \textbf{zero} at the family level across all specifications.
+
+\medskip
+$\Rightarrow$ Inflows to featured funds come from \emph{within} the family.
+\end{resultbox}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Event Study: No Family-Level Response Around Adoption}
+
+\begin{center}
+\includegraphics[width=0.72\textwidth]{../MutualFundMarketingPaper/figures/pictures/family_twfe_event_study_plot.pdf}
+\end{center}
+
+\vspace{-0.2cm}
+\muted{\small Dynamic TWFE estimates of family flows around initial livestream adoption. Pre-event coefficients flat and insignificant $\Rightarrow$ parallel trends hold. No sustained post-adoption increase.}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Fund-Level Decomposition: Reallocation Mechanism}
+
+\textbf{Who gains? Who loses?}
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tabular}{lccc}
+  \toprule
+   & (3) & (4) & (5) \\
+  \midrule
+  Fund Livestream & 14.87*** & 13.64*** & 13.27*** \\
+   & (1.85) & (1.90) & (1.93) \\[4pt]
+  Family Livestream (Oth) & & $-$1.49** & $-$1.94** \\
+   & & (0.70) & (0.88) \\[4pt]
+  Controls & No & No & Yes \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.2cm}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{resultbox}
+Featured funds gain \hl{$+13$--$15$pp} in quarterly flows.
+\end{resultbox}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{keybox}
+Non-featured siblings lose \highlight{$-2$pp} — opposing sign confirms cannibalization.
+\end{keybox}
+\end{column}
+\end{columns}
+
+\vspace{0.15cm}
+\muted{\small Fund and quarter FE. SE clustered at family level. ***, **, * significant at 1\%, 5\%, 10\%.}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Robustness: Family-Quarter Fixed Effects}
+
+\textbf{Strategy:} Replace fund + quarter FE with \hl{family $\times$ quarter FE}
+\begin{itemize}
+  \item Absorbs \emph{all} time-varying family characteristics (family flow, family performance, market conditions)
+  \item Mechanically forces AUM-weighted within-family flows to sum to zero (since Table~1 establishes family null)
+\end{itemize}
+
+\vspace{0.35cm}
+\begin{center}
+\begin{tabular}{lccc}
+  \toprule
+   & (1) & (2) & (3) \\
+   & First & Post & Any \\
+  \midrule
+  Fund Livestream & 15.40*** & 16.17*** & 17.59*** \\
+   & (2.12) & (2.08) & (2.25) \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.25cm}
+\begin{resultbox}
+Coefficients \hl{larger} than TWFE by $\approx 3$pp: the family-quarter FE forces featured-fund gains to equal non-featured-fund losses. The \textbf{17.6pp} is the \emph{full reallocation magnitude}.
+\end{resultbox}
+
+\end{frame}
+
+% ===========================================================================
+\section{Why Livestream? Performance Dynamics}
+% ===========================================================================
+
+\transitionslide{Results II: Why Do Families Livestream?}
+
+\begin{frame}{Performance Dynamics Around Livestreaming Events}
+
+\begin{center}
+\includegraphics[width=0.72\textwidth]{../MutualFundMarketingPaper/figures/pictures/fund_twfe_event_study_plot.pdf}
+\end{center}
+
+\vspace{-0.2cm}
+\muted{\small Monthly performance of featured funds (blue) vs.\ non-featured siblings (gray) relative to the livestream event month. Shaded bands: 95\% CI.}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Interpretation: Fund Families as Open Market Operators}
+
+\textbf{Pattern before the livestream:}
+\begin{itemize}
+  \item Featured funds significantly \hl{outperform} non-featured siblings in the months leading up to the event
+  \item Non-featured funds underperform $\Rightarrow$ they are \emph{overcapitalized}
+\end{itemize}
+
+\textbf{Pattern after the livestream:}
+\begin{itemize}
+  \item Capital flows into featured funds erode their outperformance
+  \item Capital flows out of non-featured funds improve their performance
+  \item Performance gap compresses — consistent with \citet{berk2004mutual}
+\end{itemize}
+
+\vspace{0.3cm}
+\begin{keybox}
+\textbf{Mechanism:} Families have superior information about which funds are undercapitalized. Livestreaming steers existing investors from overcapitalized to undercapitalized funds — functioning as an \hl{internal open market operation} \citep{berk2017}.
+
+\medskip
+\textbf{Benefit:} Retains investors who might otherwise search outside the family.
+\end{keybox}
+
+\end{frame}
+
+% ===========================================================================
+\section{Fee and Revenue Nulls}
+% ===========================================================================
+
+\begin{frame}{Fee Reallocation and Revenue: Also Zero}
+
+\textbf{Could livestreaming shift flows toward higher-fee products?}
+\begin{itemize}
+  \item Management fees (majority of revenue): \hl{no response} across all specs and horizons
+  \item Service fees: modest temporary increase (a few basis points)
+  \item Loads: slight subsequent reduction
+\end{itemize}
+
+\vspace{0.35cm}
+\textbf{Flow-induced revenue} (fee $\times$ flow effects combined):
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Variable & (1) & (2) & (3) \\
+\midrule
+Family First Livestream & $-0.01$ & & \\
+Family Post Livestream  & & $-0.01$ & \\
+Family Livestream       & & & 0.01 \\
+\midrule
+\multicolumn{4}{l}{\textit{All statistically and economically insignificant.}} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.2cm}
+\begin{resultbox}
+\textbf{Bottom line:} Families extract \hl{no additional revenue} from livestreaming. The zero-sum reallocation does not improve profitability.
+\end{resultbox}
+
+\end{frame}
+
+% ===========================================================================
+\section{Communication Strategies}
+% ===========================================================================
+
+\transitionslide{Results III: Which Livestreams Attract Outside Capital?}
+
+\begin{frame}{What Distinguishes High- vs.\ Low-Flow Livestreamers?}
+
+\textbf{Question:} While most livestreaming is intra-family reallocation, some families do attract \emph{new} outside capital. What do they do differently?
+
+\vspace{0.3cm}
+\textbf{Approach:}
+\begin{itemize}
+  \item Define abnormal family flows as residuals from a regression of family flows on livestream intensity + controls
+  \item Sort into High (top 5\%) vs.\ Low (bottom 5\%) within each quarterly cross-section
+  \item Randomly sample 5 transcripts per family $\Rightarrow$ \hl{795 transcripts} for content analysis
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{LLM scoring (Qwen-2.5-32B):}
+\begin{itemize}
+  \item 16 dimensions: sentiment, emotional intensity, sales pressure, past performance, social proof, educational content, risk transparency, community building, \ldots
+  \item Each scored 1--10 using a fixed rubric (segment-level, then averaged)
+  \item Rubric fixed ex ante $\Rightarrow$ measurement error orthogonal to strategies under study
+\end{itemize}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Results: Only ``Hard Information'' Matters}
+
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+
+\textbf{Mean differences: High vs.\ Low abnormal-flow families}
+
+\vspace{0.15cm}
+\begin{tabular}{lcc}
+  \toprule
+  Dimension & Diff. & $p$-val \\
+  \midrule
+  \hl{Past Performance Focus} & \hl{$+$0.28} & \hl{0.02} \\
+  \hl{Social Proof Reliance}  & \hl{$+$0.23} & \hl{0.04} \\
+  \midrule
+  Sentiment Positivity   & $+$0.08 & 0.51 \\
+  Emotional Intensity    & $-$0.05 & 0.68 \\
+  Sales Pressure         & $+$0.11 & 0.39 \\
+  Educational Content    & $+$0.03 & 0.82 \\
+  Risk Transparency      & $-$0.09 & 0.44 \\
+  Community Building     & $+$0.06 & 0.59 \\
+  \multicolumn{3}{l}{\muted{$\cdots$ (8 more dims, all insignificant)}} \\
+  \bottomrule
+\end{tabular}
+
+\end{column}
+\begin{column}{0.43\textwidth}
+
+\begin{resultbox}
+\textbf{2 of 16 dimensions significant.}
+
+\medskip
+Successful families emphasize:
+\begin{itemize}
+  \item \hl{Past performance} (hard evidence of recent returns)
+  \item \hl{Social proof} (third-party recognitions, peer adoption)
+\end{itemize}
+
+\medskip
+Nothing else — not sentiment, not engagement style, not education.
+\end{resultbox}
+
+\vspace{0.25cm}
+\begin{keybox}
+Investors respond to \textbf{verifiable information}, consistent with rational learning \citep{berk2004mutual}. Emotional appeals do not move capital.
+\end{keybox}
+
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% ===========================================================================
+\section{Competitive Equilibrium}
+% ===========================================================================
+
+\begin{frame}{Competitive Pressure and the Defensive Equilibrium}
+
+\textbf{If livestreaming generates no family-level gains, why continue?}
+
+\vspace{0.3cm}
+\textbf{Market-level competitive pressure:}
+\begin{itemize}
+  \item When rival families increase livestreaming intensity, non-livestreaming families experience \hl{relative outflows}
+  \item A one-SD increase in market livestreaming predicts $\approx 27$pp flow losses for families that do not match competitors' efforts
+\end{itemize}
+
+\vspace{0.35cm}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\textbf{Within families:}
+\begin{itemize}
+  \item Own-fund livestreaming: $+7.2$pp flows
+  \item Sibling livestreaming: $-4.9$pp flows
+  \item Net family effect: $\approx 0$
+\end{itemize}
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{Across families:}
+\begin{itemize}
+  \item Failing to livestream when competitors do $\Rightarrow$ market share loss
+\end{itemize}
+\end{column}
+\end{columns}
+
+\vspace{0.4cm}
+\begin{keybox}
+\textbf{Prisoner's dilemma:} families must livestream \emph{not to attract new investors} but to defend existing assets from rivals. Industry equilibrium: too much marketing \citep{roussanov2021marketing}.
+\end{keybox}
+
+\end{frame}
+
+% ===========================================================================
+\section{Conclusion}
+% ===========================================================================
+
+\transitionslide{Conclusion}
+
+\begin{frame}{Summary of Findings}
+
+\begin{enumerate}
+  \setlength\itemsep{0.4cm}
+
+  \item[\hl{(1)}] \textbf{Zero-sum at the family level.} Livestreaming generates large fund-level inflows (+14pp) but \emph{zero} family-level flow or revenue change. Featured funds gain at the expense of non-featured siblings.
+
+  \item[\hl{(2)}] \textbf{Intra-family optimization.} Families promote recently outperforming (undercapitalized) funds to redirect capital from overcapitalized siblings. Post-event performance converges — consistent with Berk-Green rational learning.
+
+  \item[\hl{(3)}] \textbf{Defensive arms race.} Families livestream to defend market share, not to expand it. When rivals promote more, non-promoters lose flows. Industry is trapped in wasteful promotional competition.
+
+  \item[\hl{(4)}] \textbf{Hard information wins.} The rare cases of successful inter-family capital attraction rely exclusively on past performance and social proof — not sentiment or engagement.
+\end{enumerate}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Broader Implications}
+
+\textbf{For the mutual fund literature:}
+\begin{itemize}
+  \item Challenges the implicit assumption that fund-level marketing = family growth
+  \item Flow-performance sensitivities and marketing effectiveness must be evaluated at the family level
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{For investor welfare:}
+\begin{itemize}
+  \item Livestreaming facilitates learning and improves capital allocation \emph{within} families
+  \item But aggregate marketing may be socially excessive: competitive arms race with no net new capital formation
+  \item Welfare implications of this technology remain an open question
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{For financial regulation:}
+\begin{itemize}
+  \item AMAC's 2021 guidance correctly targets investor education and compliance
+  \item Our evidence suggests livestreaming can be informative (hard info channel) but is also used defensively
+\end{itemize}
+
+\vspace{0.3cm}
+\muted{Thank you. Questions welcome.}
+
+\end{frame}
+
+% ===========================================================================
+% References
+% ===========================================================================
+\begin{frame}[allowframebreaks]{References}
+  \bibliography{references}
+\end{frame}
+
+% ===========================================================================
+% Appendix
+% ===========================================================================
+\appendix
+
+\begin{frame}{Appendix: Full Family-Level Flow Regressions}
+
+\begin{center}
+\resizebox{0.9\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8) \\
+\midrule
+Family First Livestream & 3.77 & & & & & & & \\
+ & (5.12) & & & & & & & \\[2pt]
+Family Post Livestream & & $-0.66$ & & & & & & \\
+ & & (2.34) & & & & & & \\[2pt]
+Family Livestream & & & 0.90 & & & & 1.07 & \\
+ & & & (2.17) & & & & (2.19) & \\[2pt]
+Family Market Share & & & & $-15.67$ & & & & \\
+ & & & & (18.43) & & & & \\[2pt]
+Market Livestream (Oth) & & & & & $-0.90$ & & & \\
+ & & & & & (1.65) & & & \\[2pt]
+Family Livestream Count & & & & & & $-0.09$ & & 0.01 \\
+ & & & & & & (0.50) & & (0.50) \\[2pt]
+Market-Family Livestream Count & & & & & & & 24.55 & 14.52 \\
+ & & & & & & & (20.33) & (18.47) \\[2pt]
+\midrule
+Family FE & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+Quarter FE & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+Controls & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+\muted{\small Standard errors clustered at family level. None of the estimates approach conventional significance.}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Appendix: Fund-Level Flow Decomposition (Full Table)}
+
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) \\
+\midrule
+Fund First Livestream & 14.13*** & & & 12.95*** & \\
+ & (1.89) & & & (1.96) & \\[2pt]
+Fund Post Livestream & & 14.64*** & & & \\
+ & & (2.01) & & & \\[2pt]
+Fund Livestream & & & 14.87*** & & 13.27*** \\
+ & & & (1.85) & & (1.93) \\[2pt]
+Family Livestream (Oth) & & & & $-1.49**$ & $-1.94**$ \\
+ & & & & (0.70) & (0.88) \\[2pt]
+\midrule
+Fund FE & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+Quarter FE & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+Controls & No & No & No & No & Yes \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\muted{\small ***, **, * denote significance at 1\%, 5\%, 10\%. SE clustered at family level.}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Appendix: Within-Fund Share Class Analysis}
+
+\textbf{Specification:} Fund-quarter FE absorb all fund-level variation.
+\[
+\text{ClassFlow}_{c,q} = \delta_{f(c),q} + \beta_1\,\text{ClassLivestream}_{c,q} + \mathbf{X}'_{c,q-1}\Gamma + \varepsilon_{c,q}
+\]
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & (1) & (2) \\
+\midrule
+Class Livestream & 10.20*** & \\
+ & (2.34) & \\[4pt]
+Solo Livestreamer & & $-9.82$ \\
+ & & (8.15) \\[4pt]
+Has Sibling Livestreamer & & $-19.91$ \\
+ & & (14.60) \\[4pt]
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.2cm}
+Featured share classes gain 10pp relative to non-featured classes of the \emph{same fund} in the same quarter. Reallocation operates at every level of aggregation: family $\to$ fund $\to$ share class.
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Appendix: LLM Content Dimensions}
+
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\textbf{All 16 dimensions scored (1--10):}
+\begin{enumerate}\footnotesize
+  \item Sentiment Positivity
+  \item \hl{Past Performance Focus}
+  \item \hl{Social Proof Reliance}
+  \item Emotional Intensity
+  \item Sales Pressure
+  \item Educational Content
+  \item Risk Transparency
+  \item Community Building
+  \item Urgency / FOMO
+  \item Product Complexity Framing
+  \item Presenter Credibility Signals
+  \item Interactive Engagement
+  \item Narrative / Storytelling
+  \item Regulatory Compliance Emphasis
+  \item Future Performance Claims
+  \item Comparative Benchmarking
+\end{enumerate}
+\end{column}
+\begin{column}{0.50\textwidth}
+\textbf{Scoring approach:}
+\begin{itemize}
+  \item Model: Qwen-2.5-32B
+  \item Transcripts divided into 10,000-char overlapping segments
+  \item Each segment scored independently
+  \item Transcript score = mean across segments
+  \item Fixed rubric ex ante $\Rightarrow$ measurement error orthogonal to treatment
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Key result:} Only dims 2 and 3 differ significantly between high and low abnormal-flow families (at $p < 0.05$).
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------
+
+\begin{frame}{Appendix: Performance Event Study (Fund Level)}
+
+\begin{columns}[T]
+\begin{column}{0.49\textwidth}
+  \textbf{Featured funds:}
+  \includegraphics[width=\textwidth]{../MutualFundMarketingPaper/figures/pictures/fund_twfe_event_study_plot.pdf}
+\end{column}
+\begin{column}{0.49\textwidth}
+  \textbf{HDFE (Family$\times$Quarter) robustness:}
+  \includegraphics[width=\textwidth]{../MutualFundMarketingPaper/figures/pictures/fund_hdfe_event_study_plot.pdf}
+\end{column}
+\end{columns}
+
+\vspace{0.15cm}
+\muted{\small Left: two-way FE estimates. Right: family-quarter FE robustness. Both confirm pre-event outperformance and post-event convergence.}
+
+\end{frame}
+
+\end{document}
