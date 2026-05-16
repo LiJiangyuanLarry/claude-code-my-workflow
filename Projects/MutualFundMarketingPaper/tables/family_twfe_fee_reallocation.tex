@@ -1,0 +1,64 @@
+\begin{landscape}
+    \begin{table}[!ht]
+        \caption{Dynamic Livestream Effect on Family Fee Structures}\label{tab:family_twfe_fee_reallocation}
+        \footnotesize{
+        This table reports regression results for the effect of livestreaming on family fee structures. The estimations are based on the following two-way fixed effects (TWFE) model:
+        \[ Y_{j,q} = \alpha_j + \delta_q + \beta_1 \text{Livestream}_{j,q} + \mathbf{X}'_{j,q-1} \Gamma + \epsilon_{j,q} \]
+        Columns 1--4 report results for Family Management Fee, Columns 5--8 for Family Service Fee, and Columns 9--12 for Family Loads. For each fee type, the odd-numbered pairs (e.g., Cols 1--2) examine the contemporaneous effect ($Y_{t}$), while the even-numbered pairs (e.g., Cols 3--4) examine the one-quarter-ahead lead effect ($Y_{t+1}$). The key variable, $\text{Treatment}_{j,q}$, represents a measure of livestreaming activity. $\mathbf{X}'_{j,q-1}$ is a vector of control variables from the prior quarter, and $\alpha_j$ and $\delta_q$ are family and quarter fixed effects, respectively. Robust $t$-statistics clustered at the family level are reported in parentheses. All continuous variables are winsorized at the 1\% and 99\% levels. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels, respectively. See Appendix B for detailed variable definitions.}
+
+        \vspace{.1in}
+        \centering
+
+        \bgroup%
+        \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+        \setlength{\tabcolsep}{3pt} % 收紧列间距
+        \small
+        \renewcommand{\arraystretch}{0.9} % 收紧行间距
+
+        \begin{tabular}{l*{12}{c}}
+            \toprule
+            & \multicolumn{4}{c}{\textbf{Family Management Fee}} & \multicolumn{4}{c}{\textbf{Family Service Fee}} & \multicolumn{4}{c}{\textbf{Family Loads}} \\
+            \cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13}
+            & \multicolumn{2}{c}{Current ($Y_{t}$)} & \multicolumn{2}{c}{Lead ($Y_{t+1}$)} & \multicolumn{2}{c}{Current ($Y_{t}$)} & \multicolumn{2}{c}{Lead ($Y_{t+1}$)} & \multicolumn{2}{c}{Current ($Y_{t}$)} & \multicolumn{2}{c}{Lead ($Y_{t+1}$)} \\
+            \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13}
+            & (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8) & (9) & (10) & (11) & (12) \\
+            \midrule
+            
+            Family First Livestream & 0.00 &  & -0.00 &  & 0.00 &  & 0.00 &  & 0.00 &  & 0.00 &  \\
+             & (1.31) &  & (-0.83) &  & (0.66) &  & (-1.63) &  & (1.24) &  & (0.30) &  \\
+            [0.3em]
+            Family Livestream &  & 0.00 &  & 0.00 &  & 0.00\sym{***} &  & 0.00\sym{**} &  & -0.00 &  & -0.00\sym{***} \\
+             &  & (1.37) &  & (0.37) &  & (2.61) &  & (2.57) &  & (-1.27) &  & (-2.75) \\
+            
+            Family Past Return & 0.01\sym{***} & 0.01\sym{***} & 0.02\sym{***} & 0.02\sym{***} & 0.00 & 0.00 & 0.01\sym{*} & 0.01\sym{*} & 0.00 & 0.00 & 0.00 & 0.00 \\
+             & (2.71) & (2.73) & (3.15) & (3.14) & (1.13) & (1.15) & (1.88) & (1.88) & (0.60) & (0.64) & (0.45) & (0.45) \\
+            [0.3em]
+            Family Size & 0.00 & 0.00 & -0.00 & -0.00 & -0.00 & -0.00 & -0.00\sym{*} & -0.00\sym{*} & -0.00 & -0.00 & 0.00 & 0.00 \\
+             & (0.19) & (0.19) & (-0.72) & (-0.73) & (-1.53) & (-1.54) & (-1.85) & (-1.89) & (-0.17) & (-0.16) & (0.58) & (0.59) \\
+            [0.3em]
+            Family Age & -0.00 & -0.00 & -0.00 & -0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 \\
+             & (-0.43) & (-0.47) & (-0.70) & (-0.78) & (1.14) & (0.99) & (1.29) & (1.05) & (0.77) & (0.97) & (0.44) & (0.73) \\
+            [0.3em]
+            Fund Count in Family & 0.00 & 0.00 & 0.01\sym{*} & 0.01\sym{*} & 0.00\sym{*} & 0.00\sym{*} & 0.00\sym{*} & 0.00\sym{*} & -0.00 & -0.00 & -0.00 & -0.00 \\
+             & (1.36) & (1.31) & (1.71) & (1.73) & (1.89) & (1.84) & (1.93) & (1.93) & (-1.55) & (-1.59) & (-1.52) & (-1.52) \\
+            [0.3em]
+            Family Management Fee & 0.73\sym{***} & 0.73\sym{***} & 0.54\sym{***} & 0.54\sym{***} & -0.02 & -0.02 & -0.03 & -0.03 & 0.02 & 0.02 & 0.02 & 0.02 \\
+             & (24.55) & (24.52) & (12.21) & (12.21) & (-1.41) & (-1.44) & (-1.45) & (-1.47) & (1.51) & (1.52) & (1.36) & (1.38) \\
+            [0.3em]
+            Family Service Fee & -0.10\sym{*} & -0.10\sym{*} & -0.14\sym{*} & -0.14\sym{*} & 0.70\sym{***} & 0.70\sym{***} & 0.52\sym{***} & 0.52\sym{***} & -0.02 & -0.02 & -0.01 & -0.01 \\
+             & (-1.85) & (-1.90) & (-1.72) & (-1.74) & (20.18) & (20.16) & (13.51) & (13.54) & (-0.85) & (-0.85) & (-0.51) & (-0.42) \\
+            [0.3em]
+            Family Loads & 0.08 & 0.08 & 0.07 & 0.07 & 0.04 & 0.04 & 0.05 & 0.05 & 0.61\sym{***} & 0.61\sym{***} & 0.43\sym{***} & 0.43\sym{***} \\
+             & (1.10) & (1.07) & (0.58) & (0.58) & (1.31) & (1.30) & (1.02) & (1.03) & (6.59) & (6.55) & (4.87) & (4.92) \\
+            
+            \midrule
+            
+            Observations & 3,251 & 3,251 & 3,230 & 3,230 & 3,251 & 3,251 & 3,230 & 3,230 & 3,251 & 3,251 & 3,230 & 3,230 \\
+            Adj. $R^{2}$ & 0.9300 & 0.9300 & 0.8989 & 0.8989 & 0.8997 & 0.9000 & 0.8595 & 0.8600 & 0.9725 & 0.9724 & 0.9677 & 0.9679 \\
+            
+            \bottomrule
+        \end{tabular}
+
+        \egroup%
+    \end{table}
+\end{landscape}

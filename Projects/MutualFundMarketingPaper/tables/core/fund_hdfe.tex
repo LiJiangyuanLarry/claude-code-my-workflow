@@ -1,0 +1,47 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         \\
+\midrule
+Fund First Livestream&       15.40\sym{***}&                     &                     \\
+                    &      (9.53)         &                     &                     \\
+\addlinespace
+Fund Post Livestream&                     &       16.17\sym{***}&                     \\
+                    &                     &     (14.37)         &                     \\
+\addlinespace
+Fund Livestream     &                     &                     &       17.59\sym{***}\\
+                    &                     &                     &     (17.68)         \\
+\addlinespace
+Fund Past Return    &       26.63\sym{***}&       29.48\sym{***}&       24.17\sym{***}\\
+                    &      (6.54)         &      (7.53)         &      (6.04)         \\
+\addlinespace
+Fund Top 5 Return   &        6.89\sym{***}&        6.63\sym{***}&        6.26\sym{***}\\
+                    &      (7.51)         &      (7.59)         &      (7.08)         \\
+\addlinespace
+Fund Size           &      -20.67\sym{***}&      -21.82\sym{***}&      -21.59\sym{***}\\
+                    &    (-26.36)         &    (-27.20)         &    (-27.05)         \\
+\addlinespace
+Fund Large          &        0.49         &        0.26         &       -0.05         \\
+                    &      (0.49)         &      (0.26)         &     (-0.05)         \\
+\addlinespace
+Fund Age            &       -3.95\sym{**} &       -6.21\sym{***}&       -5.69\sym{***}\\
+                    &     (-2.33)         &     (-3.61)         &     (-3.47)         \\
+\addlinespace
+Fund Old            &        4.79\sym{***}&        4.59\sym{**} &        4.35\sym{**} \\
+                    &      (2.78)         &      (2.59)         &      (2.50)         \\
+\addlinespace
+Fund Management Fee &      -99.29\sym{***}&      -96.39\sym{***}&     -107.81\sym{***}\\
+                    &     (-5.19)         &     (-5.00)         &     (-5.67)         \\
+\addlinespace
+Fund Service Fee    &      130.04\sym{***}&      112.49\sym{***}&      108.30\sym{***}\\
+                    &      (3.99)         &      (3.53)         &      (3.36)         \\
+\addlinespace
+Fund Loads          &      -77.87         &      -77.17         &      -68.17         \\
+                    &     (-1.41)         &     (-1.43)         &     (-1.28)         \\
+\midrule
+Observations        &      83,536         &      83,536         &      83,536         \\
+Adj. R$^{2}$        &      0.1595         &      0.1632         &      0.1687         \\
+\bottomrule
+\end{tabular}
+}

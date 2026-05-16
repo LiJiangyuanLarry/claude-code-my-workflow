@@ -1,0 +1,151 @@
+\section{Variable Definitions}\label{tab:vardefs}
+
+\vspace{0.3cm}
+
+\noindent
+\begin{minipage}{\linewidth}
+This appendix defines the variables used in our analysis. Throughout the paper, we use the following subscripts to index our variables: $c$ for a fund share class, $i$ for a fund, $j$ for a fund family, and $q$ for a quarter. For brevity, in the definitions below, we refer to a fund share class simply as a class, and a fund family as a family.
+\end{minipage}
+
+
+\begin{longtable}{lp{0.6\textwidth}}
+
+\caption{Variable Definitions for Fund Flows, Livestreaming Activity, and Fee/Performance Measures}\label{tab:variable_definitions} \\
+
+    \toprule
+    \textbf{Variable}              & \textbf{Definition}                                                                                                                                                                                                                                                                                               \\
+    \midrule
+    \endfirsthead%
+    \midrule
+    \textbf{Variable}              & \textbf{Definition}                                                                                                                                                                                                                                                                                               \\
+    \midrule
+    \endhead%
+    \endfoot%
+    \endlastfoot%
+
+    % --- CATEGORY 1: Fund Flow Variables ---
+    \multicolumn{2}{l}{\textbf{Fund Flow Variables}}                                                                                                                                                                                                                         \\
+    \midrule
+    Class Flow                     & The return-adjusted quarterly growth rate of a class's total assets under management (AUM). It is computed by removing the portion of AUM change attributable to investment returns and scaling the remainder by the AUM at the beginning of the given quarter.                                                   \\
+    \midrule
+    Fund Flow                      & The flow for a fund, constructed as the AUM-weighted average of the Class Flow across all its constituent classes. The weight for each class is its Class AUM from the prior quarter.                                                                                                                             \\
+    \midrule
+    Family Flow                    & The flow for a family, constructed as the AUM-weighted average of the Fund Flow across all funds within the family. The weight for each fund is its Fund AUM from the prior quarter.                                                                                                                              \\
+    \midrule
+
+    % --- CATEGORY 2: Livestreaming Activity Variables ---
+    \multicolumn{2}{l}{\textbf{Livestreaming Activity Variables}}                                                                                                                                                                                                                                                                                    \\
+    \midrule
+    Class Livestream               & An indicator equal to 1 if a class participates in at least one livestream in a given quarter, and 0 otherwise.                                                                                                                                                                                                   \\
+    \midrule
+    Fund Livestream                & An indicator for a fund, aggregated from the maximum value of Class Livestream across all its constituent classes.                                                                                                                                                                                                \\
+    \midrule
+    Family Livestream              & An indicator for a family, aggregated from the maximum value of Fund Livestream across all funds within the family.                                                                                                                                                                                               \\
+    \midrule
+    Class First Livestream         & An indicator equal to 1 only for the quarter of a class's first livestream, and 0 otherwise.                                                                                                                                                                                                                      \\
+    \midrule
+    Fund First Livestream          & An indicator for a fund, marking the quarter of the earliest Class First Livestream event observed among all its constituent classes.                                                                                                                                                                             \\
+    \midrule
+    Family First Livestream        & An indicator for a family, marking the quarter of the earliest Fund First Livestream event observed among all funds within the family.                                                                                                                                                                            \\
+    \midrule
+    Class Post Livestream          & An indicator equal to 1 for all quarters subsequent to and including a class's first livestream.                                                                                                                                                                                                                  \\
+    \midrule
+    Fund Post Livestream           & An indicator for a fund, equal to 1 for all quarters subsequent to and including its Fund First Livestream event.                                                                                                                                                                                                 \\
+    \midrule
+    Family Post Livestream         & An indicator for a family, equal to 1 for all quarters subsequent to and including its Family First Livestream event.                                                                                                                                                                                             \\
+    \midrule
+    Family First Livestream (Oth)  & An indicator for a fund, equal to 1 if it is the quarter of the Family First Livestream, but the fund's own Fund First Livestream is 0.                                                                                                                                                                           \\
+    \midrule
+    Family Livestream (Oth)        & An indicator for a fund, equal to 1 if the Family Livestream is 1, but the fund's own Fund Livestream is 0.                                                                                                                                                                                                       \\
+    \midrule
+    Class Livestream Count         & The natural logarithm of one plus the total number of livestreams in which a class participates during a given quarter.                                                                                                                                                                                           \\
+    \midrule
+    Fund Livestream Count          & The natural logarithm of one plus the total number of unique livestreams in which a fund participates. The base count is determined for each livestream where at least one of its constituent classes is featured; a single livestream is counted only once per fund regardless of how many classes are featured. \\
+    \midrule
+    Family Livestream Count        & The natural logarithm of one plus the total number of unique livestreams conducted by a family. The base count is determined for each livestream where at least one of the family's funds is featured.                                                                                                            \\
+    \midrule
+    Family-Fund Livestream Count   & A measure of sibling fund activity for a given fund. It is calculated as the natural logarithm of one plus the total livestream count of the fund's family, excluding livestreams that feature the fund itself.                                                                                                   \\
+    \midrule
+    Market-Family Livestream Count & A measure of market competition for a given fund. It is calculated as the natural logarithm of one plus the market's total livestream count, after subtracting all livestreams from the fund's own family.                                                                                                        \\
+    \midrule
+    Fund Market Share              & The Fund Livestream Count as a proportion of the total market livestream count in a given quarter.                                                                                                                                                                                                                \\
+    \midrule
+    Solo Livestreamer              & An indicator for a class, equal to 1 if it is the only class within its fund to participate in a livestream during the given quarter.                                                                                                                                                                             \\
+    \midrule
+    Has Sibling Livestreamer       & An indicator for a class, equal to 1 if it does not participate in a livestream, but at least one of its sibling classes within the same fund does.                                                                                                                                                               \\
+    \midrule
+    % --- CATEGORY 3: Fee and Performance Variables ---
+    \multicolumn{2}{l}{\textbf{Fee and Performance Variables}}                                                                                                                                                                                                                                                                                       \\
+    \midrule
+    Class Management Fee           & A class's management charge, calculated as the annualized fee divided by four.                                                                                                                                                                                                                                    \\
+    \midrule
+    Fund Management Fee            & The AUM-weighted average of the Class Management Fee across all its constituent classes.                                                                                                                                                                                                                          \\
+    \midrule
+    Family Management Fee          & The AUM-weighted average of the Fund Management Fee across all funds within the family.                                                                                                                                                                                                                           \\
+    \midrule
+    Class Service Fee              & A class's custodian and sales service charges, calculated as the annualized fee divided by four.                                                                                                                                                                                                                  \\
+    \midrule
+    Fund Service Fee               & The AUM-weighted average of the Class Service Fee across all its constituent classes.                                                                                                                                                                                                                             \\
+    \midrule
+    Family Service Fee             & The AUM-weighted average of the Fund Service Fee across all funds within the family.                                                                                                                                                                                                                              \\
+    \midrule
+    Class Loads                    & The sum of front-end loads (multiplied by 10\% to account for discounts) and applicable back-end loads, divided by the average holding period (16.56 months for Class A/Single, 8.16 months for Class C).                                                                                                         \\
+    \midrule
+    Fund Loads                     & The AUM-weighted average of the Class Loads across all its constituent classes.                                                                                                                                                                                                                                   \\
+    \midrule
+    Family Loads                   & The AUM-weighted average of the Fund Loads across all funds within the family.                                                                                                                                                                                                                                    \\
+    \midrule
+    Family Total Fee               & The sum of Family Management Fee, Family Service Fee and Family Loads.                                                                                                                                                                                                                                            \\
+    \midrule
+    Family Churn-Weighted Fee      & The average total fee for a family, weighted by the absolute value of fund flow. It is calculated by summing the product of total fee and the absolute value of fund flow for each fund, and then dividing by the sum of the absolute values of fund flow across all funds within the family.                     \\
+    \midrule
+    Family Revenue                 & An estimate of the flow-induced revenue for a family, scaled by its assets. It is calculated by summing the product of total fee and fund flow for each fund, and then dividing by the family's total prior-quarter AUM\@.                                                                                          \\
+    \midrule
+    Class Return                   & The cumulative net return for a class over the six months preceding the given quarter.                                                                                                                                                                                                                            \\
+    \midrule
+    Fund Return                    & The AUM-weighted average of Class Return across all constituent classes within a fund.                                                                                                                                                                                                                            \\
+    \midrule
+    Family Return                  & The AUM-weighted average net return for a family during the given quarter. It is constructed by aggregating the AUM-weighted net returns of all funds within the family.                                                                                                                                          \\
+    \midrule
+    Class Top 5 Return             & A dummy variable for a class, identifying if its Class Return is in the top five within its family.                                                                                                                                                                                                               \\
+    \midrule
+    Fund Top 5 Return              & A dummy variable for a fund, identifying if its Fund Return is in the top five within its family.                                                                                                                                                                                                                 \\
+    \midrule
+    % --- CATEGORY 4: Fund, Family, and Class Characteristic Variables ---
+    \multicolumn{2}{l}{\textbf{Characteristic Variables}}                                                                                                                                                                                                                                                                                            \\
+    \midrule
+    Class AUM                      & The total assets under management for a class at the beginning of the given quarter.                                                                                                                                                                                                                              \\
+    \midrule
+    Fund AUM                       & The sum of Class AUM across all constituent classes within a fund.                                                                                                                                                                                                                                                \\
+    \midrule
+    Family AUM                     & The sum of Fund AUM across all funds within a family.                                                                                                                                                                                                                                                             \\
+    \midrule
+    Class Size                    & The natural logarithm of Class AUM\@.                                                                                                                                                                                                                                                                               \\
+    \midrule
+    Fund Size                     & The natural logarithm of Fund AUM\@.                                                                                                                                                                                                                                                                                \\
+    \midrule
+    Family Size                   & The natural logarithm of Family AUM\@.                                                                                                                                                                                                                                                                              \\
+    \midrule
+    Class Age                      & The log-transformed age of a class in years (plus one), measured from its launch date.                                                                                                                                                                                                                            \\
+    \midrule
+    Fund Age                       & The age of a fund, defined as the maximum age among all its constituent classes.                                                                                                                                                                                                                                  \\
+    \midrule
+    Family Age                     & The log-transformed age of a family in years (plus one), measured from its establishment date.                                                                                                                                                                                                                    \\
+    \midrule
+    Class Large                    & A dummy variable identifying if a class is in the largest AUM quintile for the given quarter.                                                                                                                                                                                                                     \\
+    \midrule
+    Fund Large                     & A dummy variable identifying if a fund is in the largest AUM quintile for the given quarter.                                                                                                                                                                                                                      \\
+    \midrule
+    Family Large                   & A dummy variable identifying if a family is in the largest AUM quintile for the given quarter.                                                                                                                                                                                                                    \\
+    \midrule
+    Class Old                      & A dummy variable identifying if a class is in the highest age quintile for the given quarter.                                                                                                                                                                                                                     \\
+    \midrule
+    Fund Old                       & A dummy variable identifying if a fund is in the highest age quintile for the given quarter.                                                                                                                                                                                                                      \\
+    \midrule
+    Family Old                     & A dummy variable identifying if a family is in the highest age quintile for the given quarter.                                                                                                                                                                                                                    \\
+    \midrule
+    Class Count in Family          & The total number of classes within a family.                                                                                                                                                                                                                                                                      \\
+    \midrule
+    Fund Count in Family           & The total number of funds within a family.                                                                                                                                                                                                                                                                        \\
+    \bottomrule
+\end{longtable}

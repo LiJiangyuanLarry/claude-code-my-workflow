@@ -1,0 +1,197 @@
+\section{Appendix: Visual Documentation of the Livestreaming Interface}\label{app:app:visual_interface_docs}
+
+This appendix provides a structured visual walkthrough of the livestreaming ecosystem on the platform, documenting the user journey from initial discovery to active engagement and financial transaction. 
+Figure~\ref{fig:app_portal} illustrates the \textit{Platform Portal Interface}, highlighting the search and discovery modules. 
+Figure~\ref{fig:app_interface} details the \textit{In-stream Livestreaming Interface}, which captures the real-time interactive components during a live session. 
+Finally, Figure~\ref{fig:app_gallery} demonstrates the \textit{Product Gallery}, representing the integrated subscription gateway for investment products.
+
+\newlength{\appheight}
+\setlength{\appheight}{0.75\textheight}
+\newcommand{\screenshotdir}{figures/pictures/screenshots/compressed}
+% To use the original high-resolution screenshots instead, replace the line above with:
+% \newcommand{\screenshotdir}{figures/pictures/screenshots/original}
+
+% ---------------------------------------------------------
+% Page 1: Platform Livestreaming Portal
+% ---------------------------------------------------------
+\begin{landscape}
+\enlargethispage{60pt}
+\begin{figure}[p]
+    \centering
+    \caption{The Entrance Portal of the Livestreaming Aggregator}\label{fig:app_portal}
+    \noindent
+    % (1) Left: Red English labels
+    \begin{minipage}[b][\appheight][c]{0.20\textwidth}
+        \begin{tikzpicture}[y=1pt, x=1pt]
+            \path (0,0) rectangle (\linewidth, \appheight); 
+            \begin{scope}[x={(0,0)}, y={(0,\appheight)}]
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.885) {(1) Search Interface};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.655) {(2) Featured Livestreams};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.355) {(3) Themed Livestream Series};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.11) {(4) Livestream Schedule \& Archive};
+            \end{scope}
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    % (2) Center: Screenshot
+    \begin{minipage}[b][\appheight][c]{0.35\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \node[anchor=south west, inner sep=0] (image) at (0,0) 
+                {\includegraphics[height=\appheight, keepaspectratio]{\screenshotdir/tiantian_portal.jpg}};
+            \begin{scope}[x={(image.south east)}, y={(image.north west)}]
+                \draw[red, ultra thick] (0.52, 0.85) rectangle (0.98, 0.92); % (1)
+                \draw[red, ultra thick] (0.02, 0.50) rectangle (0.98, 0.81); % (2)
+                \draw[red, ultra thick] (0.02, 0.22) rectangle (0.98, 0.49); % (3)
+                \draw[red, ultra thick] (0.02, 0.08) rectangle (0.55, 0.14); % (4)
+            \end{scope}
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    % (3) Right: tcolorbox description
+    \begin{minipage}[b][\appheight][c]{0.50\textwidth}
+        \begin{tcolorbox}[height=\appheight, colback=red!5!white, colframe=red!75!black, 
+            title=Platform Portal Interface, valign=center, arc=0pt, outer arc=0pt, boxrule=1.5pt]
+            \small
+            This panel displays the primary entry point for the livestreaming services on the Tiantian fund platform. 
+            \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*, itemsep=4pt]
+                \item \textbf{Search Interface:} A global search tool allowing users to retrieve historical livestreaming sessions or locate specific fund families, fund managers and topics.
+                \item \textbf{Featured Livestreams:} A high-visibility, horizontal-scrolling area featuring the most prominent real-time livestreams recommended by the platform.
+                \item \textbf{Themed Livestream Series:} Structured content modules that aggregate livestreaming sessions according to common investment themes or specific asset management goals.
+                \item \textbf{Livestream Schedule \& Archive:} A module providing access to active and upcoming livestreaming schedules, with a separate archive for historical session playbacks.
+            \end{enumerate}
+        \end{tcolorbox}
+    \end{minipage}
+
+    \vspace{10pt}
+\end{figure}
+\end{landscape}
+
+\newpage
+
+% ---------------------------------------------------------
+% Page 2: Broadcasting Interface
+% ---------------------------------------------------------
+\begin{landscape}
+\begin{figure}[p]
+    \centering
+    \caption{The Real-time Interactive Livestreaming Interface}\label{fig:app_interface}
+    \noindent
+    % (1) Left
+    \begin{minipage}[b][\appheight][c]{0.20\textwidth}
+        \begin{tikzpicture}[y=1pt, x=1pt]
+            \path (0,0) rectangle (\linewidth, \appheight); 
+            \begin{scope}[x={(0,0)}, y={(0,\appheight)}]
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.885) {(1) Fund Family};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.831) {(2) Livestream Topic};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.745) {(3) Upcoming Preview};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.52) {(4) Host Profiles};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.37) {(5) Danmaku Feed};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.265) {(6) Risk Disclosure};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.15) {(7) Product Basket};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.10) {(8) Engagement Tools};
+            \end{scope}
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    % (2) Center
+    \begin{minipage}[b][\appheight][c]{0.35\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \node[anchor=south west, inner sep=0] (image) at (0,0) 
+                {\includegraphics[height=\appheight, keepaspectratio]{\screenshotdir/tiantian_livestream.jpg}};
+            \begin{scope}[x={(image.south east)}, y={(image.north west)}]
+                \draw[red, ultra thick] (0.02, 0.85) rectangle (0.48, 0.92);
+                \draw[red, ultra thick] (0.02, 0.812) rectangle (0.66, 0.85);
+                \draw[red, ultra thick] (0.02, 0.68) rectangle (0.34, 0.81);
+                \draw[red, ultra thick] (0.06, 0.47) rectangle (0.14, 0.57);
+                \draw[red, ultra thick] (0.86, 0.47) rectangle (0.94, 0.57);
+                \draw[red, ultra thick] (0.02, 0.35) rectangle (0.53, 0.39);
+                \draw[red, ultra thick] (0.02, 0.18) rectangle (0.66, 0.35);
+                \draw[red, ultra thick] (0.01, 0.11) rectangle (0.14, 0.17);
+                \draw[red, ultra thick] (0.70, 0.10) rectangle (0.98, 0.18);
+            \end{scope}
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    % (3) Right
+    \begin{minipage}[b][\appheight][c]{0.50\textwidth}
+        \begin{tcolorbox}[height=\appheight, colback=red!5!white, colframe=red!75!black, 
+            title=In-stream Livestreaming Interface, valign=center, arc=0pt, outer arc=0pt, boxrule=1.5pt]
+            \small
+            This panel captures the real-time interaction between the fund manager (or host) and potential investors.
+            \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*, itemsep=2pt]
+                \item \textbf{Fund Family:} Firm branding, viewer popularity metrics, and a button to follow the account.
+                \item \textbf{Livestream Topic:} Segmented header indicating the session's marketing theme and specific title.
+                \item \textbf{Upcoming Preview:} Next session schedule with a reservation link for setting reminders.
+                \item \textbf{Host Profiles:} Professional identities and job titles for fund managers, professional hosts, and guest speakers.
+                \item \textbf{Danmaku Feed:} Real-time scrolling user comments (Danmaku) for live dialogue.
+                \item \textbf{Risk Disclosure:} Regulatory notices featuring fund risk warnings and suitability disclaimers.
+                \item \textbf{Product Basket:} Entry point showing featured products, fund details, and purchase options.
+                \item \textbf{Engagement Tools:} Interface elements for sharing the session and allowing viewers to express support through real-time likes.
+            \end{enumerate}
+        \end{tcolorbox}
+    \end{minipage}
+    \vspace{10pt}
+\end{figure}
+\end{landscape}
+
+\newpage
+
+% ---------------------------------------------------------
+% Page 3: Featured Product Gallery
+% ---------------------------------------------------------
+\begin{landscape}
+\begin{figure}[p]
+    \centering
+    \caption{The Embedded List of Funds and Purchase Entry}\label{fig:app_gallery}
+    \noindent
+    % (1) Left
+    \begin{minipage}[b][\appheight][c]{0.12\textwidth}
+        \begin{tikzpicture}[y=1pt, x=1pt]
+            \path (0,0) rectangle (\linewidth, \appheight); 
+            \begin{scope}[x={(0,0)}, y={(0,\appheight)}]
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.735) {(1) Marketing Tag};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.6825) {(2) Fund Name};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.625) {(3) Type \& Risk Level};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.57) {(4) Subscription Period};
+                \node[anchor=west, text=red, font=\bfseries\small, text width=5cm, align=left] at (0, 0.51) {(5) Action Interface};
+            \end{scope}
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    % (2) Center
+    \begin{minipage}[b][\appheight][c]{0.35\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \node[anchor=south west, inner sep=0] (image) at (0,0) 
+                {\includegraphics[height=\appheight, keepaspectratio]{\screenshotdir/tiantian_products.jpg}};
+            \begin{scope}[x={(image.south east)}, y={(image.north west)}]
+                \draw[red, ultra thick] (0.03, 0.72) rectangle (0.17, 0.75);
+                \draw[red, ultra thick] (0.04, 0.65) rectangle (0.96, 0.715);
+                \draw[red, ultra thick] (0.25, 0.61) rectangle (0.75, 0.64);
+                \draw[red, ultra thick] (0.13, 0.55) rectangle (0.87, 0.59);
+                \draw[red, ultra thick] (0.12, 0.48) rectangle (0.88, 0.54);
+            \end{scope}
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    % (3) Right
+    \begin{minipage}[b][\appheight][c]{0.50\textwidth}
+        \begin{tcolorbox}[height=\appheight, colback=red!5!white, colframe=red!75!black, 
+            title=Product Gallery and Purchase Interface, valign=center, arc=0pt, outer arc=0pt, boxrule=1.5pt]
+            \small
+            This panel illustrates the integrated gallery of featured funds accessible through the livestream interface.
+            \begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*, itemsep=4pt, parsep=0pt]
+                \item \textbf{Marketing Tag:} Displays status labels such as ``New Issue'' or ``Featured'' to categorize the current focus of the investment product.
+                \item \textbf{Fund Name:} Identifies the full official name of the investment fund available for selection within the list.
+                \item \textbf{Type \& Risk Level:} Specifies the asset classification (e.g., Equity Index Fund) and the corresponding risk rating assigned to the fund.
+                \item \textbf{Subscription Period:} Shows the active fundraising window for newly issued products, indicating the specific timeframe for subscription.
+                \item \textbf{Action Interface:} Functional components for viewing detailed product pages, initiating a purchase, or adding the fund to a watchlist.
+            \end{enumerate}
+        \end{tcolorbox}
+    \end{minipage}
+
+    \vspace{10pt}
+\end{figure}
+\end{landscape}

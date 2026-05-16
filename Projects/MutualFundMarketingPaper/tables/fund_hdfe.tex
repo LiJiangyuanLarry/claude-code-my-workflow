@@ -1,0 +1,22 @@
+\begin{table}[!ht]
+    \centering
+    
+    \caption{Dynamic Livestream Effect on Fund Flow (HDFE)}\label{tab:fund_hdfe}
+    
+    \begin{minipage}{0.95\textwidth}
+        \footnotesize
+        This table reports regression results for the effect of livestreaming on fund flow. The estimations are based on the following high-dimensional fixed effects (HDFE) model:
+        \begin{equation*}
+            Y_{i,j,q} = \alpha_i + \delta_{j,q} + \beta_1 \text{Livestream}_{i,q} + \mathbf{X}'_{i,q-1} \Gamma + \epsilon_{i,j,q}
+        \end{equation*}
+        where $Y_{i,j,q}$ is the Fund Flow for fund $i$ of family $j$ in quarter $q$. The key variable, $\text{Treatment}_{i,q}$, represents a measure of fund-level livestreaming activity. $\mathbf{X}'_{i,q-1}$ is a vector of control variables from the prior quarter. The model includes fund fixed effects ($\alpha_i$) and family-by-quarter fixed effects ($\delta_{j,q}$). Robust $t$-statistics are reported in parentheses. Standard errors are clustered at the family level. All continuous variables are winsorized at the 1\% and 99\% levels. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels, respectively. See Appendix~\ref{tab:vardefs} for detailed variable definitions.
+    \end{minipage}
+
+    \vspace{2mm}
+    
+    {
+    \fontsize{12}{13}\selectfont
+    \input{tables/core/fund_hdfe.tex} 
+    }
+    
+\end{table}

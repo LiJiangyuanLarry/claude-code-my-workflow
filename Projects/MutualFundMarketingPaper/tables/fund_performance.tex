@@ -1,0 +1,46 @@
+\begin{landscape}
+
+  \begin{table}[!ht]
+    \caption{Fund Performance Analysis: Returns and Alphas}\label{tab:fund_performance}
+    \footnotesize{
+    This table reports the analysis of fund performance around livestreaming events. Panel A reports the univariate mean differences in performance between livestreaming funds and their same-family non-livestreaming benchmarks ($Performance_{Livestream} - Performance_{Non-Livestream}$). Panels B and C report Generalized Difference-in-Differences (DiD) estimates from the following fixed-effects model:
+    \[ Y_{i,m+k} = \beta_k \cdot \text{Event}_{i,m} + \gamma' \text{Controls}_{i,q-1} + \mu_i + \delta_m + \varepsilon_{i,m} \]
+    where $Y_{i,m+k}$ is the fund performance (Return, FF3 Alpha, or FF5 Alpha) in the $k$-th month relative to the event month $m$. For Panel B (Own Effect), $\text{Event}_{i,m}$ is a dummy variable equal to one if fund $i$ is featured in at least one livestream in month $m$. For Panel C (Sibling Spillover), $\text{Event}_{i,m}$ is a dummy variable equal to one if fund $i$'s family conducts at least one livestream in month $m$, but fund $i$ is not featured in any of them. $\text{Controls}_{i,q-1}$ represents control variables from the most recent quarter, including Past Return, Top 5 Return, Size, Large, Age, Old, Management Fee, Service Fee, and Loads. All models include fund ($\mu_i$) and month ($\delta_m$) fixed effects. Robust $t$-statistics clustered at the family level are reported in parentheses. All continuous variables are winsorized at the 1\% and 99\% levels. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels, respectively.}
+
+    \vspace{.1in}
+    \centering
+
+    % Common column setup for all panels
+    \bgroup%
+    \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+    \setlength{\tabcolsep}{4pt} % Adjust column spacing if needed
+
+    \small
+    \renewcommand{\arraystretch}{0.84}% slightly tighten row spacing
+
+    \begin{tabular}{l*{12}{c}}
+        \toprule
+        & m-5 & m-4 & m-3 & m-2 & m-1 & m & m+1 & m+2 & m+3 & m+4 & m+5 & Cum[1,5] \\
+        \midrule
+        
+        \multicolumn{13}{l}{\textbf{Panel A\@: Univariate Difference in Means}} \\
+        \midrule
+        \input{tables/core/fund_performance_means}\\
+        \midrule
+        
+        \multicolumn{13}{l}{\textbf{Panel B\@: DiD Analysis (Own Livestream)}} \\
+        \midrule
+        \input{tables/core/fund_performance_did_all}\\
+        \midrule
+        
+        \multicolumn{13}{l}{\textbf{Panel C\@: DiD Analysis (Sibling Spillover)}} \\
+        \midrule
+        \input{tables/core/fund_performance_did_sibling}\\
+        \bottomrule
+    \end{tabular}
+
+    \egroup%
+
+  \end{table}
+
+\end{landscape}

@@ -1,0 +1,690 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % For images
+\usepackage{setspace}
+\usepackage{booktabs} % For professional-looking tables
+\usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{authblk}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{longtable}  % For tables spanning multiple pages
+\usepackage{caption}
+\usepackage{adjustbox}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{natbib}
+\usepackage{pdflscape}
+\usepackage{microtype}
+\bibliographystyle{aer}
+
+\tcbuselibrary{breakable}
+
+\title{The Zero-Sum Game of Mutual Fund Marketing}
+% \thanks{We thank ...}
+
+%\author{}
+\author[1]{Haiwei Chen}
+\author[2]{Ilias Filippou}
+\author[2]{Jeong Ho (John) Kim}
+\author[1]{Jiangyuan Li}
+
+\affil[1]{Shanghai University of Finance and Economics}
+\affil[2]{Florida State University}
+
+\date{January 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+    Using social media livestreams conducted by Chinese mutual fund families, we examine how marketing affects investors’ capital allocation decisions. We show that livestreaming does not expand assets under management at the family level. Instead, featured funds experience significant inflows that are offset by contemporaneous outflows from non-featured sibling funds, leaving aggregate family flows unchanged. Consistent with this zero-sum reallocation, livestreams also fail to increase family-level fee revenue: gains accrued by featured funds are fully offset by losses elsewhere within the family. These results indicate that livestreaming operates primarily at the intensive margin, reshuffling capital across funds rather than attracting new investors. To shed light on the underlying mechanism, we analyze livestream transcripts using a large language model. Families that reallocate flows most effectively place greater emphasis on past performance and social proof in their communication, while differing little along other content dimensions. This evidence suggests that marketing effectiveness in this setting derives from appeals to backward-looking performance signals and investor coordination rather than from superior information provision.
+    
+\end{abstract}
+
+
+\doublespacing% Activates double spacing for the entire document
+
+\clearpage
+\setcounter{page}{1}
+
+\section{Introduction}
+
+Marketing is a central element of business strategy, and the mutual fund industry is no exception. For example, the U.S. mutual fund industry is estimated to spend about one-third of its fee revenue on marketing expenditures. Consistent with its prominence, a large literature has documented that marketing expenditures of a fund successfully attract flows to the fund \citep{sirri1998costly,huang2007participation,gallaher2008advertising,christofferson2013what,roussanov2021marketing}. While most previous studies examine how a fund's own marketing affects its own flows, the spillover effects of marketing on other funds are crucial for evaluating marketing effectiveness at the family level. We address this question by leveraging a novel distribution channel in China: social media livestreams by mutual fund families.
+
+Beginning in early 2020, as the COVID‑19 pandemic disrupted traditional sales channels, Chinese fund companies increasingly adopted real-time livestreaming on retail platforms. In 2021, the Asset Management Association of China (AMAC) formalized guidance in its Meeting Summary on Public Fund Live‑Broadcasting, outlining compliance norms. According to AMAC, livestream content should emphasize investor education, product introduction, and brand communication rather than aggressive sales. The guidance also requires classification and tiered management of broadcasts, internal risk controls, and investor-suitability checks whenever fund-purchase links are embedded. In practice, fund families typically feature only a handful of funds per broadcast, generating sharp, within-family variation in promotional intensity.
+
+Our first empirical objective is to determine whether livestream promotions generate incremental capital for families or simply reallocate capital across their existing funds. Using quarterly flows for all actively managed equity products, we compare featured and non-featured funds within the same family and trading day. Featured funds experience large and immediate inflows following promotion, consistent with attention-driven trading \citep{barber2008glitters}, but these inflows are offset almost one-for-one by contemporaneous outflows from other funds in the same family. At the family level, aggregate flows do not increase. These results show that livestreams redirect investor attention within the family rather than expanding total assets under management.
+
+Our second objective is to understand why families promote particular funds if total assets do not increase. Using fee information from regulatory filings, we evaluate whether livestreams shift the composition of assets toward products with higher revenue potential. We find that quarters with livestream activity exhibit temporary increases in service-fee revenues, driven by flows into funds with higher ancillary charges. By contrast, management-fee revenues—which account for the majority of long-run profitability—remain unchanged. These patterns indicate that families use livestreaming to temporarily tilt the fee mix toward higher-margin products rather than to grow overall assets.
+
+Our third objective is to test whether livestream promotions alter subsequent fund performance or the composition of investors. If livestreams simply reallocate existing investors across products, performance and risk profiles should remain stable. Consistent with this hypothesis, we find no evidence that promoted funds exhibit abnormal returns, changes in risk exposures, or differences in volatility following promotion. Trading patterns also remain unchanged. These results reinforce the interpretation that livestreaming affects investor allocation decisions rather than fundamentals.
+
+We then assess the persistence of promotional effects. If livestreams merely accelerate purchases that investors would have made anyway, flows should reverse quickly. Tracking promoted and non-promoted funds over subsequent months, we find that the initial inflow advantage for promoted funds dissipates rapidly, while non-promoted funds recover their outflows. Cumulative net flows converge within a short window. This reversal is consistent with a temporary attention shock rather than a lasting change in investor demand.
+
+We also examine which products families choose to promote. If livestreams were used for strategic purposes—such as supporting newly launched funds, boosting underperforming products, or repositioning the family's lineup—we would expect systematic patterns in product characteristics. Research documents that some fund managers demonstrate persistent skill \citep{berk2015measuring}, yet promotion decisions in our setting are not strongly related to recent performance, launch timing, or risk exposures. The clearest commonality among promoted funds is their higher ancillary fee structures. This selection pattern confirms that livestreaming is employed primarily as a short-term revenue optimization tool, rather than as a mechanism for reshaping the product lineup or enhancing long-run family performance.
+
+At a more granular level, fund-class-level analysis reinforces the reallocation story. Featured classes receive higher flows than non-featured classes within the same fund-quarter. Non-featured sibling classes experience significant outflows, confirming within-fund cannibalization. Intensity tests show own-fund livestreaming generates substantial inflows while sibling fund livestreaming produces outflows of similar magnitude. These opposing effects cancel at the family level, establishing that livestreams reallocate capital among a family's products without expanding its investor base or generating incremental revenues—a zero-sum game.
+
+To understand the determinants of marketing effectiveness, we use a large language model (LLM) to quantify the semantic content of livestream transcripts. Exploiting cross-sectional variation in abnormal family-level flows, we compare communication strategies between families that successfully reallocate investor capital and those that do not. The analysis reveals a highly concentrated pattern: effective livestreams place significantly greater emphasis on \textit{past performance} and \textit{social proof}, while exhibiting no systematic differences along other communication dimensions. This evidence suggests that marketing effectiveness in this setting derives not from superior information provision or presentation quality, but from targeted appeals to backward-looking performance signals and herding behavior.
+
+Our findings present an apparent puzzle: if livestreaming yields no net benefits to fund families, why do they persistently engage in this costly activity? We provide evidence consistent with a defensive equilibrium. While own livestreaming generates no family-level gains, we show that families experience outflows when competing families increase promotional intensity. This creates a prisoner's dilemma: families must livestream not to gain investors, but to avoid losing them to more actively marketed alternatives. Own-fund livestreaming attracts inflows while sibling fund livestreaming generates offsetting outflows, producing zero net family flows. However, market-wide livestreaming activity exerts competitive pressure—when rival families increase promotional efforts, non-livestreaming families lose market share. Livestreaming thus persists as a competitive necessity rather than a value-creating strategy, trapping the industry in collectively wasteful promotional competition.
+
+Together, our results portray a consistent narrative: livestream promotions reallocate capital within the family without increasing total assets or expanding the investor base. In this setting, marketing functions as a zero-sum game—shifting investor attention and temporarily raising fee revenues, yet generating no lasting economic value for the family or its investors. The persistence of this behavior reflects not strategic value creation but rather defensive responses to competitive pressure, illustrating how individually rational actions can produce collectively inefficient outcomes in asset management.
+
+The rest of the paper is organized as follows. Section~\ref{sec:literature} offers a literature review. Section~\ref{sec:data} describes the data and variable construction. Section~\ref{sec:prompts} discusses the identification of communication strategies using large language models.  Section~\ref{sec:empirical} presents the main empirical results. Section~\ref{sec:robustness} provides robustness analyses. Section~\ref{sec:conclusions} concludes.
+
+\section{Related Literature}\label{sec:literature}
+
+Our study connects to three strands of literature: mutual fund marketing and retail investor decision-making in asset management.
+
+\paragraph{Marketing in Mutual Funds.} The role of marketing in mutual funds has attracted considerable attention, with most evidence pointing toward persuasive rather than informative effects. Fund advertisements consistently drive capital inflows \citep{jain2000truth}, yet advertised funds fail to deliver superior subsequent performance. This pattern suggests marketing redirects investor attention without conveying meaningful information about the manager's skill. \citet{roussanov2021marketing} quantify the welfare costs of fund marketing, demonstrating that investor outcomes would improve absent promotional activities. Additionally, \citet{koehler2009selection} document that investors systematically overlook the selective nature of fund advertising—families preferentially showcase their strongest performers while omitting weaker funds from marketing materials. Platform-based promotion exhibits similar characteristics: \citet{hong2025fintech} show that funds featured prominently on retail platforms attract substantial flows, consistent with salience-driven investor behavior. % chktex 12
+
+A central question in this literature concerns whether marketing expands a family's total assets or merely reshuffles capital among existing products. Understanding this distinction is critical for interpreting the economic significance of flow-performance sensitivities \citep{sirri1998costly, jain2000truth, kaniel2017trading} and for evaluating the strategic role of marketing in fund family operations.
+
+\paragraph{Retail Investor Behavior.} Extensive evidence indicates that retail mutual fund investors face substantial challenges in making optimal portfolio choices \citep{bailey2011behavioral, barber2016attention, choi2020attention, bendavid2022attention}. Despite these difficulties, certain retail flows exhibit predictive power for future returns \citep{lou2012flow}, suggesting heterogeneity in investor sophistication.
+
+The performance-chasing phenomenon represents a particularly well-documented behavioral pattern. Retail investors systematically allocate capital to funds following strong past performance \citep{frazzini2008dumb}, often continuing to invest even after funds have grown beyond their capacity to generate alpha \citep{song2020mismatch}. While research confirms that genuine managerial skill exists \citep{grinblatt1989mutual, berk2015measuring}, retail investors struggle to distinguish persistent skill from transitory luck.
+
+Strategic complexity in financial product design can amplify these investor challenges. \citet{carlin2009strategic} demonstrates that product issuers may deliberately introduce complexity to exploit investor confusion, particularly regarding fee structures. This raises the question of whether marketing activities serve to reallocate flows toward products that maximize family revenues rather than investor welfare. % chktex 12
+
+\paragraph{Social Media and Financial Markets.} Recent research on social media communications in equity markets documents largely positive effects. Firm disclosures through social channels reduce information asymmetries and enhance market efficiency \citep{blankespoor2014role, jung2018firms, lee2022talk, nekrasov2022visuals, choi2024investor, crowley2024discretionary, wong2024calling}.
+
+Whether these beneficial effects extend to mutual fund marketing remains an open question. The delegated asset management setting introduces distinct principal-agent frictions: families control both the communication content and the selection of which products to promote, creating scope for strategic behavior that may not align with investor interests. Our analysis examines this issue by studying livestream marketing in China's mutual fund industry.
+
+
+\section{Data and Variable Construction}\label{sec:data}
+
+\subsection{Livestream Data and Sample Selection}\label{subsec:sample}
+
+We construct our sample using livestream data from Tiantian Fund, a leading third-party distribution platform in China's mutual fund industry. Our sample covers 25,685 individual livestreaming events from July 2020 to June 2025.
+
+During each livestream, the platform displays a ``shopping cart'' interface where viewers can directly purchase selected funds with a single click. We classify a fund as ``featured'' in a livestream if any of its share classes appear in this shopping cart during the broadcast. This operational definition provides a clear treatment assignment: featured funds receive active promotion and point-of-sale access, while non-featured funds within the same family do not.\footnote{The shopping cart typically appears in the lower-left corner and expands to show purchasable funds when clicked.}
+
+Our sample includes 5,809 actively managed equity and hybrid funds spanning 180 fund families. We focus on these funds because they constitute the primary target of retail investor marketing efforts and exhibit sufficient cross-sectional variation in performance and fees. We exclude index funds, closed-end funds, Qualified Domestic  Institutional Investor funds, and umbrella funds following standard practice in the mutual fund literature.
+
+The institutional setting provides three features crucial for our analysis. First, livestream production and content decisions occur at the family level. Each family operates its own broadcast channel with dedicated staff, and senior management determines which funds to promote. Second, families possess substantial discretion in fund selection---in a typical livestream, a family features on average fewer than 8 of its 25+ funds. Third, the timing and content of livestreams are orthogonal to concurrent regulatory filings or portfolio rebalancing, as families must obtain compliance approval days in advance of broadcasts.
+
+\subsection{Flow Measurement}\label{subsec:flows}
+
+We measure fund-level capital flows using the growth-rate specification standard in the literature. For fund $i$ in quarter $q$, we define:
+\begin{equation}
+    \label{eq:fund_flow_twfe}
+    \text{Flow}_{i,q} = \frac{\text{TNA}_{i,q} - \text{TNA}_{i,q-1}(1 + \text{Ret}_{i,q})}{\text{TNA}_{i,q-1}},
+\end{equation}
+where $\text{TNA}_{i,q}$ denotes total net assets (i.e., assets under management) and $\text{Ret}_{i,q}$ represents the net-of-fee return.\footnote{We obtain TNA from quarterly regulatory filings required by the China Securities Regulatory Commission (CSRC). Returns are calculated from quarterly net asset values reported by fund administrators.} This specification isolates investor purchase and redemption decisions from mechanical asset appreciation, expressing flows as a percentage of beginning-of-period assets.
+
+To assess family-level investor attraction, we aggregate individual fund flows:
+\begin{equation}
+    \label{eq:family_flow}
+    \text{FamilyFlow}_{f,q} = \frac{\sum_{i \in \mathcal{I}_f} \left[\text{TNA}_{i,q} - \text{TNA}_{i,q-1}(1 + \text{Ret}_{i,q})\right]}{\sum_{i \in \mathcal{I}_f} \text{TNA}_{i,q-1}},
+\end{equation}
+where $\mathcal{I}_f$ indexes all funds belonging to family $f$. This measure captures whether livestreaming expands the family's total investor base or merely redistributes assets among existing products.
+
+% \subsection{Treatment Variable Construction}
+% \label{subsec:treatment}
+
+% ------WE CAN ADD THIS TEST------
+
+% We construct treatment indicators at both fund and family levels to separately identify direct promotional effects and within-family spillovers.
+
+% \textit{Fund-level indicators.} Let $\mathbb{1}[\text{Cart}_{i,q}]$ equal one if fund $i$ appears in any livestream shopping cart during quarter $q$, and zero otherwise. We decompose this into initial and recurring exposures:
+% \begin{align}
+% \label{eq:first_stream}
+% \text{InitialStream}_{i,q} &= \mathbb{1}[\text{Cart}_{i,q}] \times \mathbb{1}\left[\sum_{s<q} \text{Cart}_{i,s} = 0\right], \\
+% \label{eq:any_stream}
+% \text{AnyStream}_{i,q} &= \mathbb{1}[\text{Cart}_{i,q}].
+% \end{align}
+% The first variable captures each fund's debut livestream appearance, which may generate different effects than subsequent promotions due to novelty or investor learning.
+
+% \textit{Family-level indicators.} We aggregate fund-level treatments to the family:
+% \begin{align}
+% \label{eq:family_initial}
+% \text{FamilyInitial}_{f,q} &= \max_{i \in \mathcal{I}_f} \text{InitialStream}_{i,q}, \\
+% \label{eq:family_any}
+% \text{FamilyActive}_{f,q} &= \max_{i \in \mathcal{I}_f} \text{AnyStream}_{i,q}.
+% \end{align}
+% These variables equal one when any fund in the family receives livestream promotion.
+
+% \textit{Spillover indicators.} Our key innovation decomposes family-level activity into direct and indirect components. For each fund $i$ belonging to family $f(i)$, we define:
+% \begin{align}
+% \label{eq:spillover_initial}
+% \text{SpilloverInitial}_{i,q} &= \text{FamilyInitial}_{f(i),q} \times (1 - \text{InitialStream}_{i,q}), \\
+% \label{eq:spillover_any}
+% \text{SpilloverActive}_{i,q} &= \text{FamilyActive}_{f(i),q} \times (1 - \text{AnyStream}_{i,q}).
+% \end{align}
+% These indicators equal one when a fund's family engages in livestreaming but the specific fund is \emph{not} selected for promotion. Negative coefficients on these variables would indicate cannibalization: non-promoted funds lose investors when families direct attention toward featured alternatives.
+
+% This decomposition enables a complete accounting of livestream effects. Within a given family-quarter, we can separately estimate (i) the flow response of promoted funds, (ii) the flow response of non-promoted funds, and (iii) the net family-level flow change. If $\beta_1 > 0$ (promoted funds gain flows), $\beta_2 < 0$ (non-promoted funds lose flows), and $\beta_1 + \beta_2 \approx 0$ (net family flows unchanged), we conclude that livestreams reallocate rather than expand family assets.
+
+\subsection{Variable Construction}\label{subsec:variables}
+
+We construct variables at three levels: share class, fund, and family. Appendix Table~\ref{tab:vardefs} provides complete definitions.
+
+Our main dependent variable is \textit{Fund Flow}, the return-adjusted quarterly growth rate of assets. We also examine \textit{Class Flow} and \textit{Family Flow}, with aggregations using AUM weights.
+
+Our key treatment variables are \textit{Fund Livestream} (equals one if the fund appears in any livestream shopping cart during quarter $q$) and \textit{Fund First Livestream} (equals one only in the initial livestream quarter). We decompose family activity using \textit{Family Livestream (Oth)}, which equals one for non-featured funds when their family livestreams other funds, allowing us to test for within-family cannibalization.+
+
+Control variables include \textit{Fund Return} (six-month trailing performance), \textit{Fund Top 5 Return}, \textit{Fund Management Fee}, \textit{Fund Service Fee}, \textit{Fund Size}, and \textit{Fund Age}. All continuous variables are standardized.
+
+We also construct \textit{Family Revenue} (flow-induced revenue scaled by family assets) and \textit{Family Churn-Weighted Fee} (fees weighted by absolute flows) to examine whether reallocation increases family profits.
+
+\subsection{Sample Characteristics}\label{subsec:class_descriptives}
+
+Table~\ref{tab:fund_descriptives} presents summary statistics for our primary variables measured at the fund level. Our sample comprises 90,774 fund-quarter observations spanning July 2020 through June 2025.
+
+\textit{Flow patterns.} The mean \textit{Fund Flow} of -0.15\% reflects substantial quarterly growth, though this average masks considerable heterogeneity. The standard deviation is 37.6\%, indicating that individual classes experience dramatic inflows and outflows. The distribution is right-skewed, with median flows of $-3.39\%$ suggesting most funds experience modest redemptions in a typical quarter, while the maximum of 252.7\% indicates some funds experience explosive growth. The minimum of $-71.34\%$ shows that some classes lose most of their assets within a single quarter. This high dispersion provides ample statistical power to detect flow reallocation effects.
+
+\textit{Livestream participation.} Approximately 14\% of fund-quarters involve livestream promotion (\textit{Fund Livestream} mean of 0.14), while only 3\% represent initial appearances (\textit{Fund First Livestream} mean of 0.03). The low frequency of initial events reflects that most livestreaming funds participate repeatedly once they begin. The participation rate of 14\% implies that in any given quarter, roughly nine out of ten share classes are \emph{not} featured in livestreams.
+
+\textit{Performance and selection.} Trailing six-month returns (\textit{Fund Return}) average 1\%, with a median near zero and substantial dispersion (standard deviation of 13\%). The performance distribution spans from $-24\%$ to $+46\%$. By construction, 16\% of funds rank in the top five performers within their families (\textit{Fund Top 5 Return}).
+
+\textit{Class characteristics.} The typical fund has a mean \textit{Fund Size} of 19.66 in logs ($e^{19.66} \approx$ CNY 345 million), with a median of 19.74 ($e^{19.74} \approx$ CNY 374 million). Size ranges from 15.78 to 23.15 in logs, corresponding to approximately CNY 7 million to CNY 11 billion. Twenty percent of funds fall in the largest size quintile (\textit{Fund Large}). Fund age averages 1.58 in logs (approximately 4.9 years), with a median of 1.62, ranging from 0.06 to 2.98 (approximately 19 days to 20 years). Twenty percent of funds are in the oldest age quintile (\textit{Class Old}).
+
+\textit{Fee structure.} Management fees average 0.3\% per quarter (1.2\% annualized) with modest variation (standard deviation of 0.08\%), ranging from 0.12\% to 0.38\%. Service fees average 0.07\% quarterly with a standard deviation of 0.03\%, ranging from 0.03\% to 0.17\%. The median service fee of 0.06\% is below the mean, indicating right-skewness in the service fee distribution.
+
+
+% \section{Prompt Engineering}
+
+% We employ a large language model (LLM) hosted at \url{https://chat.qwen.ai/} as a measurement device to extract structured information from mutual fund livestream transcripts. Following emerging practice in empirical finance and accounting research using LLMs---as a systematic annotator rather than a generator of narrative content---we fix the prompt design ex ante and constrain outputs to machine-readable formats to ensure replicability and consistency across the entire sample.
+
+% Our goal is not creative text generation, but the automated transformation of unstructured transcript text into economically interpretable variables that can be used in statistical analysis. To that end, we design three complementary prompts, each targeting a distinct layer of communication: (i) qualitative strategy, (ii) behavioral finance mechanisms, and (iii) quantitative intensity. Outputs are strictly formatted as JSON to minimize post-hoc researcher discretion and to facilitate automated downstream processing.
+
+% Prompt~1 focuses on the qualitative extraction of communication strategies employed during livestreams. It instructs the LLM to act as a financial communication analyst and identify distinct rhetorical or strategic patterns used to attract investor attention or influence investment decisions. Examples include appeals to authority, trust building, urgency framing, and educational positioning. This prompt produces an interpretable taxonomy of strategies, documenting how fund managers frame their products and anchoring subsequent numeric measures in economically meaningful categories.
+
+% \begin{tcolorbox}[
+%   title={Prompt 1: Communication Strategy Extraction},
+%   breakable,
+%   colback=gray!5,
+%   colframe=gray,
+%   fonttitle=\bfseries,
+%   left=1mm,
+%   right=1mm,
+%   top=1mm,
+%   bottom=1mm
+% ]
+
+% \textbf{System Role:} Financial communication analyst specializing in mutual fund marketing behavior.
+
+% \vspace{0.5em}
+
+% \textbf{Task:}  
+% Analyze a mutual fund livestream transcript from China and identify the communication strategies used to attract investors and drive investment decisions.
+
+% \vspace{0.5em}
+
+% \textbf{Instructions:}
+% \begin{itemize}
+%   \item Identify each distinct communication strategy.
+%   \item Assign a concise strategy name.
+%   \item Provide a short description grounded in the transcript.
+%   \item Explain the potential effect on investor behavior.
+% \end{itemize}
+
+% \vspace{0.5em}
+
+% \textbf{Output Constraint:}  
+% Return a valid JSON object only. No markdown tables.
+
+% \end{tcolorbox}
+
+% Prompt~2 explicitly situates the analysis within behavioral finance theory. Rather than producing general descriptions, this prompt requires the LLM to classify communication techniques according to well-established behavioral biases such as salience, anchoring, scarcity, social proof, and herd behavior. Crucially, it also asks the model to assess the likely effects on investor allocation decisions and capital flows, including substitution or cannibalization across funds within the same family. By linking communication content to economically testable hypotheses about investor behavior, this prompt provides a theory-driven layer of measurement.
+
+% \begin{tcolorbox}[
+%   title={Prompt 2: Behavioral Finance–Based Communication Analysis},
+%   breakable,
+%   colback=gray!5,
+%   colframe=gray,
+%   fonttitle=\bfseries
+% ]
+
+% \textbf{System Role:} Expert in behavioral finance and mutual fund distribution.
+
+% \vspace{0.5em}
+
+% \textbf{Task:}  
+% Identify communication techniques in a mutual fund livestream that leverage behavioral biases such as salience, anchoring, scarcity, social proof, and herd behavior.
+
+% \vspace{0.5em}
+
+% \textbf{Key Requirement:}  
+% For each technique, analyze the likely effect on investor flows, including potential substitution across funds within the same family.
+
+% \vspace{0.5em}
+
+% \textbf{Output Constraint:}  
+% Return valid JSON only.
+
+% \end{tcolorbox}
+
+% Prompt~3 translates livestream communication into a high-dimensional quantitative representation. The LLM is instructed to score each transcript along predefined dimensions capturing sentiment, emotional intensity, sales pressure, informational content, persuasion tactics, and interaction style, using a fixed 1–10 scale. By fixing both the dimensions and the scoring rubric ex ante, we generate standardized numeric features that are directly comparable across livestreams and suitable for econometric analysis.
+
+% \begin{tcolorbox}[
+%   title={Prompt 3: Quantitative Feature Vector Extraction},
+%   breakable,
+%   colback=gray!5,
+%   colframe=gray,
+%   fonttitle=\bfseries
+% ]
+
+% \textbf{System Role:} Quantitative analyst converting text into high-dimensional numeric features.
+
+% \vspace{0.5em}
+
+% \textbf{Task:}  
+% Score the livestream transcript on predefined dimensions capturing tone, persuasion intensity, informational content, and interaction style.
+
+% \vspace{0.5em}
+
+% \textbf{Scale:}  
+% All features are integers from 1 (lowest) to 10 (highest).
+
+% \vspace{0.5em}
+
+% \textbf{Output Constraint:}  
+% Return a flat JSON object only.
+
+% \end{tcolorbox}
+
+% Taken together, the three prompts provide a layered representation of communication: qualitative strategy (Prompt~1), behavioral mechanism and flow implications (Prompt~2), and quantitative intensity (Prompt~3). This structured approach allows us to move from raw transcript text to structured empirical variables while maintaining economic interpretability and methodological discipline.
+
+\section{Measuring Livestream Content Characteristics Using Large Language Models}\label{sec:prompts}
+To quantify the persuasive techniques employed in mutual fund livestreams, we use a large language model (Qwen-2.5-32B) to systematically extract high-dimensional features from unstructured transcript data. This approach allows us to construct standardized, comparable measures of marketing content across families while avoiding the limitations of dictionary-based methods or manual coding. We construct 16 content dimensions that capture sentiment, emotional intensity, sales pressure, and specific behavioral mechanisms documented in marketing and behavioral finance research. These include Sentiment Positivity, Sales Pressure, Past Performance Focus, and Social Proof Reliance. Each dimension is scored on a 1-10 scale using a fixed rubric (detailed in Appendix~\ref{tab:content_variables}), ensuring cross-sectional comparability and enabling the analysis in Section~\ref{sec:empirical}. % chktex 8
+\subsection{Processing Strategy}
+Given the length of typical livestream transcripts (median: 45,000 characters), we implement a segment-level approach to address context-window limitations in language models \citep{liu-etal-2024-lost, pmlr-v202-shi23a}. Transcripts are divided into overlapping 10,000-character chunks to preserve semantic continuity. Each segment is scored independently using an identical prompt, and transcript-level measures are computed as the arithmetic mean across segments.
+The extraction prompt instructs the model to function as a quantitative analyst, evaluate content strictly on observable text features, and return structured output. This standardization ensures that scores reflect only variation in livestream content, not variation in model interpretation:
+\begin{tcolorbox}[
+    title={Prompt: Feature Extraction Instructions},
+    breakable,
+    colback=gray!5,
+    colframe=gray,
+    fonttitle=\bfseries,
+    left=1mm, right=1mm, top=1mm, bottom=1mm
+  ]
+  \textbf{System Role:} You are a quantitative analyst converting text into high-dimensional vector scores.
+  \vspace{0.5em}
+  
+  \textbf{Task:} Rate the following \textbf{transcript segment} on the dimensions provided in the Schema.
+  \vspace{0.5em}
+  \textbf{Scale:} 1--10 (1=Very Low, 10=Very High).
+  \vspace{0.5em}
+  
+  \textbf{Instruction:} Focus strictly on the content within this segment.
+  \vspace{0.5em}
+  
+  --- [Segment Start] --- \\
+  \{chunk\_text\} \\
+  --- [Segment End] ---
+  \vspace{0.5em}
+  
+  \textbf{Output:} A structured JSON object exactly matching the Schema.
+\end{tcolorbox}
+
+By fixing both the dimensional definitions and scoring instructions ex ante, we generate measurement error that is orthogonal to the marketing strategies we study, a key requirement for our cross-sectional tests.
+
+
+\section{Empirical Results}\label{sec:empirical}
+
+\subsection{Family-Level Flows}\label{subsec:family_flows}
+
+We begin by examining whether livestreaming expands families' total investor base. Table~\ref{tab:family_twfe_flow_reallocation} presents two-way fixed effects regressions of the following form:
+\begin{equation}
+    \label{eq:family_flow_twfe}
+    \text{Family Flow}_{j,q} = \alpha_j + \delta_q + \beta_1 \text{Livestream}_{j,q} + \mathbf{X}'_{j,q-1} \Gamma + \epsilon_{j,q},
+\end{equation}
+where $\alpha_j$ are family fixed effects, $\delta_q$ are year-quarter fixed effects, and $\mathbf{X}'_{j,q-1}$ includes lagged family controls. Standard errors are clustered at the family level.
+
+Column (1) examines initial livestream adoption. The coefficient on \textit{Family First Livestre\-am} is 2.99 with a $t$-statistic of 1.37, statistically insignificant at conventional levels. Column (2) uses \textit{Family Post Livestream}, which equals one in all quarters after the family's initial broadcast. The coefficient is $-0.88$ ($t = -0.46$), again insignificant. Column (3) examines \textit{Family Livestream}, indicating any livestreaming activity during the quarter. The coefficient is 0.62 ($t = 0.64$).
+
+Across all specifications, livestream coefficients are small in magnitude and statistically indistinguishable from zero. This result is striking: \citet{dehaan2025social} document economically large and highly significant flow increases to livestreaming funds using this same dataset. The sharp contrast between significant fund-level effects and null family-level effects points to within-family reallocation rather than new investor attraction. Specifically, when families promote particular funds through livestreams, those featured funds attract capital that flows out of the family's non-featured funds, leaving aggregate family assets unchanged. Livestreaming thus appears to be a zero-sum game within fund families.
+
+\paragraph{Event Study.} Figure~\ref{fig:family_twfe_event_study_plot} presents event study estimates of family flows around initial livestream adoption. Coefficients in quarters $-4$ through $-1$ are small and statistically insignificant, supporting parallel trends. The contemporaneous effect in quarter 0 is modest and insignificant, consistent with Table~\ref{tab:family_twfe_flow_reallocation}. Post-event coefficients decline, becoming negative by quarter $+4$. The dynamic pattern confirms no sustained family flow increase following livestream adoption. The absence of pre-trends validates our identification strategy, while the declining post-event trajectory reinforces that livestreams do not expand families' investor bases.
+
+\subsection{Fee Structure Reallocation}\label{subsec:fee_reallocation}
+
+Having established that livestreams reallocate flows within families without expanding total assets, we examine whether this reallocation alters the family's weighted-average fee structure. Table~\ref{tab:family_twfe_managementfee_reallocation} presents two-way fixed effects regressions:
+\begin{equation}
+    \label{eq:family_mgmt_fee}
+    \text{Family Management Fee}_{j,q+h} = \alpha_j + \delta_q + \beta_1 \text{Livestream}_{j,q} + \mathbf{X}'_{j,q-1} \Gamma + \epsilon_{j,q},
+\end{equation}
+where $h = 0$ in columns (1)--(3) for contemporaneous effects and $h = 1$ in columns (4)--(6) for one-quarter-ahead effects. The dependent variable is the AUM-weighted average management fee across all family funds. If families strategically direct flows toward higher-fee products, $\beta_1$ should be positive. % chktex 36
+
+The results provide no evidence of fee structure reallocation. Column (1) shows \textit{Family First Livestream} yields a coefficient of 0.00 ($t = 1.31$), economically negligible and statistically insignificant. Column (2) examines persistent effects using \textit{Family Post Livestream}, producing a coefficient of 0.00 ($t = 1.43$). Column (3) tests all livestreaming quarters with \textit{Family Livestream}, again yielding 0.00 ($t = 1.51$). The forward-looking specifications in columns (4)--(6) produce identical null results, with coefficients of $-0.00$, 0.00, and 0.00, respectively, all insignificant. % chktex 36
+
+These null findings indicate that while livestreams reallocate assets among family funds, they do not systematically shift capital toward higher or lower management fee products. The families' weighted-average management fee structure remains unchanged. The high adjusted $R^2$ values (0.93 contemporaneously, 0.90 one quarter ahead) primarily reflect strong fee structure persistence, captured by the lagged \textit{Family Management Fee} coefficient of 0.73 ($t = 23.90$) in column (1).
+
+\subsection{Service Fee Reallocation}\label{subsec:service_fee_reallocation}
+
+Table~\ref{tab:family_twfe_servicefee_reallocation} examines whether livestreams shift assets toward funds with higher service fees. We estimate:
+\begin{equation}
+    \label{eq:family_service_fee}
+    \text{Family Service Fee}_{j,q+h} = \alpha_j + \delta_q + \beta_1 \text{Livestream}_{j,q} + \mathbf{X}'_{j,q-1} \Gamma + \epsilon_{j,q},
+\end{equation}
+where the dependent variable is the AUM-weighted average service fee across family funds.
+
+Column (3) shows \textit{Family Livestream} produces a statistically significant positive coefficient ($t = 2.61$). This effect persists one quarter ahead: column (6) reports a coefficient with $t = 2.25$. The consistent positive coefficients suggest livestreams modestly increase families' weighted-average service fees. However, given that the mean family service fee is 0.10\% quarterly with a standard deviation of 0.07\%, the point estimates represent economically small magnitudes.
+
+Columns (1) and (2) find no effects for \textit{Family First Livestream} ($t = 0.63$) or \textit{Family Post Livestream} ($t = 1.05$), indicating the service fee shift occurs only during active livestreaming periods rather than at initial adoption or persistently thereafter. Column (4) shows a marginally significant negative coefficient for \textit{Family First Livestream} one quarter ahead ($t = -1.67$).
+
+The evidence suggests livestreams induce modest shifts toward higher service fee funds, though the economic magnitudes remain small relative to the cross-sectional variation in service fees.
+
+\subsection{Total Fee Reallocation}\label{subsec:total_fee_reallocation}
+
+Table~\ref{tab:family_twfe_totalfee_reallocation} examines the combined effect on total fees, defined as the sum of management and service fees. We estimate:
+\begin{equation}
+    \label{eq:family_total_fee}
+    \text{Family Total Fee}_{j,q+h} = \alpha_j + \delta_q + \beta_1 \text{Livestream}_{j,q} + \mathbf{X}'_{j,q-1} \Gamma + \epsilon_{j,q},
+\end{equation}
+where the dependent variable is the AUM-weighted average total fee across family funds.
+
+Column (3) shows \textit{Family Livestream} produces a statistically significant positive coefficient ($t = 2.10$), consistent with the service fee results in Table~\ref{tab:family_twfe_servicefee_reallocation}. However, this effect does not persist: column (6) shows the one-quarter-ahead coefficient is insignificant ($t = 1.17$). Columns (1) and (2) find no effects for \textit{Family First Livestream} ($t = 1.31$) or \textit{Family Post Livestream} ($t = 1.59$). Column (4) reports a negative but insignificant coefficient for \textit{Family First Livestream} one quarter ahead ($t = -1.19$).
+
+The contemporaneous positive effect in column (3), driven primarily by the service fee component, suggests livestreams induce modest short-term shifts toward higher total fee funds. The lack of persistence in column (6) indicates this reallocation is temporary. Given that total fees average approximately 0.39\% quarterly (sum of mean management and service fees from Table~\ref{tab:fund_descriptives}), the economic magnitude remains small.
+
+These findings, combined with the null management fee results and modest service fee effects, indicate that fee reallocation is not a primary driver of family livestreaming behavior.
+
+\subsection{Churn-Weighted Fee Analysis}\label{subsec:churn_weighted_fee}
+
+Our prior fee analyses weight funds by assets. We now examine whether families strategically direct the largest flows toward higher-fee products by weighting fees by absolute flow magnitudes. Table~\ref{tab:family_twfe_churnweightedfee_reallocation} estimates:
+\begin{equation}
+    \label{eq:family_churn_fee}
+    \text{Family Churn-Weighted Fee}_{j,q+h} = \alpha_j + \delta_q + \beta_1 \text{Livestream}_{j,q} + \mathbf{X}'_{j,q-1} \Gamma + \epsilon_{j,q},
+\end{equation}
+where the dependent variable is the average total fee across family funds weighted by $|\text{Fund Flow}|$.
+
+Column (3) reports a significant positive coefficient on \textit{Family Livestream} ($t = 2.00$). This contemporaneous effect disappears one quarter ahead: column (6) shows an insignificant coefficient ($t = 1.04$). Columns (1) and (2) find no effects for \textit{Family First Livestream} ($t = 1.34$) or \textit{Family Post Livestream} ($t = 1.48$).
+
+The results indicate that during livestreaming quarters, the most active flows are directed toward modestly higher-fee funds. However, the lack of persistence and the pattern's similarity to the AUM-weighted total fee results suggest this is not a primary mechanism driving family livestreaming decisions.
+
+
+\subsection{Revenue Impact}\label{subsec:revenue_impact}
+
+We examine whether livestreams affect family revenues by combining fee structure and flow effects. Table~\ref{tab:family_twfe_flowrevenueimpact_reallocation} estimates:
+\begin{equation}
+    \label{eq:family_revenue}
+    \text{Family Revenue}_{j,q+h} = \alpha_j + \delta_q + \beta_1 \text{Livestream}_{j,q} + \mathbf{X}'_{j,q-1} \Gamma + \epsilon_{j,q},
+\end{equation}
+where the dependent variable measures flow-induced revenue scaled by beginning family assets.
+
+All livestream coefficients are insignificant. Column (1) shows \textit{Family First Livestream} yields $-0.01$ ($t = -0.78$). Column (2) reports \textit{Family Post Livestream} produces $-0.01$ ($t = -0.80$). Column (3) finds \textit{Family Livestream} generates $0.00$ ($t = 0.64$). The forward-looking specifications in columns (4)-(6) produce similarly null results, with coefficients of $0.00$, $-0.00$, and $-0.01$, and $t$-statistics ranging from $-1.27$ to $0.17$. % chktex 36
+
+These null results indicate that livestreams do not generate incremental fee revenues. Combined with our earlier findings—unchanged family flows (Table~\ref{tab:family_twfe_flow_reallocation}), stable management fees (Table~\ref{tab:family_twfe_managementfee_reallocation}), and modest service fee increases (Table~\ref{tab:family_twfe_servicefee_reallocation})—the evidence shows livestreams do not enhance family profitability. The within-family reallocation is a zero-sum game: featured funds gain at the expense of non-featured funds, but families extract no net revenue benefit.
+
+\subsection{Family Returns}\label{subsec:family_returns}
+
+Table~\ref{tab:family_twfe_return_reallocation} examines whether livestreams affect family-level investment performance:
+\begin{equation}
+    \label{eq:family_return}
+    \text{Family Return}_{j,q+h} = \alpha_j + \delta_q + \beta_1 \text{Livestream}_{j,q} + \mathbf{X}'_{j,q-1} \Gamma + \epsilon_{j,q},
+\end{equation}
+where the dependent variable is the AUM-weighted quarterly return.
+
+Columns (1)-(3) show no contemporaneous effects. \textit{Family First Livestream} yields $0.01$ ($t = 1.32$), \textit{Family Post Livestream} produces $0.00$ ($t = 0.54$), and \textit{Family Livestream} generates $0.00$ ($t = 1.20$), all insignificant. % chktex 36
+
+Forward-looking returns are negative. Column (4) shows \textit{Family First Livestream} produces $-0.01$ ($t = -2.13$, significant at 5\%). Column (6) reports \textit{Family Livestream} yields $-0.00$ ($t = -1.88$, significant at 10\%). Column (5) finds no persistent effect for \textit{Family Post Livestream} ($t = -0.78$).
+
+These results parallel \citet{dehaan2025social}'s fund-level evidence of post-livestream underperformance. The negative family-level returns indicate that strong performance by non-featured funds does not offset the deterioration in featured fund returns, resulting in lower aggregate family performance following livestreaming.
+
+\subsection{Within-Family Reallocation: Fund-Level Evidence}\label{subsec:fund_reallocation}
+
+Table~\ref{tab:fund_twfe} decomposes the family-level null effect by examining fund-level flows:
+\begin{equation}
+    \label{eq:fund_flow}
+    \text{Fund Flow}_{i,q} = \alpha_i + \delta_q + \beta_1 \text{Fund Livestream}_{i,q} + \beta_2 \text{Family Livestream (Oth)}_{i,q} + \mathbf{X}'_{i,q-1} \Gamma + \epsilon_{i,q}.
+\end{equation}
+
+Featured funds experience large inflows. Column (1) shows \textit{Fund First Livestream} produces 12.89 ($t = 9.28$). Column (2) reports \textit{Fund Post Livestream} yields 13.26 ($t = 13.06$). Column (3) finds \textit{Fund Livestream} generates 13.72 ($t = 17.15$). These magnitudes—representing 46--49\% of the within-fund standard deviation—confirm \citet{dehaan2025social}'s large livestream effects.
+
+The critical test appears in columns (4) and (5), which include spillover variables. Column (5) reveals the reallocation mechanism: featured funds gain 12.21 percentage points ($t = 12.14$) while non-featured sibling funds lose 1.84 percentage points ($t = -2.40$). The opposing signs directly establish within-family cannibalization.
+
+The coefficients do not sum to zero for two reasons. First, featured funds are larger on average, yielding smaller percentage responses to given dollar inflows. Second, families feature multiple funds per livestream while maintaining many non-featured funds, affecting the weighted aggregation. Despite the imperfect offset at the fund level, family-level flows remain zero (Table~\ref{tab:family_twfe_flow_reallocation}), confirming that livestreams reallocate assets within families without attracting new capital.
+
+\paragraph{Fund-Level Event Study.} Figure~\ref{fig:fund_twfe_event_study_plot} presents event study estimates of fund flows around the family's initial livestream. Pre-event coefficients rise from quarter $-4$ to quarter 0, indicating families begin livestreaming when featured funds exhibit strong performance. The effect peaks at quarter 0, then declines through quarter $+3$ before flattening. The post-event decline shows that flow gains to featured funds dissipate quickly, consistent with temporary reallocation rather than sustained investor attraction.
+
+\subsection{Communication Strategies and Abnormal Fund Flows}\label{subsec:communication_strategies}
+
+Our prior results establish that livestreaming is a zero-sum game within families: featured funds attract significant inflows while sibling funds experience outflows, leaving family-level flows unchanged. This reallocation occurs without increasing family revenues or improving performance. We now investigate which specific communication strategies employed during livestreams drive this within-family flow redistribution.
+
+To identify effective communication tactics, we conduct a cross-sectional analysis comparing fund families that generate high versus low abnormal flows. We define abnormal flows as residuals from a regression of family flows on livestreaming intensity and standard controls, isolating flow variation unexplained by the mere quantity of livestreaming activity. Within each quarterly cross-section, we sort families into High (top 5\%) and Low (bottom 5\%) groups based on these residuals. We then randomly sample five transcripts from each family in both groups, yielding 795 transcripts for content analysis.
+
+Using the Qwen-2.5-32B large language model with the methodology detailed in Appendix~\ref{tab:content_variables}, we score each transcript on 16 predefined dimensions capturing sentiment, persuasion tactics, informational content, and interaction style. This approach generates standardized quantitative measures of communication characteristics that are directly comparable across livestreams. % chktex 8
+
+Table~\ref{tab:t_test} presents mean differences in communication features between high and low abnormal flow families. The results are remarkably concentrated. Of the 16 communication dimensions examined, only two exhibit statistically significant differences: \textit{Past Performance Focus} is 0.28 points higher in high-flow families ($t = 3.56$), and \textit{Social Proof Reliance} is 0.23 points higher ($t = 2.77$). All other dimensions---including sentiment positivity, emotional intensity, sales pressure, educational content, risk transparency, and community building---show no meaningful differences between groups.\footnote{Appendix~\ref{subsec:correlations}  reports the correlation structure among these 16 communication variables. The two significant variables---Past Performance Focus and Social Proof Reliance---exhibit a moderate Pearson correlation of 0.35, indicating they capture related but distinct behavioral mechanisms. This moderate correlation suggests that while some families emphasize both tactics simultaneously, others may specialize in one approach over the other, supporting the interpretation that these represent separate channels through which livestreams influence investor behavior.}
+
+This concentrated pattern has a clear economic interpretation. Fund families that successfully reallocate flows emphasize precisely those communication strategies that exploit well-documented behavioral biases. Past performance focus appeals to extrapolative expectations and the representativeness heuristic—investors infer future returns from historical track records despite extensive evidence documenting the lack of persistence in mutual fund performance \citep{carhart1997persistence}. Social proof reliance exploits herding behavior by emphasizing popularity, peer adoption, or testimonials, reducing investors' perceived uncertainty through conformity rather than fundamental analysis \citep{bikhchandani1992theory}.
+
+The absence of differences across other dimensions is equally informative. General communication quality, emotional intensity, educational content, and interaction style do not differentiate high from low abnormal flow families. This suggests that effective flow reallocation does not result from superior communication skills or more engaging presentation styles, but rather from strategic targeting of specific behavioral mechanisms.
+
+These findings complement our earlier results documenting within-family cannibalization. Tables~\ref{tab:family_twfe_flow_reallocation} and~\ref{tab:fund_twfe} established that livestreams reallocate assets without expanding families' investor bases. Table~\ref{tab:t_test} reveals the mechanism: families that excel at this reallocation focus their messaging on past returns and social validation, while matching their peers on other communication dimensions. This precision suggests strategic sophistication—fund families understand which behavioral levers drive investor decisions and concentrate their communication efforts accordingly.
+
+The negative performance consequences documented in Table~\ref{tab:family_twfe_return_reallocation} take on added significance in light of these communication patterns. Families that most effectively attract flows through past performance emphasis are precisely those showcasing returns that, based on the performance persistence literature, provide minimal information about future outcomes. The reliance on social proof further compounds this problem by encouraging investors to follow crowds rather than evaluate fund fundamentals. The result is predictable: flows chase past performance, and subsequent returns disappoint.
+
+
+\section{Robustness}\label{sec:robustness}
+
+\subsection{Family-Quarter Fixed Effects}\label{subsec:fund_hdfe}
+
+Table~\ref{tab:fund_hdfe} employs family-quarter fixed effects to strengthen identification:
+\begin{equation}
+    \label{eq:fund_hdfe}
+    \text{Fund Flow}_{i,q} = \alpha_i + \delta_{f(i),q} + \beta_1 \text{Fund Livestream}_{i,q} + \mathbf{X}'_{i,q-1} \Gamma + \epsilon_{i,q}.
+\end{equation}
+The family-quarter fixed effects absorb all time-varying family characteristics, including aggregate family flows, performance, and contemporaneous shocks. The coefficient $\beta_1$ therefore identifies the differential flow response of featured versus non-featured funds within the same family-quarter.
+
+The livestream coefficients are large and highly significant. Column (1) shows \textit{Fund First Livestream} produces 14.04 ($t = 9.72$). Column (2) reports \textit{Fund Post Livestream} yields 14.64 ($t = 14.68$). Column (3) finds \textit{Fund Livestream} generates 16.24 ($t = 18.28$).
+
+These estimates exceed the Table~\ref{tab:fund_twfe} coefficients by approximately 1.5--2.5 percentage points. The difference is mechanical: family-quarter fixed effects force the AUM-weighted sum of within-family fund flows to equal zero, effectively netting out the negative spillovers to non-featured funds. The coefficient of 16.24 therefore represents the full magnitude of reallocation from non-featured to featured funds within families. Combined with the null family-level effects in Table~\ref{tab:family_twfe_flow_reallocation}, this specification confirms that livestreams redistribute rather than expand family assets.
+
+\paragraph{Fund-Level Event Study with Family-Quarter Fixed Effects.} Figure~\ref{fig:fund_hdfe_event_study_plot} replicates the event study with family-quarter fixed effects. The dynamic pattern is unchanged: coefficients rise pre-event, peak at quarter 0, and decline thereafter. This robustness confirms that flow gains reflect within-family reallocation from non-featured to featured funds.
+
+\subsection{Defensive Equilibrium: Competitive Pressure and Livestream Adoption}\label{subsec:livestream_intensity}
+
+Table~\ref{tab:fund_livestream_count_twfe} examines how flow responses vary with livestreaming intensity and reveals the competitive forces that sustain zero-sum promotional activity:
+\begin{equation}
+    \label{eq:fund_intensity}
+    \begin{split}
+        \text{Fund Flow}_{i,q} = & \alpha_i + \delta_q + \beta_1 \text{Own Count}_{i,q} + \beta_2 \text{Sibling Count}_{i,q} \\
+                                 & + \beta_3 \text{Market Count}_{i,q} + \mathbf{X}'_{i,q-1} \Gamma + \epsilon_{i,q},
+    \end{split}
+\end{equation}
+where \textit{Own Count} is the log of one plus the fund's livestream frequency, \textit{Sibling Count} captures the fund's family's other livestreaming (excluding the fund itself), and \textit{Market Count} measures other families' livestreaming activity.
+
+Column (1) decomposes livestream effects by source. Own livestreaming drives large inflows: \textit{Fund Livestream Count} yields 6.65 ($t = 10.43$). Sibling livestreaming generates outflows: \textit{Family-Fund Livestream Count} produces $-4.58$ ($t = -4.50$). The negative coefficient confirms within-family cannibalization—when families promote other funds, non-featured funds lose capital. 
+
+Critically, market-wide livestreaming exerts competitive pressure: \textit{Market-Family Live\-stream Count} yields 50.03 ($t = 1.97$). This positive coefficient indicates that when competing families increase promotional intensity, funds in non-livestreaming families experience relative outflows. The effect is modest but economically meaningful: a one-standard-deviation increase in market livestreaming activity predicts flow losses for families that fail to match competitors' promotional efforts.
+
+Column (2) reinforces this interpretation using \textit{Fund Market Share}—the fund's proportion of total market livestreaming—which yields 570.56 ($t = 2.73$). Funds capturing larger attention shares experience substantially higher flows, confirming that livestreaming operates as a competition for scarce investor attention.
+
+These results explain why families persist in zero-sum promotional behavior. Within families, own-fund livestreaming attracts inflows (+6.65) while sibling livestreaming generates outflows (-4.58), producing zero net family flows (Table~\ref{tab:family_twfe_flow_reallocation}). However, market-level competition creates defensive incentives: families that fail to livestream lose flows when competitors increase promotional activity. This generates a prisoner's dilemma where individually rational behavior—livestreaming to avoid losing market share—produces collectively wasteful outcomes. Families must livestream not to expand their investor base, but to prevent capital flight to more actively marketed alternatives.
+
+\subsection{Within-Fund Class-Level Effects}\label{subsec:within_fund}
+
+Table~\ref{tab:class_within_fund_test} examines whether livestreams reallocate flows between share classes of the same fund. We estimate:
+\begin{equation}
+    \label{eq:class_flow}
+    \text{Class Flow}_{c,q} = \delta_{f(c),q} + \beta_1 \text{Class Livestream}_{c,q} + \mathbf{X}'_{c,q-1} \Gamma + \epsilon_{c,q},
+\end{equation}
+where $\delta_{f(c),q}$ are fund-quarter fixed effects that absorb all fund-level variation, including total fund flows. The coefficient $\beta_1$ identifies the differential flow response of featured versus non-featured classes within the same fund-quarter.
+
+Column (1) shows \textit{Class Livestream} yields 9.45 ($t = 2.78$). Featured classes receive 9 percentage points more flows than non-featured classes of the same fund. Since fund-quarter fixed effects constrain the weighted sum of class flows to equal fund flows, this positive coefficient mechanically implies negative flows to non-featured classes.
+
+Column (2) decomposes class-level effects by whether sibling classes are also featured. \textit{Solo Livestreamer} produces $-8.43$ ($t = -0.21$), insignificant. \textit{Has Sibling Livestreamer} yields $-17.79$ ($t = -0.45$), also insignificant. The lack of statistical significance suggests that when controlling for fund-quarter fixed effects, the reallocation between classes within the same fund is less pronounced than the reallocation between funds within families.
+
+These class-level results mirror the fund-level cannibalization documented in Table~\ref{tab:fund_twfe}. Livestreams reallocate assets within funds across share classes, just as they reallocate assets within families across funds.
+
+
+\subsection{Livestreaming and Fund Performance}\label{subsec:fund_performance}
+
+To understand why families engage in zero-sum promotional competition, we examine the performance dynamics surrounding livestreaming events. If families strategically time promotions to exploit favorable performance histories, we should observe elevated pre-event returns followed by post-event deterioration. Table~\ref{tab:fund_performance} tests this hypothesis using monthly performance data and a generalized difference-in-differences specification:
+\begin{equation}
+    \label{eq:fund_performance}
+    \text{Performance}_{i,m+k} = \sum_k \beta_k \cdot \text{Event}_{i,m} + \mathbf{X}'_{i,q-1} \Gamma + \mu_i + \delta_m + \epsilon_{i,m},
+\end{equation}
+where Performance$_{i,m+k}$ measures fund $i$'s return or Fama-French alpha in the $k$-th month relative to event month $m$. Fund and month fixed effects ($\mu_i$, $\delta_m$) control for time-invariant fund characteristics and aggregate market movements.
+
+Panel A documents a striking asymmetric pattern in raw performance. Funds that eventually livestream generate monthly returns of 0.7\% ($t = 8.67$) in the month immediately preceding promotion, but returns collapse to zero during the event month and turn significantly negative thereafter, averaging $-0.3\%$ over the subsequent four months. This 100-basis-point swing represents approximately one-third of the pre-event return level, economically large relative to typical mutual fund performance variation.
+
+Panel B implements the difference-in-differences estimator for first livestreaming events. Controlling for fund and time fixed effects, we find that returns increase by 1.4 percentage points ($t = 12.51$) in month $m-1$ relative to baseline periods, confirming strategic timing around performance peaks. The event month captures residual promotional flows with a 0.6 percentage point increase ($t = 4.69$), but this effect fully dissipates by month $m+1$. By month $m+4$, returns are 0.3 percentage points below baseline ($t = -2.62$). 
+
+Risk-adjusted performance exhibits the same trajectory. Fama-French three-factor alphas rise 1.3 percentage points ($t = 12.22$) in month $m-1$, capturing the pre-event outperformance that families showcase during promotions. Post-event alphas decline monotonically, reaching $-0.2$ percentage points ($t = -2.46$) by month $m+4$. Five-factor alphas—controlling for size, value, profitability, and investment factors—produce virtually identical estimates, confirming that the performance pattern does not reflect systematic factor exposures. The persistent negative alphas indicate genuine underperformance relative to risk-adjusted benchmarks rather than mechanical mean reversion.
+
+Panel C examines all livestreaming events. The performance cycle remains evident but compressed: returns peak at 0.7\% ($t = 12.38$) in month $m-1$, then turn consistently negative in all four post-event months, averaging $-0.3\%$ with $t$-statistics below $-4.79$. Three-factor alphas follow an identical pattern, rising to 0.6\% ($t = 9.88$) at month $m-1$ before declining to $-0.3\%$ ($t = -7.09$) by month $m+4$. The consistent post-event deterioration across repeated promotions indicates that families do not select only their strongest performers for continued livestreaming—once promotional activity begins, it persists despite subsequent underperformance.
+
+These findings resolve the puzzle of why families promote specific funds despite zero aggregate benefits. Families exploit temporary performance spikes to generate promotional narratives, timing livestreams to coincide with periods when featured funds can display impressive track records. This strategy proves effective at the fund level: our earlier results show that promoted funds attract large inflows. However, the sharp post-event performance deterioration reveals that marketing-induced flows chase precisely the funds whose recent outperformance provides minimal information about future returns, consistent with extensive evidence that mutual fund performance exhibits little persistence \citep{carhart1997persistence}.
+
+The performance dynamics also illuminate why livestreaming persists as a defensive strategy. From an individual family's perspective, promoting funds during temporary performance peaks generates immediate fund-level flows—even if those flows merely cannibalize sibling funds. The subsequent underperformance becomes apparent only months later, after promotional effects have dissipated. This temporal separation between marketing benefits and performance costs creates sustained incentives for continued promotion, as each new performance spike presents an opportunity to restart the cycle. The result is an industry-wide equilibrium where families compete to showcase recent winners, fully aware that promoted funds will subsequently underperform, yet unable to unilaterally exit the promotional arms race without ceding market share to rivals.
+
+The contrast between first-time events (Panel B) and all events (Panel C) reinforces this interpretation. Initial livestreams exhibit more dramatic pre-event performance increases, suggesting families carefully select debut promotional opportunities when performance peaks are most pronounced. Subsequent livestreams show smaller pre-event effects but more consistent post-event deterioration, indicating that repeated promotional activity becomes less dependent on recent performance and more routine. This evolution from selective to systematic promotion is precisely what a defensive equilibrium predicts: once promotional competition begins, families must continue livestreaming to avoid relative underperformance, regardless of whether current conditions are optimal for promotion.
+
+\section{Conclusions}\label{sec:conclusions}
+
+This paper examines the economic role of mutual fund marketing conducted through real-time livestream promotions. We show that, while livestreams generate substantial flows into promoted funds, these inflows largely reflect a reallocation of capital within fund families rather than the attraction of new investors. At the family level, assets under management remain essentially unchanged. Livestream marketing therefore reshapes investor portfolios without expanding the overall investor base.
+
+Consistent with this interpretation, we find no evidence that livestream promotions affect fund performance or portfolio choices. Promoted funds do not earn abnormal returns, experience changes in risk-adjusted performance, or alter their trading behavior following livestream events. Instead, livestreams operate primarily through investor attention, redirecting capital across products. The resulting shift in flows temporarily increases service-fee revenues by steering investors toward higher-ancillary-fee funds, while management-fee revenues remain stable. Moreover, the selection of promoted funds is unrelated to recent performance, risk, or fund age, indicating that livestreaming is not used to signal quality, support asset growth, or reposition products.
+
+Our findings present an economic puzzle: if livestreaming generates no net benefits, why do families persistently engage in this costly activity? The evidence points to a defensive equilibrium. While own livestreaming produces no family-level gains, families face competitive pressure from rivals' promotional activities. When competing families increase livestreaming intensity, non-livestreaming families experience relative outflows. This creates a prisoner's dilemma: families must livestream not to attract new capital, but to prevent existing investors from reallocating to more actively marketed alternatives. Livestreaming thus persists as a competitive necessity rather than a value-creating strategy, trapping the industry in collectively wasteful promotional competition.
+
+Our analysis of livestream content using large language models sheds light on the mechanisms behind this reallocation. Fund families that are more effective at shifting flows emphasize past performance and social proof—communication strategies that exploit well-documented behavioral biases such as extrapolative expectations and herding. Other dimensions of communication show little systematic variation, suggesting that successful marketing hinges on targeting specific behavioral mechanisms rather than improving overall communication quality.
+
+Taken together, our findings suggest that mutual fund livestream marketing functions as a zero-sum mechanism within fund families. It reallocates investor capital and alters fee composition without generating persistent economic value. The persistence of this behavior reflects not strategic value creation but rather defensive responses to competitive pressure, illustrating how individually rational actions can produce collectively inefficient outcomes in asset management. More broadly, the results highlight how new financial communication technologies can meaningfully influence investor behavior while leaving underlying investment outcomes unchanged, underscoring the importance of attention and persuasion—rather than information—in delegated portfolio choice.
+
+% \section{Table 1:   Summary Statistics}
+
+% \section{Table 2: Livestreaming and Fund Flows}
+
+% \begin{itemize}
+%     \item deHaan et al. (2025) define \textit{First Stream} as an indicator for the first month (or quarter) that a fund is featured in the shopping carts of livestreams. NOTE: For any given fund, \textit{First Stream} is equal to one \textit{in at most one quarter}.
+
+%     \item deHaan et al. (2025) define \textit{Livestream} as an indicator for all months (or quarters) that a fund is featured in the livestream shopping carts. NOTE: For any given fund, \textit{Livestream} is \textit{not} equal to one even if it is months after the month the fund is featured in the livestream carts \textit{unless the fund features again in the subsequent livestream carts}.
+
+%     \item We define $\textit{Family First Stream}_{f,q}=\max_{\text{fund's in fund }f\text{'s family in quarter }q}\textit{First Stream}_{\text{fund},q}$. In other words, \textit{Family First Stream} is an indicator for any month (or quarter) that a fund family features one of its funds for the first time in its livestream shopping carts.
+%     \begin{itemize}
+%         \item Define $\textit{Fam First Stream Oth}_{f,q}=\textit{Family First Stream}_{f,q}\times(1-\textit{First Stream}_{f,q})$.
+%     \end{itemize}
+
+%     \item We define $\textit{Family Livestream}_{f,q}=\max_{\text{fund's in fund }f\text{'s family within quarter }q}\textit{Livestream}_{\text{fund},q}$. In other words, $\textit{Family Livestream}_{f,q}$ is an indicator for all months (or quarters) that a fund family livestreams. \textbf{NOTE: Is there any time period a family livestreams, BUT does NOT feature any of its funds in its livestreaming shopping carts? In this case, we must refine the definition..}
+%     \begin{itemize}
+%     \item Define $\textit{Family Livestream Oth}_{f,q}=\textit{Family Livestream}_{f,q}\times(1-\textit{Livestream}_{f,q})$. 
+%     \end{itemize}
+
+% \end{itemize}
+
+% \subsection{Table 2, Panel A}
+
+% I guess, replicate deHaan et al. (2025)'s Table 4, Panel A, where they regress $Fund Flow_{q}$ on (i)  $First Stream_{q}$ or (ii) $Livestream_{q}$, controlling for fund FE and year-quarter FE.
+
+% \subsection{Table 2, Panel B}
+
+% We regress $Fund Flow_{q}$ on (i) $First Stream_{q}$ and $\textit{Fam First Stream Oth}_{q}$ or (ii) $Livestream_{q}$ and $\textit{Fam Livestream Oth}_{q}$, controlling for fund FE and year-quarter FE.
+
+% Note that the coefficient estimates on $\textit{First Stream}_{q}$ or $\textit{Livestream}_{q}$ can be interpreted as the within-fund difference in flows in quarters when a given fund does versus does not livestream, whereas the coefficient estimates on $\textit{Fam First Stream Oth}_{q}$ or $\textit{Fam Livestream Oth}_{q}$ can be interpreted as the within-fund difference in flows for non-livestreaming funds in quarters when a given fund's family does versus does not livestream.
+
+% \subsection{Table 2, Panel C}
+
+% We regress $Family Flow_{q}$ on (i) $Family First Stream_{q}$ or (ii) $Family Livestream_{q}$, controlling for fund FE and year-quarter FE. NOTE: This repeats deHaan et al. (2025)'s Table 4, Panel A, at the fund family level.
+
+% \subsection{Table 2, To Summarize}
+
+% \begin{itemize}
+%     \item Panel A should find that livestreams drive highly significant fund inflows to the funds in the livestream shopping carts.
+
+%     \item Panel B should find that livestreams drive significant fund outflows from the non-livestreaming funds.
+
+%     \item Panel C should find that livestreams drive statistically insignificant flows at the fund family level.
+
+% \end{itemize}
+
+% To summarize, Table 2 should find cannibalization within each family.
+
+
+
+% \section{Table 3: Livestreaming and Fund Flows, Continuous Treatment}
+
+% \section{Table 4: Livestreaming and Fund Performance}
+
+% Construct 
+
+% \section{Table 5: Livestreaming and Fund Performance, Continuous Treatment}
+
+% \section{Table 6: Livestreaming and \$ Fee}
+
+% \section{Table 7: Livestreaming and \$ Fee, Continuous Treatment}
+
+% %JK does flow performance relation weaken for non featured funds
+
+% \section{Robustness}
+
+% Can we plz examine the robustness of our flow results using alternative proxies for fund flows and family flows? Berk and Jules go apeshit about this..
+% \begin{gather*}
+% \textit{Fund Flow}_{q} = \frac{AUM_{q}-AUM_{q-1}\times(1+\textit{Net Return}_q)}{AUM_{q-1}\times(1+\textit{Net Return}_q)}\\
+% \textit{Family Flow}_{q} = \frac{\textit{Family AUM}_{q}-\textit{Family AUM}_{q-1}\times(1+\textit{Family Net Return}_q)}{\textit{Family AUM}_{q-1}\times(1+\textit{Family Net Return}_q)}?
+% \end{gather*}
+% where $\textit{Family Net Return}_{q}$ is the $AUM_{q-1}$-weighted average across funds within each family.
+
+
+\newpage
+\bibliography{references.bib}
+
+\clearpage
+\include{figures/family_twfe_event_study_plot.tex}
+\include{figures/fund_twfe_event_study_plot.tex}
+\include{figures/fund_hdfe_event_study_plot.tex}
+
+\clearpage
+\include{tables/fund_descriptives.tex}
+\include{tables/family_twfe_flow_reallocation.tex}
+\include{tables/fund_twfe.tex}
+\include{tables/fund_hdfe.tex}
+\include{tables/fund_livestream_count_twfe.tex}
+\include{tables/class_within_fund_test}
+\include{tables/family_twfe_managementfee_reallocation.tex}
+\include{tables/family_twfe_servicefee_reallocation.tex}
+\include{tables/family_twfe_loads_reallocation.tex}
+\include{tables/family_twfe_totalfee_reallocation.tex}
+\include{tables/family_twfe_churnweightedfee_reallocation}
+\include{tables/family_twfe_flowrevenueimpact_reallocation}
+\include{tables/family_twfe_return_reallocation}
+\include{tables/t_test}
+\include{tables/fund_performance}
+
+% ==================================================
+% Appendix
+% ==================================================
+\clearpage
+\begingroup
+\centering
+\thispagestyle{empty}
+\textit{\Large Internet Appendix to} \\
+\textbf{\Large ``The Zero-Sum Game of Mutual Fund Marketing''}
+\par
+\endgroup
+
+\clearpage
+\setcounter{page}{1}
+\renewcommand{\thepage}{Internet Appendix page \arabic{page}}
+
+\appendix
+
+\renewcommand{\tablename}{Appendix}
+
+\renewcommand{\thetable}{\Alph{table}}
+\renewcommand{\thefigure}{\Alph{figure}}
+
+
+\makeatletter
+\renewcommand{\theHtable}{\Alph{table}}
+\renewcommand{\theHfigure}{\Alph{figure}}
+\makeatother
+
+% Reset counters to ensure numbering starts from 'A'
+\setcounter{table}{0}
+\setcounter{figure}{0}
+
+\section*{Appendix}
+
+\input{tables/variable_definition.tex}
+\input{tables/content_variables.tex}
+
+% ==================================================
+
+\end{document}

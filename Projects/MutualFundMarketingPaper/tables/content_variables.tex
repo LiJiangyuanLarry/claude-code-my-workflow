@@ -1,0 +1,111 @@
+% --- APPENDIX B START ---
+\newpage
+\section{Livestream Content Characteristics}\label{tab:content_variables}
+
+\vspace{0.3cm}
+\noindent
+\begin{minipage}{\linewidth}
+This appendix details the content characteristics of livestream transcripts. We employ the \textbf{Qwen-2.5-32B} Large Language Model (LLM) to score each transcript on 16 dimensions. The table below outlines the 16 content dimensions used to evaluate the transcripts. For each dimension, we provide a definition and the semantic anchors corresponding to the minimum (1) and maximum (10) scores on the scale. % chktex 8
+\end{minipage}
+
+\begin{longtable}{lp{0.65\textwidth}}
+
+\caption{Variable Definitions for Livestreaming Content Characteristics}\label{tab:content_characteristics_definitions} \\
+
+  \toprule
+  \textbf{Variable}          & \textbf{Definition and Scale Anchors}                                                                 \\
+  \midrule
+  \endfirsthead%
+  \midrule
+  \textbf{Variable}          & \textbf{Definition and Scale Anchors}                                                                 \\
+  \midrule
+  \endhead%
+  \endfoot%
+  \endlastfoot%
+
+  Sentiment Positivity       & Measures the overall emotional tone of the transcript, ranging from negative to positive.             \\
+  \midrule
+  Emotional Intensity        & Quantifies the level of emotional expression in the transcript, from flat to highly emotional.        \\
+  \midrule
+  Sales Pressure             & Assesses the degree of sales urgency conveyed, from a soft approach to aggressive selling.            \\
+  \midrule
+  Education Density          & Evaluates the amount of educational content provided, from no teaching to a classroom-style delivery. \\
+  \midrule
+  Promotion Density          & Measures the frequency of promotional content, from no pitching to constant promotion.                \\
+  \midrule
+  Risk Transparency          & Indicates the extent to which risks are discussed, from hiding risks to emphasizing them.             \\
+  \midrule
+  Past Performance Focus     & Reflects the emphasis on past performance, from rarely mentioning it to constant bragging.            \\
+  \midrule
+  Return-Chasing Inducement  & Assesses the encouragement of chasing returns, from discouraging to encouraging such behavior.        \\
+  \midrule
+  Urgency and Scarcity       & Measures the use of urgency and scarcity tactics, from none to high usage.                            \\
+  \midrule
+  Social Proof Reliance      & Evaluates the reliance on social proof, from none to high reliance.                                   \\
+  \midrule
+  Authority Credibility      & Indicates the level of authority and credibility conveyed, from none to high credibility.             \\
+  \midrule
+  Jargon Complexity          & Measures the use of technical language, from simple to highly technical.                              \\
+  \midrule
+  Language Informality       & Assesses the formality of the language used, from formal to slang-friendly.                           \\
+  \midrule
+  Storytelling Intensity     & Measures the use of narrative in the transcript, from facts only to a strong narrative.               \\
+  \midrule
+  Interaction Responsiveness & Evaluates the level of interaction with the audience, from ignoring to being highly interactive.      \\
+  \midrule
+  Community Feeling          & Indicates the sense of community conveyed, from cold to a strong family/team feeling.                 \\
+  \midrule
+\end{longtable}
+
+
+
+
+\subsection{Correlations among Livestream Content Characteristics}\label{subsec:correlations}
+
+Table~\ref{correlations} presents correlations among 16 livestream content characteristics extracted from 795 mutual fund livestream transcripts. The lower triangle reports Pearson correlations; the upper triangle reports Spearman rank correlations.
+The correlation structure reveals three distinct content strategy dimensions. Sales-oriented tactics exhibit strong co-occurrence: Sales Pressure, Promotion Density, and Urgency/Scarcity correlate between 0.67 and 0.71, while Return-Chasing Promotion correlates 0.57 with Past Performance Focus. This clustering suggests fund managers deploy aggressive sales tactics systematically rather than in isolation.
+
+Educational content characteristics form a second cluster. Education Density correlates 0.37--0.46 with Jargon Complexity and positively with Risk Transparency (0.28--0.45) and Authority Credibility (0.30--0.43). Critically, educational dimensions correlate negatively with sales tactics: Education Density exhibits correlations of -0.28 to -0.35 with Sales Pressure, Promotion Density, and Urgency/Scarcity. This negative relationship suggests a fundamental trade-off between informative and persuasive content strategies.
+
+Community engagement metrics constitute a third dimension. Interaction Responsiveness and Community Feeling correlate 0.64--0.67, the strongest relationship in the matrix. Social Proof Reliance correlates moderately with both Community Feeling (0.44--0.45) and emotional content dimensions, indicating a distinct engagement strategy centered on fostering viewer connection.
+Language style variables reveal additional strategic choices. Language Informality correlates negatively with Jargon Complexity (-0.31 to -0.35) and Authority Credibility (-0.33 to -0.36), while Emotional Intensity and Storytelling Intensity correlate 0.46--0.51, suggesting presenters choose between technical credibility and emotional accessibility.
+
+\begin{landscape}
+
+\begin{table}[!ht]
+
+\centering
+    
+    \caption{Correlations among Livestream Content Characteristics}
+ 
+    \footnotesize
+    \vspace{0.3cm}
+  \noindent
+  \begin{minipage}{\linewidth}
+  The table reports the Pearson product-moment correlations (below the diagonal) and Spearman rank correlations (above the diagonal) among livestream content characteristics. The sample comprises the 795 livestream transcripts used in the high vs.~low marketing efficiency analysis. All variables are quantitative scores ranging from 1 to 10, extracted from transcripts using the Large Language Model (Qwen-2.5-32B). \\ % chktex 8
+  \end{minipage}\label{correlations}
+
+    \setlength{\tabcolsep}{5pt}
+    \begin{tabular}{lcccccccccccccccc}
+      \toprule
+                                      & (1)   & (2)  & (3)   & (4)   & (5)   & (6)   & (7)   & (8)   & (9)   & (10)  & (11)  & (12)  & (13)  & (14)  & (15)  & (16)  \\ \midrule
+      (1) Sentiment Positivity        &       & 0.46 & 0.34  & 0.07  & 0.45  & -0.03 & 0.26  & 0.35  & 0.28  & 0.38  & 0.38  & 0.07  & -0.02 & 0.33  & 0.19  & 0.35  \\
+      (2) Emotional Intensity         & 0.54  &      & 0.25  & 0.05  & 0.26  & -0.10 & 0.17  & 0.32  & 0.25  & 0.36  & 0.21  & -0.01 & 0.26  & 0.46  & 0.28  & 0.32  \\
+      (3) Sales Pressure              & 0.32  & 0.23 &       & -0.33 & 0.70  & -0.22 & 0.35  & 0.45  & 0.69  & 0.42  & 0.10  & -0.13 & 0.21  & 0.12  & 0.18  & 0.22  \\
+      (4) Education Density           & 0.16  & 0.20 & -0.31 &       & -0.29 & 0.28  & -0.02 & -0.14 & -0.33 & -0.09 & 0.30  & 0.37  & -0.22 & 0.05  & 0.08  & 0.08  \\
+      (5) Promotion Density           & 0.43  & 0.26 & 0.70  & -0.28 &       & -0.18 & 0.27  & 0.40  & 0.67  & 0.47  & 0.10  & -0.15 & 0.17  & 0.19  & 0.21  & 0.31  \\
+      (6) Risk Transparency           & 0.06  & 0.04 & -0.24 & 0.45  & -0.22 &       & -0.15 & -0.35 & -0.30 & -0.14 & 0.15  & 0.24  & -0.24 & -0.05 & 0.07  & 0.02  \\
+      (7) Past Performance Focus      & 0.28  & 0.21 & 0.36  & -0.00 & 0.29  & -0.10 &       & 0.57  & 0.40  & 0.32  & 0.22  & 0.06  & 0.13  & 0.13  & 0.03  & 0.10  \\
+      (8) Return-Chasing Promotion    & 0.35  & 0.32 & 0.48  & -0.13 & 0.42  & -0.33 & 0.57  &       & 0.57  & 0.38  & 0.17  & 0.01  & 0.24  & 0.24  & 0.02  & 0.12  \\
+      (9) Urgency and Scarcity        & 0.26  & 0.22 & 0.71  & -0.35 & 0.69  & -0.33 & 0.36  & 0.56  &       & 0.42  & 0.03  & -0.17 & 0.32  & 0.15  & 0.14  & 0.19  \\
+      (10) Social Proof Reliance      & 0.37  & 0.35 & 0.38  & -0.06 & 0.46  & -0.13 & 0.35  & 0.39  & 0.39  &       & 0.30  & -0.14 & 0.16  & 0.32  & 0.30  & 0.44  \\
+      (11) Authority Credibility      & 0.49  & 0.36 & 0.11  & 0.43  & 0.12  & 0.30  & 0.26  & 0.18  & 0.02  & 0.29  &       & 0.39  & -0.33 & 0.20  & 0.00  & 0.14  \\
+      (12) Jargon Complexity          & 0.16  & 0.12 & -0.09 & 0.46  & -0.13 & 0.34  & 0.08  & 0.04  & -0.15 & -0.09 & 0.48  &       & -0.31 & -0.10 & -0.22 & -0.16 \\
+      (13) Language Informality       & -0.07 & 0.19 & 0.18  & -0.24 & 0.18  & -0.27 & 0.13  & 0.22  & 0.29  & 0.16  & -0.36 & -0.35 &       & 0.25  & 0.22  & 0.20  \\
+      (14) Storytelling Intensity     & 0.36  & 0.51 & 0.10  & 0.13  & 0.19  & -0.01 & 0.17  & 0.25  & 0.12  & 0.33  & 0.25  & -0.02 & 0.23  &       & 0.27  & 0.34  \\
+      (15) Interaction Responsiveness & 0.28  & 0.37 & 0.18  & 0.19  & 0.23  & 0.16  & 0.06  & 0.03  & 0.15  & 0.32  & 0.15  & -0.08 & 0.21  & 0.28  &       & 0.64  \\
+      (16) Community Feeling          & 0.40  & 0.38 & 0.21  & 0.16  & 0.30  & 0.09  & 0.13  & 0.13  & 0.18  & 0.45  & 0.22  & -0.08 & 0.20  & 0.35  & 0.67  &       \\ \bottomrule
+    \end{tabular}
+  \end{table}
+
+\end{landscape}

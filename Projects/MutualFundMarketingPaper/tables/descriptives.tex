@@ -1,0 +1,29 @@
+\begin{table}[!ht]
+    \centering
+    
+    \caption{Descriptive Statistics}\label{tab:descriptives}
+    
+    \begin{minipage}{0.95\textwidth}
+        \footnotesize
+        This table reports the descriptive statistics for the main variables used in the analysis. The sample covers the period from 2020Q3 to 2025Q2. Panel A reports characteristics at the fund level, while Panel B reports characteristics at the family level. Returns and alphas are in percentages. All continuous variables are winsorized at the 1\% and 99\% levels. See Appendix~\ref{tab:vardefs} for detailed variable definitions.
+    \end{minipage}
+
+    \vspace{2mm}
+
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{lcccccc}
+        \toprule
+         & N & Mean & Std & Min & Median & Max \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Panel A\@: Fund-Level Characteristics}} \\
+        \midrule
+        \input{tables/core/fund_descriptives.tex}\\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Panel B\@: Family-Level Characteristics}} \\
+        \midrule
+        \input{tables/core/family_descriptives.tex}\\
+        \bottomrule
+    \end{tabular}
+    }
+    
+\end{table}

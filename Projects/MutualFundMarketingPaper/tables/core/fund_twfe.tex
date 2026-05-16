@@ -1,0 +1,53 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{5}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)}         &\multicolumn{1}{c}{(5)}         \\
+\midrule
+Fund First Livestream&       14.13\sym{***}&                     &                     &       14.30\sym{***}&                     \\
+                    &      (9.09)         &                     &                     &      (9.21)         &                     \\
+\addlinespace
+Fund Post Livestream&                     &       14.64\sym{***}&                     &                     &                     \\
+                    &                     &     (12.87)         &                     &                     &                     \\
+\addlinespace
+Fund Livestream     &                     &                     &       14.87\sym{***}&                     &       13.27\sym{***}\\
+                    &                     &                     &     (16.72)         &                     &     (11.88)         \\
+\addlinespace
+Family First Livestream (Oth)&                     &                     &                     &        3.03         &                     \\
+                    &                     &                     &                     &      (1.35)         &                     \\
+\addlinespace
+Family Livestream (Oth)&                     &                     &                     &                     &       -1.94\sym{**} \\
+                    &                     &                     &                     &                     &     (-2.30)         \\
+\addlinespace
+Fund Past Return    &       31.37\sym{***}&       33.59\sym{***}&       29.75\sym{***}&       31.45\sym{***}&       29.74\sym{***}\\
+                    &      (7.90)         &      (8.81)         &      (7.69)         &      (7.92)         &      (7.68)         \\
+\addlinespace
+Fund Top 5 Return   &        5.95\sym{***}&        5.83\sym{***}&        5.44\sym{***}&        5.97\sym{***}&        5.39\sym{***}\\
+                    &      (6.37)         &      (6.52)         &      (6.01)         &      (6.37)         &      (5.96)         \\
+\addlinespace
+Fund Size           &      -19.79\sym{***}&      -20.85\sym{***}&      -20.60\sym{***}&      -19.79\sym{***}&      -20.60\sym{***}\\
+                    &    (-24.73)         &    (-25.81)         &    (-25.46)         &    (-24.73)         &    (-25.44)         \\
+\addlinespace
+Fund Large          &        0.03         &       -0.14         &       -0.44         &        0.03         &       -0.46         \\
+                    &      (0.03)         &     (-0.14)         &     (-0.44)         &      (0.03)         &     (-0.46)         \\
+\addlinespace
+Fund Age            &       -3.27\sym{*}  &       -5.20\sym{***}&       -4.65\sym{***}&       -3.30\sym{*}  &       -4.63\sym{***}\\
+                    &     (-1.84)         &     (-2.91)         &     (-2.63)         &     (-1.86)         &     (-2.62)         \\
+\addlinespace
+Fund Old            &        5.14\sym{***}&        4.90\sym{***}&        4.89\sym{***}&        5.16\sym{***}&        4.87\sym{***}\\
+                    &      (2.98)         &      (2.71)         &      (2.78)         &      (2.99)         &      (2.78)         \\
+\addlinespace
+Fund Management Fee &      -92.73\sym{***}&      -90.39\sym{***}&      -96.99\sym{***}&      -92.61\sym{***}&      -97.78\sym{***}\\
+                    &     (-5.20)         &     (-5.01)         &     (-5.43)         &     (-5.19)         &     (-5.48)         \\
+\addlinespace
+Fund Service Fee    &      131.83\sym{***}&      114.50\sym{***}&      111.16\sym{***}&      132.26\sym{***}&      111.02\sym{***}\\
+                    &      (3.97)         &      (3.49)         &      (3.36)         &      (3.98)         &      (3.37)         \\
+\addlinespace
+Fund Loads          &      -60.11         &      -64.16         &      -56.10         &      -59.81         &      -55.26         \\
+                    &     (-1.14)         &     (-1.23)         &     (-1.07)         &     (-1.13)         &     (-1.07)         \\
+\midrule
+Observations        &      83,812         &      83,812         &      83,812         &      83,812         &      83,812         \\
+Adj. R$^{2}$        &      0.1333         &      0.1370         &      0.1405         &      0.1334         &      0.1407         \\
+\bottomrule
+\end{tabular}
+}

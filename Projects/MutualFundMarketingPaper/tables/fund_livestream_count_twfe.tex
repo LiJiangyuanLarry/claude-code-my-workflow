@@ -1,0 +1,23 @@
+\begin{table}[!ht]
+    \centering
+    
+    \caption{The Effect of Livestream Intensity on Fund Flows}\label{tab:fund_livestream_count_twfe}
+    
+    % --- NOTE: The minipage for notes remains unchanged ---
+    \begin{minipage}{0.95\textwidth}
+        \footnotesize
+        This table reports regression results for the effect of livestreaming intensity on fund flow. The estimations are based on the following two-way fixed effects (TWFE) model:
+        \begin{equation*}
+            Y_{i,j,q} = \alpha_i + \delta_q + \boldsymbol{\beta}' \text{LivestreamVars}_{i,j,q} + \mathbf{X}'_{i,q-1} \Gamma + \epsilon_{i,j,q}
+        \end{equation*}
+        where $Y_{i,j,q}$ is the Fund Flow for fund $i$ of family $j$ in quarter $q$. $\text{LivestreamVars}_{i,j,q}$ represents a vector of the key livestreaming intensity variables. $\mathbf{X}'_{i,q-1}$ is a vector of control variables from the prior quarter, and $\alpha_i$ and $\delta_q$ are fund and quarter fixed effects, respectively. Robust $t$-statistics are reported in parentheses. Standard errors are clustered at the family level. All continuous variables are winsorized at the 1\% and 99\% levels. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels, respectively. See Appendix~\ref{tab:vardefs} for detailed variable definitions.
+    \end{minipage}
+
+    \vspace{2mm}
+
+    { 
+    \footnotesize % This equals 10pt in your document
+    \input{tables/core/fund_livestream_count_twfe.tex} 
+    }
+
+\end{table}

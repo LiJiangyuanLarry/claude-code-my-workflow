@@ -1,0 +1,34 @@
+\begin{table}[!ht]
+    \centering
+    
+    \caption{Differences in livestream communication styles: High vs. Low residual flow families}\label{tab:t_test}
+    
+    \begin{minipage}{0.95\textwidth}
+    \footnotesize
+     This table presents the differences in communication strategies and content features between fund families that generate high versus low abnormal flows. We define abnormal flows as the residuals from a regression of family flows on livestreaming intensity and controls. Families are sorted into High (Top 5\%) and Low (Bottom 5\%) groups based on these residuals within each quarterly cross-section. The sample comprises 795 transcripts, constructed by randomly sampling five transcripts from each family in the High and Low groups. We employ a Large Language Model (Qwen-2.5-32B) to analyze these transcripts and score them on 16 dimensions on a scale of 1 (lowest) to 10 (highest). Diff (H-L) reports the mean difference between the High and Low groups, with the corresponding $t$-statistics reported in the final column. ***, **, and * indicate statistical significance at the 1\%, 5\%, and 10\% levels, respectively. The prompt details and specific scoring criteria for these variables are provided in Appendix~\ref{tab:content_variables}. % chktex 8
+    \end{minipage}
+
+    \vspace{2mm}
+
+\begin{tabular}{lcccc}
+\toprule
+Variable & Mean (High) & Mean (Low) & Diff (H-L) & T-stat \\ \midrule
+Sentiment Positivity & 7.11 & 7.05 & 0.06 & 1.12 \\
+Emotional Intensity & 5.86 & 5.81 & 0.05 & 1.35 \\
+Sales Pressure & 4.53 & 4.42 & 0.10 & 0.98 \\
+Education Density & 7.80 & 7.78 & 0.02 & 0.41 \\
+Promotion Density & 5.01 & 4.89 & 0.11 & 1.01 \\
+Risk Transparency & 7.62 & 7.63 & -0.01 & -0.15 \\
+Past Performance Focus & 4.54 & 4.26 & 0.28*** & 3.56 \\
+Return-Chasing Promotion & 3.78 & 3.63 & 0.14 & 1.45 \\
+Urgency and Scarcity & 2.64 & 2.59 & 0.05 & 0.56 \\
+Social Proof Reliance & 5.06 & 4.83 & 0.23*** & 2.77 \\
+Authority Credibility & 7.68 & 7.60 & 0.07 & 1.37 \\
+Jargon Complexity & 6.09 & 6.06 & 0.03 & 0.60 \\
+Language Informality & 3.91 & 3.96 & -0.04 & -0.80 \\
+Storytelling Intensity & 5.88 & 5.79 & 0.08 & 1.34 \\
+Interaction Responsiveness & 7.10 & 7.04 & 0.06 & 0.85 \\
+Community Feeling & 6.21 & 6.13 & 0.08 & 1.11 \\ \bottomrule
+\end{tabular}
+
+\end{table}

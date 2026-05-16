@@ -1,0 +1,50 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{2}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         \\
+\midrule
+Fund Livestream Count&        7.23\sym{***}&                     \\
+                    &     (10.17)         &                     \\
+\addlinespace
+Family-Fund Livestream Count&       -4.89\sym{***}&                     \\
+                    &     (-4.36)         &                     \\
+\addlinespace
+Market-Family Livestream Count&       53.56\sym{*}  &                     \\
+                    &      (1.87)         &                     \\
+\addlinespace
+Fund Market Share   &                     &      620.59\sym{***}\\
+                    &                     &      (2.74)         \\
+\addlinespace
+Fund Past Return    &       30.24\sym{***}&       32.01\sym{***}\\
+                    &      (7.74)         &      (8.07)         \\
+\addlinespace
+Fund Top 5 Return   &        5.21\sym{***}&        5.90\sym{***}\\
+                    &      (5.83)         &      (6.35)         \\
+\addlinespace
+Fund Size           &      -20.87\sym{***}&      -20.24\sym{***}\\
+                    &    (-25.39)         &    (-25.15)         \\
+\addlinespace
+Fund Large          &       -0.38         &       -0.07         \\
+                    &     (-0.38)         &     (-0.07)         \\
+\addlinespace
+Fund Age            &       -4.66\sym{**} &       -4.11\sym{**} \\
+                    &     (-2.59)         &     (-2.29)         \\
+\addlinespace
+Fund Old            &        4.89\sym{***}&        4.95\sym{***}\\
+                    &      (2.77)         &      (2.87)         \\
+\addlinespace
+Fund Management Fee &      -98.96\sym{***}&      -93.48\sym{***}\\
+                    &     (-5.55)         &     (-5.21)         \\
+\addlinespace
+Fund Service Fee    &      106.48\sym{***}&      122.62\sym{***}\\
+                    &      (3.25)         &      (3.69)         \\
+\addlinespace
+Fund Loads          &      -52.47         &      -59.50         \\
+                    &     (-1.01)         &     (-1.13)         \\
+\midrule
+Observations        &      83,812         &      83,812         \\
+Adj. R$^{2}$        &      0.1418         &      0.1326         \\
+\bottomrule
+\end{tabular}
+}

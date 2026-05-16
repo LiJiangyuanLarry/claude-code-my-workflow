@@ -1,0 +1,20 @@
+\begin{table}[!ht]
+    \centering
+    
+    \caption{Within-Fund Analysis of Livestreaming Effects}\label{tab:class_within_fund_test}
+    
+    \begin{minipage}{0.95\textwidth}
+        \footnotesize
+        This table reports regression results for the effect of livestreaming on class flow. The estimations are based on the following two-way fixed effects (TWFE) model:
+        \begin{equation*}
+            Y_{c,i,j,q} = \delta_{i,q} + \boldsymbol{\beta}' \text{LivestreamVars}_{c,i,j,q} + \mathbf{X}'_{c,q-1} \Gamma + \epsilon_{c,i,j,q}
+        \end{equation*}
+        where $Y_{c,i,j,q}$ is the Class Flow for class $c$ of fund $i$ in quarter $q$. $\text{LivestreamVars}_{c,i,j,q}$ represents a vector of the key class-level livestreaming variables. $\mathbf{X}'_{c,q-1}$ is a vector of control variables from the prior quarter, and $\delta_{i,q}$ represents fund-by-quarter fixed effects. Robust $t$-statistics are reported in parentheses. Standard errors are clustered at the family level. All continuous variables are winsorized at the 1\% and 99\% levels. *, **, and *** denote statistical significance at the 10\%, 5\%, and 1\% levels, respectively. See Appendix~\ref{tab:vardefs} for detailed variable definitions.
+    \end{minipage}
+
+    \vspace{2mm}
+    
+    \fontsize{12}{13}\selectfont
+    \input{tables/core/class_within_fund_test.tex} 
+
+\end{table}
