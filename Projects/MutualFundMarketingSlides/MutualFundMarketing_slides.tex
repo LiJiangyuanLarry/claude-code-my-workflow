@@ -226,8 +226,6 @@
 
 \begin{frame}{The Rise of Livestream Marketing}
 
-\begin{columns}[T]
-\begin{column}{0.55\textwidth}
 \textbf{How it began (2020):}
 \begin{itemize}
   \item COVID-19 disrupted traditional sales channels:
@@ -237,7 +235,7 @@
   \item By 2021, every major fund family operated its own livestream channel
 \end{itemize}
 
-\vspace{0.25cm}
+\vspace{0.35cm}
 \textbf{Regulatory framework (AMAC, 2021):}
 \begin{itemize}
   \item Asset Management Association of China formalized
@@ -247,8 +245,13 @@
   \item \hl{Compliance approval obtained days in advance}:
   topic and featured funds are pre-planned, not spontaneous
 \end{itemize}
-\end{column}
-\begin{column}{0.43\textwidth}
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}{Livestream Marketing: A New Ecosystem}
+
 \textbf{A new marketing ecosystem:}
 \begin{itemize}
   \item Third-party platforms (Tiantian, Alipay, JD Finance)
@@ -259,14 +262,12 @@
   providing a complete observational record
 \end{itemize}
 
-\vspace{0.25cm}
+\vspace{0.4cm}
 \begin{alertblock}{Key shift}
   From \textit{intermediary-driven} distribution (brokers, bank advisors)
   to \textit{direct-to-investor} digital marketing --- families now
   communicate directly with retail investors in real time.
 \end{alertblock}
-\end{column}
-\end{columns}
 
 \end{frame}
 
@@ -274,8 +275,6 @@
 
 \begin{frame}{Scale of Livestream Marketing}
 
-\begin{columns}[T]
-\begin{column}{0.48\textwidth}
 \textbf{Scale of the phenomenon:}
 \begin{itemize}
   \item \hl{25,685} livestreaming events in our sample
@@ -285,7 +284,7 @@
   from hundreds to tens of thousands of viewers
 \end{itemize}
 
-\vspace{0.3cm}
+\vspace{0.35cm}
 \textbf{Our platform (Tiantian Fund):}
 \begin{itemize}
   \item One of China's top three retail fund platforms
@@ -294,8 +293,13 @@
   \item Hosts livestream channels for all major families,
   giving us a \hl{uniform cross-family} observation window
 \end{itemize}
-\end{column}
-\begin{column}{0.50\textwidth}
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}{Adoption and Sample}
+
 \textbf{Adoption over time:}
 \begin{itemize}
   \item Near-zero livestream activity before July 2020
@@ -307,13 +311,11 @@
   different quarters --- enables DiD identification
 \end{itemize}
 
-\vspace{0.3cm}
+\vspace{0.4cm}
 \begin{block}{Our sample}
   \hl{90,850} fund-quarter observations; unbalanced panel
   2020~Q3--2025~Q2. SEs clustered at the family level.
 \end{block}
-\end{column}
-\end{columns}
 
 \end{frame}
 
@@ -321,8 +323,6 @@
 
 \begin{frame}{Structure of a Livestream Event}
 
-\begin{columns}[T]
-\begin{column}{0.50\textwidth}
 \textbf{Key institutional feature:}
 \begin{itemize}
   \item Families select \hl{fewer than 4 funds} per broadcast
@@ -333,7 +333,7 @@
   promotional intensity --- ideal for identification
 \end{itemize}
 
-\vspace{0.3cm}
+\vspace{0.35cm}
 \textbf{Pre-planned, not spontaneous:}
 \begin{itemize}
   \item Compliance approval is obtained \hl{days in advance}
@@ -342,8 +342,13 @@
   \item Eliminates concern that fund selection reflects
   real-time information shocks
 \end{itemize}
-\end{column}
-\begin{column}{0.48\textwidth}
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}{Treatment Definition and Identification}
+
 \begin{block}{Treatment definition}
   A fund is \hl{``featured''} in quarter $q$ if any share class
   appears in the shopping cart during any broadcast that quarter.
@@ -356,15 +361,13 @@
   Within-family, within-quarter comparison.
 \end{block}
 
-\vspace{0.3cm}
+\vspace{0.4cm}
 \begin{alertblock}{Identification}
   Featured and non-featured funds belong to the \emph{same}
   family in the \emph{same} quarter --- family $\times$ quarter
   FE absorbs all common shocks. The only difference is
   \hl{which fund the family chose to promote}.
 \end{alertblock}
-\end{column}
-\end{columns}
 
 \end{frame}
 
@@ -500,7 +503,7 @@
 
 % -----------------------------------------------------------------------
 
-\begin{frame}{Key Variables: Flow Measures}
+\begin{frame}{Key Variables: Fund Flow}
 
 \begin{columns}[T]
 \begin{column}{0.54\textwidth}
@@ -508,15 +511,6 @@
 \[
 \text{Flow}_{i,q} = \frac{\text{TNA}_{i,q} - \text{TNA}_{i,q-1}(1+r_{i,q})}{\text{TNA}_{i,q-1}}
 \]
-
-\vspace{0.3cm}
-\textbf{Family flow} (AUM-weighted aggregate):
-\[
-\text{FamilyFlow}_{f,q} = \frac{\displaystyle\sum_{i \in f}\!\Delta\text{TNA}_{i,q}^{\text{adj}}}{\displaystyle\sum_{i \in f} \text{TNA}_{i,q-1}}
-\]
-
-\vspace{0.15cm}
-\muted{\small where $\Delta\text{TNA}_{i,q}^{\text{adj}} = \text{TNA}_{i,q} - \text{TNA}_{i,q-1}(1+r_{i,q})$}
 \end{column}
 \begin{column}{0.44\textwidth}
 \textbf{Why return-adjust?}
@@ -525,23 +519,35 @@
 Raw TNA changes mix investor flows with capital gains.
 Stripping out returns isolates \hl{investor decisions}
 --- new subscriptions minus redemptions.
+\end{column}
+\end{columns}
 
-\vspace{0.3cm}
+\vspace{0.5cm}
+
+\begin{columns}[T]
+\begin{column}{0.54\textwidth}
+\textbf{Family flow} (AUM-weighted aggregate):
+\[
+\text{FamilyFlow}_{f,q} = \frac{\displaystyle\sum_{i \in f}\!\Delta\text{TNA}_{i,q}^{\text{adj}}}{\displaystyle\sum_{i \in f} \text{TNA}_{i,q-1}}
+\]
+\vspace{0.1cm}
+\muted{\small where $\Delta\text{TNA}_{i,q}^{\text{adj}} = \text{TNA}_{i,q} - \text{TNA}_{i,q-1}(1+r_{i,q})$}
+\end{column}
+\begin{column}{0.44\textwidth}
 \textbf{Why aggregate to the family?}
 
 \medskip
-A fund family's total AUM is the sum of its funds' TNAs.
 If featured funds gain and non-featured lose by the
 \emph{same} amount, \hl{FamilyFlow = 0} --- even though
 every fund-level regression shows a positive coefficient.
+\end{column}
+\end{columns}
 
-\vspace{0.3cm}
+\vspace{0.4cm}
 \begin{block}{Our main test}
   Is $\widehat{\beta}$ in the family-level regression
   statistically and economically different from zero?
 \end{block}
-\end{column}
-\end{columns}
 
 \end{frame}
 
@@ -573,6 +579,7 @@ every fund-level regression shows a positive coefficient.
 \textbf{Descriptive statistics:}
 
 \medskip
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lc}
   \toprule
   Statistic & Value \\
@@ -584,7 +591,7 @@ every fund-level regression shows a positive coefficient.
   Avg.\ broadcasts per family per quarter & 4.3 \\
   Avg.\ funds per broadcast & 2.1 \\
   \bottomrule
-\end{tabular}
+\end{tabular}}
 
 \vspace{0.3cm}
 \begin{alertblock}{Within-family variation}
@@ -872,10 +879,8 @@ every fund-level regression shows a positive coefficient.
 
 % -----------------------------------------------------------------------
 
-\begin{frame}{Communication Strategies: What Attracts Outside Capital?}
+\begin{frame}{Communication Strategies: Methodology}
 
-\begin{columns}[T]
-\begin{column}{0.52\textwidth}
 \textbf{Approach:}
 \begin{itemize}
   \item Define \textit{abnormal flows} = residuals from family
@@ -885,7 +890,7 @@ every fund-level regression shows a positive coefficient.
   \item Sample 5 transcripts per family $\Rightarrow$ \hl{795 transcripts}
 \end{itemize}
 
-\medskip
+\vspace{0.35cm}
 \textbf{LLM scoring (Qwen-2.5-32B):}
 \begin{itemize}
   \item \hl{16 dimensions}: sentiment, emotional intensity,
@@ -894,11 +899,18 @@ every fund-level regression shows a positive coefficient.
   \item Each scored 1--10 using a \textit{fixed rubric ex ante}
   \item Segment-level (10k chars), averaged to transcript
 \end{itemize}
-\end{column}
-\begin{column}{0.46\textwidth}
-\textbf{Results: only 2 of 16 dimensions differ}
 
-\vspace{0.1cm}
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}{Communication Strategies: Results}
+
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\textbf{Only 2 of 16 dimensions differ:}
+
+\vspace{0.2cm}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lcc}
   \toprule
@@ -914,10 +926,22 @@ every fund-level regression shows a positive coefficient.
   \multicolumn{3}{l}{\muted{10 further dims: all insignificant}} \\
   \bottomrule
 \end{tabular}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Interpretation}
+  Investors respond to \textbf{verifiable ``hard'' information}
+  --- past returns and third-party validation ---
+  not emotional appeals or engagement style.
+\end{block}
 
-\vspace{0.1cm}
-{\small Investors respond to \textbf{verifiable ``hard'' information} ---
-past returns and third-party validation --- not emotional appeals.}
+\vspace{0.3cm}
+The 14 insignificant dimensions include sentiment,
+emotional intensity, sales pressure, and educational
+content --- suggesting that \hl{style} does not
+distinguish high- from low-flow families.
+
+Only \hl{substance} (track record and social proof)
+attracts outside capital.
 \end{column}
 \end{columns}
 
