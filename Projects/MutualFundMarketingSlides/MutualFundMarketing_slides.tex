@@ -128,34 +128,72 @@
 \begin{columns}[T]
 \begin{column}{0.47\textwidth}
   \centering
-  \textbf{\small Fund Family Marketing}\\[6pt]
-  \includegraphics[width=0.82\textwidth]{pictures/tiantian_portal.jpg}\\[6pt]
-  {\small
-  Fund families compete for \hl{platform real estate}:\\[3pt]
-  \begin{itemize}\addtolength{\itemsep}{2pt}
-    \item Featured slots on the livestream portal
-    \item Themed series curated by platform
-    \item Viewer counts and follower metrics
-    \item Broadcast scheduling and archives
-  \end{itemize}}
+  \textbf{\small Fund Family Marketing: TV Commercial}\\[4pt]
+  \begin{tikzpicture}[scale=0.80]
+    % TV body
+    \fill[gray!25, rounded corners=4pt] (-0.2,-0.55) rectangle (5.2,3.55);
+    % Screen bezel
+    \fill[black!80, rounded corners=2pt] (0.05,0.05) rectangle (4.95,3.3);
+    % Screen
+    \fill[myblue!14] (0.18,0.18) rectangle (4.82,3.18);
+    % Channel bug top-right
+    \node[font=\tiny\bfseries, text=red!80!white] at (4.3,3.02) {CCTV-2};
+    % Fund family name bar
+    \fill[myblue] (1.2,2.38) rectangle (3.8,2.92);
+    \node[font=\small\bfseries, text=white] at (2.5,2.65) {易方达基金};
+    % Tagline lines
+    \node[font=\scriptsize, text=myblue!80!black] at (2.5,2.10) {深度研究驱动};
+    \node[font=\scriptsize, text=myblue!80!black] at (2.5,1.80) {时间沉淀价值};
+    % Decorative chart line suggesting long-run growth
+    \draw[myblue!50, thick] (0.5,0.9) -- (1.0,0.75) -- (1.6,0.95)
+      -- (2.2,0.65) -- (2.8,0.80) -- (3.4,0.50) -- (4.0,0.30);
+    \node[font=\tiny, text=gray] at (2.5,0.18) {\textit{25 years of expertise --- E Fund Management}};
+    % TV stand
+    \fill[gray!35] (2.2,-0.35) rectangle (2.8,0.05);
+    \fill[gray!20] (1.7,-0.55) rectangle (3.3,-0.35);
+  \end{tikzpicture}\\[4pt]
+  {\footnotesize\muted{Fund families run \textbf{brand campaigns} on national TV (CCTV-2 财经频道),
+  building institutional credibility and name recognition across millions of retail investors.}}
 \end{column}
 \begin{column}{0.47\textwidth}
   \centering
-  \textbf{\small Fund Product Marketing}\\[6pt]
-  \includegraphics[width=0.82\textwidth]{pictures/tiantian_products.jpg}\\[6pt]
-  {\small
-  Individual funds are marketed with \hl{product details}:\\[3pt]
-  \begin{itemize}\addtolength{\itemsep}{2pt}
-    \item ``New Issue'' or ``Featured'' status tags
-    \item Full fund name, asset class, risk rating
-    \item Past performance and subscription window
-    \item One-click purchase from within the stream
-  \end{itemize}}
+  \textbf{\small Fund Product Marketing: WeChat Moments}\\[4pt]
+  \begin{tikzpicture}[scale=0.80]
+    % Phone body
+    \fill[black!18, rounded corners=8pt] (-0.15,-0.15) rectangle (4.15,5.15);
+    \fill[white, rounded corners=5pt] (0,0) rectangle (4.0,5.0);
+    % Camera notch
+    \fill[black!18, rounded corners=2pt] (1.65,4.82) rectangle (2.35,5.0);
+    % WeChat top bar
+    \fill[mygreen!65!black] (0,4.45) rectangle (4.0,4.82);
+    \node[font=\tiny\bfseries, text=white] at (2.0,4.63) {朋友圈\ Moments};
+    % Avatar + sponsor line
+    \fill[myblue!80] (0.18,4.0) rectangle (0.78,4.38);
+    \node[font=\tiny\bfseries, text=white] at (0.48,4.19) {华夏};
+    \node[font=\tiny\bfseries, text=myblue] at (1.85,4.22) {华夏基金 Official};
+    \node[font=\tiny, text=gray] at (1.48,4.02) {Sponsored · 推广};
+    % Ad banner
+    \fill[myblue!10] (0.12,2.88) rectangle (3.88,3.95);
+    \node[font=\scriptsize\bfseries, text=myblue] at (2.0,3.70)
+      {华夏沪深300ETF联接A};
+    \node[font=\tiny, text=myblue!70!black] at (2.0,3.46) {近一年收益率};
+    \node[font=\normalsize\bfseries, text=myred] at (2.0,3.17) {+18.72\%};
+    \node[font=\tiny, text=gray] at (2.0,2.96) {低费率 · 宽基指数 · 风险等级: R2};
+    % CTA button
+    \fill[myblue] (1.1,2.48) rectangle (2.9,2.80);
+    \node[font=\scriptsize\bfseries, text=white] at (2.0,2.64) {立即购买};
+    % Risk disclaimer
+    \node[font=\tiny, text=gray, text width=3.6cm, align=center]
+      at (2.0,2.25) {风险提示：基金有风险，投资需谨慎};
+  \end{tikzpicture}\\[4pt]
+  {\footnotesize\muted{Fund companies use \textbf{WeChat Moments} and Douyin feed ads to
+  promote specific fund products, featuring past returns, risk ratings, and one-click
+  subscription.}}
 \end{column}
 \end{columns}
 
-\vspace{0.15cm}
-\muted{\small \textit{Question:} Fund-level marketing is clearly visible and measurable. But does it expand the family's total assets --- or merely reshuffle them?}
+\vspace{0.1cm}
+\muted{\small \textit{Question:} Fund marketing operates at two levels simultaneously. Does promotion that grows individual fund AUM actually expand the family's total assets --- or merely redistribute them?}
 
 \end{frame}
 
