@@ -1,0 +1,988 @@
+% \documentclass[notes,11pt, aspectratio=169]{beamer}
+\documentclass[11pt, aspectratio=169]{beamer}
+\usepackage{pgfpages}
+% These slides also contain speaker notes. You can print just the slides,
+% just the notes, or both, depending on the setting below. Comment out the want
+% you want.
+\setbeameroption{hide notes} % Only slide
+%\setbeameroption{show only notes} % Only notes
+%\setbeameroption{show notes on second screen=right} % Both
+
+\usepackage{helvet}
+\usepackage[default]{lato}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{latexsym,xcolor,calligra}
+
+\usepackage{tikz}
+\usepackage{verbatim}
+\setbeamertemplate{note page}{\pagecolor{yellow!5}\insertnote}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{matrix,shapes,arrows,fit,tikzmark}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{multimedia}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{bbm}
+\newcolumntype{d}[0]{D{.}{.}{5}}
+
+\usepackage{changepage}
+\usepackage{appendixnumberbeamer}
+\newcommand{\beginbackup}{
+   \newcounter{framenumbervorappendix}
+   \setcounter{framenumbervorappendix}{\value{framenumber}}
+   \setbeamertemplate{footline}
+   {
+     \leavevmode%
+     \hline
+     box{%
+       \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{footlinecolor}%
+%         \insertframenumber  \hspace*{2ex} 
+       \end{beamercolorbox}}%
+     \vskip0pt%
+   }
+ }
+\newcommand{\backupend}{
+   \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumbervorappendix}} 
+}
+
+
+\usepackage{graphicx}
+\usepackage[space]{grffile}
+\usepackage{booktabs}
+
+% These are my colors -- there are many like them, but these ones are mine.
+\definecolor{blue}{RGB}{0,114,178}
+\definecolor{red}{RGB}{213,94,0}
+\definecolor{yellow}{RGB}{240,228,66}
+\definecolor{green}{RGB}{0,158,115}
+
+\hypersetup{
+  colorlinks=false,
+  linkbordercolor = {white},
+  linkcolor = {blue}
+}
+
+
+%% I use a beige off white for my background
+\definecolor{MyBackground}{RGB}{255,253,218}
+
+%% Uncomment this if you want to change the background color to something else
+%\setbeamercolor{background canvas}{bg=MyBackground}
+
+%% Change the bg color to adjust your transition slide background color!
+\newenvironment{transitionframe}{
+  \setbeamercolor{background canvas}{bg=yellow}
+  \begin{frame}}{
+    \end{frame}
+}
+
+\setbeamercolor{frametitle}{fg=blue}
+\setbeamercolor{title}{fg=black}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{itemize items}{-}
+\setbeamercolor{itemize item}{fg=blue}
+\setbeamercolor{itemize subitem}{fg=blue}
+\setbeamercolor{enumerate item}{fg=blue}
+\setbeamercolor{enumerate subitem}{fg=blue}
+\setbeamercolor{button}{bg=MyBackground,fg=blue,}
+
+
+
+% If you like road maps, rather than having clutter at the top, have a roadmap show up at the end of each section 
+% (and after your introduction)
+% Uncomment this is if you want the roadmap!
+% \AtBeginSection[]
+% {
+%    \begin{frame}
+%        \frametitle{Roadmap of Talk}
+%        \tableofcontents[currentsection]
+%    \end{frame}
+% }
+\setbeamercolor{section in toc}{fg=blue}
+\setbeamercolor{subsection in toc}{fg=red}
+\setbeamersize{text margin left=1em,text margin right=1em} 
+
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{10pt}}{\enditemize}
+
+\usepackage{environ}
+\NewEnviron{videoframe}[1]{
+  \begin{frame}
+    \vspace{-8pt}
+    \begin{columns}[onlytextwidth, T] % align columns
+      \begin{column}{.58\textwidth}
+        \begin{minipage}[t][\textheight][t]
+          {\dimexpr\textwidth}
+          \vspace{8pt}
+          \hspace{4pt} {\Large \sc \textcolor{blue}{#1}}
+          \vspace{8pt}
+          
+          \BODY
+        \end{minipage}
+      \end{column}%
+      \hfill%
+      \begin{column}{.42\textwidth}
+        \colorbox{green!20}{\begin{minipage}[t][1.2\textheight][t]
+            {\dimexpr\textwidth}
+            Face goes here
+          \end{minipage}}
+      \end{column}%
+    \end{columns}
+  \end{frame}
+}
+
+\title[]{\texorpdfstring{\vspace*{-3ex}\textcolor{blue}{Disagreement on Tail}}{Disagreement on Tail}}
+\author[PGP]{}
+\institute[]{
+\small{\begin{tabular}{c}
+Haiwei CHEN\\
+School of Finance, SUFE \\
+\end{tabular}}\\
+\bigskip
+{\small{\begin{tabular}{c}
+		Yong CHEN\\
+		Mays Business School, TAMU\\
+	\end{tabular}}\\
+}
+\bigskip
+{\small{\begin{tabular}{c}
+		Jiangyuan LI\\
+		School of Finance, SUFE\\
+	\end{tabular}}\\
+}
+\bigskip
+{\small{\begin{tabular}{c}
+		Dan LUO\\
+		School of Finance, SUFE\\
+	\end{tabular}}\\
+}
+}
+\date{July, 2025}
+
+
+\begin{document}
+
+%%% TIKZ STUFF
+\tikzset{   
+        every picture/.style={remember picture,baseline},
+        every node/.style={anchor=base,align=center,outer sep=1.5pt},
+        every path/.style={thick},
+        }
+\newcommand\marktopleft[1]{%
+    \tikz[overlay,remember picture] 
+        \node (marker-#1-a) at (-.3em,.3em) {};%
+}
+\newcommand\markbottomright[2]{%
+    \tikz[overlay,remember picture] 
+        \node (marker-#1-b) at (0em,0em) {};%
+}
+\tikzstyle{every picture}+=[remember picture] 
+\tikzstyle{mybox} =[draw=black, very thick, rectangle, inner sep=10pt, inner ysep=20pt]
+\tikzstyle{fancytitle} =[draw=black,fill=red, text=white]
+%%%% END TIKZ STUFF
+
+% Title Slide
+\begin{frame}
+\maketitle
+\end{frame}
+
+% INTRO
+
+\begin{frame}{Tail risk}
+    \begin{wideitemize}
+    \item Extreme events \textcolor{blue}{rarely happen} \textcolor{red}{but do matter.}
+    \item Rietz (1988) and Barro (2006) argue that rare events significantly contribute to the equity premium.
+    \item Disastrous events shape economic agents' lifetime expectations and behaviors (Bernile, Bhagwat, Rau, 2016; Gao, Liu, Shi, 2020), \textcolor{blue}{which also implies that agents may have distinct beliefs about the probability of rare events.}
+    \item Capturing tail risk and market participants' perceptions of tail events is a crucial question in financial economics.
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{Literature in tail risk}
+    \begin{wideitemize}
+    \item The literature contains a substantial body of work discussing how to capture tail risk. These can be categorized as follows:
+    \bigskip
+    \begin{itemize}
+        \item \textcolor{blue}{Option}: Backus, Chernov, and Martin (2011) use options to infer disastrous events. The most famous example is the VIX index.
+    \bigskip
+        \item \textcolor{blue}{Cross-sectional return}: Kelly and Jiang (2014) use monthly firm-level price crashes to identify common fluctuations in tail risk among individual stocks.
+    \bigskip
+        \item \textcolor{blue}{News}: Manela and Moreira (2017) employ a text-based method to measure news-implied tail risk (NVIX).
+    \end{itemize}
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{How do different participants perceive the tail events?}
+    \bigskip
+    \begin{wideitemize}
+    \item Even though the literature extensively discusses how to capture tail risk, \alert{we still know very little about how different participants perceive tail risk.}
+    \bigskip
+    \begin{enumerate}
+    \item Estimation is difficult because observations of \textcolor{blue}{rare} events are \textcolor{green}{rare} (Barro, 2006).
+    \bigskip
+    \item It's unrealistic to survey participants about their beliefs on tail events for each individual stock through questionnaires.
+    % \item Nearly all works on disagreement focus on individual market agents' first-order estimates (averages) of economic variables. They compare their estimates to reach a consensus, such as EPS, GDP, CPI, etc.
+    \bigskip  
+    \item We seldom have direct measures of agents' beliefs about the entire distribution, including \alert{tail events}. 
+    \end{enumerate}
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{Research Questions}
+    \bigskip
+    \begin{wideitemize}
+    \item In this work, we aim to address the following questions:
+    \bigskip
+    \begin{enumerate}
+        % \item Structurally, which \alert{distribution} drives the predictive power of disagreement on stock returns?
+        % \bigskip
+        \item How can we \alert{capture} disagreement on tail (DOT) in the equity market?
+        \bigskip
+        \item If we could capture DOT, does it have meaningful \alert{asset pricing implications}?
+        \bigskip
+        % \item Structurally, which \textcolor{blue}{distribution} drives the predictive power of disagreement on stock returns? How much does disagreement about tail events contribute?
+        % \bigskip
+        % \item How is DOT different from traditional disagreement measures like analyst forecast disagreement?
+        % \bigskip
+        \item If DOT has asset pricing implications, what are the \alert{economic channels} behind it?
+    \end{enumerate}
+    \end{wideitemize}
+\end{frame}
+
+% \begin{frame}{Challenges}
+%     \bigskip
+%     \begin{wideitemize}
+%     \item There are also several challenges we need to overcome to address the above questions:
+%     \bigskip
+%     \begin{enumerate}
+%         \item Extreme events are rare (Barro, 2006). We need reliable methods to estimate tail risk.
+%         \bigskip
+%         \item Analysts only report \textcolor{blue}{EPS point forecasts}, GDP, CPI, etc. We do not directly know their beliefs about tail events from reports and survey data. We need to understand different agents' beliefs about tail events.
+%     \end{enumerate}
+%     \end{wideitemize}
+% \end{frame}
+
+% \begin{frame}{Literature in Machine Learning}
+%     \begin{wideitemize}
+%     \item The application of machine learning in the field of asset pricing is becoming increasingly profound and widespread.
+%     \bigskip
+%     \begin{itemize}
+%         \item Machine learning methods are being applied to predict cross-sectional stock returns, option prices, etc (Rapach, Strauss, and Zhou, 2013; Harvey and Liu, 2016; Pruitt, and Su 2019).
+%     \bigskip
+%         \item Gu, Kelly, and Xiu (2020) performs a \alert{comparative analysis} of machine learning methods for measuring asset risk premiums.
+%     \bigskip
+%         \item Bali et al. (2023) uses random forests to study the \textcolor{blue}{standard deviation} of stock return forecasts.
+%     \bigskip
+%         \item He, Lyu and Zhou (2024) takes a different approach by predicting the \alert{probabilities} that the stocks will outperform a benchmark.
+%     % \bigskip
+%     %     \item \textcolor{blue}{News}: Manela and Moreira (2017) employ a text-based method to measure news-implied tail risk (NVIX).
+%     \end{itemize}
+%     \end{wideitemize}
+% \end{frame}
+
+\begin{frame}{Data}
+    \bigskip
+    \begin{wideitemize}
+    \item We use datasets from Dacheng Xiu's personal website for firm characteristics (Gu, Kelly, and Xiu, 2020).
+    \item The underlying stock return and industry data are from CRSP.
+    \item We restrict our sample to common stocks listed in the NYSE, AMEX, and NASDAQ. Additionally, we cross-sectionally remove the bottom decile of stocks by market capitalization period-by-period.
+    \item Our sample spans from January 1957 to December 2021.
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Large \textbf{\textcolor{blue}{How can we \alert{capture} disagreement \\[1em] on tail in the equity market?}}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Methods: Source of Disagreement }
+    \begin{quote}
+    If two people are to disagree, one of the following must be true.
+    \bigskip
+    \begin{enumerate}
+        \item \alert{They have different priors beliefs.}
+    \bigskip
+        \item They observe different information.
+    \bigskip
+        \item one or both of them is not full rational.
+    \end{enumerate}
+    \bigskip
+    - Barberis (2018).
+    \end{quote}
+\end{frame}
+
+\begin{frame}{Methods: a Road Map}
+    \bigskip
+    \begin{wideitemize}
+    \item Heterogeneous beliefs about tail events are generated by \textcolor{blue}{various machine agents} (Bali, Kelly, Morke, and Rahman, 2023).
+    
+    \item To capture different investors' beliefs about tail events, we propose a statistical \alert{classification} method (He, Lyu and Zhou, 2024).
+
+    \item We use the \textcolor{blue}{standard deviation} of forecasts on tail events by different investors (Banerjee 2011; Yu, 2011).
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{Methods: Differentiated Investors}
+    \bigskip
+    \begin{wideitemize}
+    \item To model the belief of individual investor $n$, we assume all investors observe a \alert{public, complete, and identical} information set $Z = (z_{i, t})$, where $z_{i,t}=(z_{i,t}^{1},z_{i,t}^{2},\cdots,z_{i,t}^{K})'$ is a 94-dimensional vector representing 94 firm characteristics of stock $i$ in month $t$. 
+    % \bigskip
+    \item The divergence in beliefs $X_{n} = (x_{n,i,t})$ is generated by assigning different weights to each characteristic:
+    \begin{equation*}
+        x_{n,i,t} = g_n(z_{i,t}) = D_{n}z_{i,t}
+    \end{equation*}
+    where $D_{n}$ is a diagonal matrix of rank 94, with each diagonal element following:
+    \begin{equation*}
+        d_{j,j} \sim N(0,1), \text{I.I.D.}
+    \end{equation*}
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{Methods: Learning Target}
+    \bigskip
+    \begin{wideitemize}
+    \item In Gu, Kelly, and Xiu (2020), they consider a general conditional risk premium formulation:
+    \begin{equation*}
+        E_t[R_{i,t+1}] = f(z_{i,t})
+    \end{equation*}
+    \item To account for disagreement on extreme events, we modify their methods. \alert{Instead of focusing on regression, we approach it as a classification task}. We define four events: Tail (T), Down (D), Up (U), and Surge (S), corresponding to monthly expected returns in ($-\infty$, -25\%), [-25\%, 0\%), [0\%, 25\%), [25\%, $+\infty$), respectively.
+    \item We frame the general conditional risk premium in a \alert{classification format}:
+    \begin{equation*}
+        E_t[P_{i,t+1}] = f(z_{i,t})
+    \end{equation*}
+    where $P_{i,t+1} =(P_{1},P_{2},P_{3},P_{4})'$ are the probabilities for the 4 events.
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{Methods: Neural Network Model}
+    \bigskip
+    \begin{wideitemize}
+    \item In this study, to address the complexity of the investor's belief formation process, we employ the \textcolor{blue}{Neural Network Model (NNM)} to express $f(x_{n,i,t})$.
+    \item NNM is a computational model inspired by the way \alert{biological neural networks} in the human brain process information. It is often considered the most powerful tool in machine learning and is theoretically grounded as \textcolor{blue}{"universal approximator"} for any smooth predictive relationship (Hornik et al, 1989; Cybenko, 1989)
+    % \item The NNM is a four-class classification feedforward neural network designed to classify input data into one of four classes and provide probabilities for each class. It comprises input, hidden, and output layers, and learns by adjusting weights and biases through backpropagation. It utilizes activation functions and optimization algorithms during training. Once trained, it can predict class labels for new data.
+    \item Our NNM is a \alert{four-class classification feedforward neural network model}, with the model setup similar to that of Gu, Kelly, and Xiu (2020). 
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{Methods: Neural Network Model}
+    \bigskip
+    \begin{wideitemize}
+    \item Consider a NNM with one input layer, $L$ hidden layer, and one output layer. Each hidden layer uses the \alert{ReLU} (Rectified Linear Unit) activation function \footnote{The ReLU activation function is defined as: $ReLU(u^{(l)}_i)=\max(0,u^{(l)}_i)$.}, and the output layer uses the \alert{softmax} activation function \footnote{The softmax activation function is defined as: $softmax(u^{(L+1)}_i)=\frac{e^{u^{(L+1)}_i}}{\sum_{j=1}^Me^{u^{(L+1)}_j}}$, where $u^{(L+1)}_i$ is the $i$-th element of the unactivated input $\mathbf{u}^{(L+1)}$, and $M$ is the total number of classes.}, which is typically used for multi-class classification problems.
+    \begin{equation*}
+E_{n,t}[P_{i,t+1}]=NN_{n}\left(x_{n,i,t}\right)=softmax\left(W^{(L+1)}a^{(L)}+b^{(L+1)}\right) \label{nn}
+    \end{equation*}
+    where:$$a^{(l)}=ReLU(u^{(l)}),\quad u^{(l)}=W^{(l)}a^{(l-1)}+b^{(l)},\quad a^{(0)}={x_{n,i,t}},\quad l=1,2,\ldots,L$$
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{Methods: DOT}
+    \bigskip
+    \begin{wideitemize}
+    \item For stock $i$ and month $t$, after generating beliefs on T, D, U and S from 100 machine investors, we employ standard deviation to capture the \alert{disagreement on tail (DOT)}:
+    \begin{equation*}
+        DOT_{i,t}=\sqrt{\sum_{n=1}^{N}\frac{\left(E_{n,t}[P_{i,t+1,1}]-E_t[P_{i,t+1,1}]\right)^{2}}{N-1}}.
+    \end{equation*}
+    where $E_t[P_{i,t+1,1}] = \sum_{n=1}^{N}\frac{E_{n,t}[P_{i,t+1,1}]}{N}$ represents the mean of machine investors' belief of probability on tail.
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Large \textbf{\textcolor{blue}{If we could capture DOT, does it \\[1em] have meaningful \alert{asset pricing implications}?}}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Summary Statistics and Correlation}
+\makebox[\linewidth][c]{
+\begin{tabular}{l c c c c c c}
+  \toprule
+     &Mean&STD&Min&Median&Max\\
+     \midrule
+DOT & 0.01 & 0.01 & 0.00 & 0.01 & 0.06 \\
+AFD & 0.19 & 0.48 & 0.00 & 0.05 & 3.56 \\
+MFD & 1.29 & 0.82 & 0.44 & 1.10 & 9.02 \\
+  \bottomrule
+\end{tabular}
+}
+
+\makebox[\linewidth][c]{
+\begin{tabular}{l c c c c c c  }
+  \toprule
+     &DOT&AFD&MFD&TR&MISP&IOR\\
+     \midrule
+AFD & 0.22 &  &  &  &  &   \\
+MFD & 0.62 & 0.14 &  &  &  &   \\
+TR & -0.11 & -0.03 & -0.08 &  &  &   \\
+MISP & 0.32 & 0.17 & 0.19 & -0.01 &  &   \\
+IOR & -0.27 & -0.07 & -0.15 & -0.03 & -0.12 &   \\
+ILL & 0.18 & 0.06 & 0.11 & 0.04 & 0.01 & -0.19 \\
+  \bottomrule
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}{Univariate Portfolio Sorts on DOT}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccccccccc}
+\hline
+ & \multicolumn{4}{c}{EW} &  & \multicolumn{4}{c}{VW} \\ \cline{2-5} \cline{7-10} 
+ & Low & 5 & High & H-L &  & Low & 5 & High & H-L \\ \hline
+RET & 0.81*** & 0.94*** & -0.17 & \cellcolor[HTML]{FFCE93}-0.98*** &  & 0.68*** & 0.62** & -0.38 & \cellcolor[HTML]{FFCE93}-1.07*** \\
+t-stat & (5.38) & (3.90) & (-0.39) & \cellcolor[HTML]{FFCE93}(-2.59) &  & (4.81) & (2.54) & (-0.92) & \cellcolor[HTML]{FFCE93}(-2.98) \\
+CAPM & 0.41*** & 0.29** & -1.15*** & \cellcolor[HTML]{FFCE93}-1.55*** &  & 0.24*** & -0.12 & -1.44*** & \cellcolor[HTML]{FFCE93}-1.68*** \\
+t-stat & (4.03) & (2.31) & (-4.02) & \cellcolor[HTML]{FFCE93}(-4.93) &  & (3.07) & (-1.62) & (-6.05) & \cellcolor[HTML]{FFCE93}(-5.75) \\
+FF3 & 0.28*** & 0.12** & -1.27*** & \cellcolor[HTML]{FFCE93}-1.56*** &  & 0.20*** & -0.13* & -1.43*** & \cellcolor[HTML]{FFCE93}-1.62*** \\
+t-stat & (3.71) & (2.02) & (-6.50) & \cellcolor[HTML]{FFCE93}(-6.57) &  & (3.19) & (-1.89) & (-7.23) & \cellcolor[HTML]{FFCE93}(-7.01) \\
+FF5 & 0.14** & 0.07 & -0.74*** & \cellcolor[HTML]{FFCE93}-0.89*** &  & -0.01 & -0.06 & -0.87*** & \cellcolor[HTML]{FFCE93}-0.86*** \\
+t-stat & (2.23) & (1.21) & (-3.77) & \cellcolor[HTML]{FFCE93}(-4.19) &  & (-0.30) & (-0.82) & (-4.68) & \cellcolor[HTML]{FFCE93}(-4.45) \\
+Sharpe & 0.80 & 0.59 & -0.06 & \cellcolor[HTML]{FFCE93}-0.39 &  & 0.64 & 0.36 & -0.13 & \cellcolor[HTML]{FFCE93}-0.44 \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}{Bivariate Portfolio Sorts on SIZE and DOT}
+\makebox[\linewidth][c]{
+\begin{tabular}{lccccccc}
+\hline
+\multicolumn{8}{l}{Panel A: Equal-Weighted Portfolios} \\ \hline
+ & Low & 5 & High & H-L & t-stat & FF5 & t-stat \\ \hline
+SIZE Low & 0.96 & 0.86 & -0.32 & \cellcolor[HTML]{FFCE93}-1.28*** & \cellcolor[HTML]{FFCE93}(-3.06) & \cellcolor[HTML]{FFCE93}-1.27*** & \cellcolor[HTML]{FFCE93}(-3.89) \\
+SIZE 2 & 1.01 & 1.09 & -0.28 & \cellcolor[HTML]{FFCE93}-1.28*** & \cellcolor[HTML]{FFCE93}(-3.20) & \cellcolor[HTML]{FFCE93}-1.32*** & \cellcolor[HTML]{FFCE93}(-5.03) \\
+SIZE 3 & 0.88 & 0.83 & -0.22 & \cellcolor[HTML]{FFCE93}-1.09*** & \cellcolor[HTML]{FFCE93}(-2.89) & \cellcolor[HTML]{FFCE93}-1.01*** & \cellcolor[HTML]{FFCE93}(-4.82) \\
+SIZE 4 & 0.80 & 1.03 & -0.06 & \cellcolor[HTML]{FFCE93}-0.85*** & \cellcolor[HTML]{FFCE93}(-2.59) & \cellcolor[HTML]{FFCE93}-0.69*** & \cellcolor[HTML]{FFCE93}(-4.30) \\
+SIZE High & 0.65 & 0.72 & 0.42 & -0.23 & (-0.71) & -0.05 & (-0.31) \\ \hline
+\multicolumn{8}{l}{Panel B: Value-Weighted Portfolios} \\ \hline
+ & Low & 5 & High & H-L & t-stat & FF5 & t-stat \\ \hline
+SIZE Low & 0.95 & 0.86 & -0.37 & \cellcolor[HTML]{FFCE93}-1.32*** & \cellcolor[HTML]{FFCE93}(-3.08) & \cellcolor[HTML]{FFCE93}-1.30*** & \cellcolor[HTML]{FFCE93}(-3.84) \\
+SIZE 2 & 1.01 & 1.10 & -0.28 & \cellcolor[HTML]{FFCE93}-1.29*** & \cellcolor[HTML]{FFCE93}(-3.22) & \cellcolor[HTML]{FFCE93}-1.32*** & \cellcolor[HTML]{FFCE93}(-5.08) \\
+SIZE 3 & 0.86 & 0.86 & -0.18 & \cellcolor[HTML]{FFCE93}-1.04*** & \cellcolor[HTML]{FFCE93}(-2.72) & \cellcolor[HTML]{FFCE93}-0.95*** & \cellcolor[HTML]{FFCE93}(-4.65) \\
+SIZE 4 & 0.79 & 1.02 & -0.07 & \cellcolor[HTML]{FFCE93}-0.86*** & \cellcolor[HTML]{FFCE93}(-2.61) & \cellcolor[HTML]{FFCE93}-0.68*** & \cellcolor[HTML]{FFCE93}(-4.32) \\
+SIZE High & 0.62 & 0.64 & 0.45 & -0.17 & (-0.55) & 0.12 & (0.72) \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}{Fama-MacBeth Regressions}
+\begin{table}[!ht]
+\tiny % 将字体缩小
+\renewcommand{\arraystretch}{0.8} % 调整行距
+\resizebox{0.75\textwidth}{!}{
+\begin{tabular}{lcccc}
+\hline
+ & RET & RET & Industry-adj. RET & Industry-adj. RET \\ \hline
+DOT & \cellcolor[HTML]{FFCE93}-0.35*** & \cellcolor[HTML]{FFCE93}-0.29*** & \cellcolor[HTML]{FFCE93}-0.35*** & \cellcolor[HTML]{FFCE93}-0.29*** \\
+ & \cellcolor[HTML]{FFCE93}(-4.36) & \cellcolor[HTML]{FFCE93}(-3.92) & \cellcolor[HTML]{FFCE93}(-4.53) & \cellcolor[HTML]{FFCE93}(-3.94) \\
+BETA & 0.14* & 0.14** & 0.15*** & 0.15*** \\
+ & (1.89) & (2.04) & (2.77) & (3.19) \\
+SIZE & -0.18*** & -0.25*** & -0.16*** & -0.21*** \\
+ & (-3.57) & (-4.75) & (-3.50) & (-4.73) \\
+BM & 0.07* & 0.06* & 0.07** & 0.07** \\
+ & (1.86) & (1.74) & (2.48) & (2.39) \\
+GP & 0.13*** & 0.10*** & 0.10*** & 0.08*** \\
+ & (3.76) & (3.05) & (3.41) & (2.61) \\
+AG & -0.22*** & -0.21*** & -0.20*** & -0.19*** \\
+ & (-6.72) & (-6.73) & (-7.48) & (-7.42) \\
+ILL &  & -0.12*** &  & -0.11*** \\
+ &  & (-4.03) &  & (-3.82) \\
+TURN &  & -0.15*** &  & -0.15*** \\
+ &  & (-4.13) &  & (-4.23) \\
+MOM &  & 0.35*** &  & 0.31*** \\
+ &  & (6.27) &  & (6.60) \\
+Const & 0.76*** & 0.76*** & 0.10 & 0.10 \\
+ & (3.07) & (3.06) & (1.01) & (1.01) \\ \hline
+No. Obs. & 3315 & 3142 & 3315 & 3142 \\
+Adj. R² & 5.37\% & 6.61\% & 3.79\% & 4.72\% \\ \hline
+\end{tabular}
+}
+\end{table}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Large \textbf{\textcolor{blue}{If DOT has asset pricing implications,\\[1em]  what are the \alert{economic channels} behind it?}}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Mispricing Channel: ILLiquidity (ILL)}
+DOT positively correlates with ILL, and DOT mainly works on \alert{high ILL groups}.\\
+\bigskip
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccccccc}
+\hline
+\multicolumn{6}{l}{Panel A: Average ILL in DOT Decile Portfolio} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{1-6}
+ & Low & 5 & High & H-L & t-stat & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{1-6}
+ILL & 0.31 & 1.46 & 8.59 & 8.28*** & (6.69) & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \hline
+\multicolumn{8}{l}{Panel B: Bivariate Portfolio Sort on ILL} \\ \hline
+ & Low & 5 & High & H-L & t-stat & FF5 & t-stat \\ \hline
+ILL Low & 0.63 & 0.70 & 0.24 & -0.39 & (-1.15) & -0.08 & (-0.41) \\
+ILL 2 & 0.74 & 0.92 & 0.04 & \cellcolor[HTML]{FFCE93}-0.70** & \cellcolor[HTML]{FFCE93}(-2.03) & \cellcolor[HTML]{FFCE93}-0.60*** & \cellcolor[HTML]{FFCE93}(-3.56) \\
+ILL 3 & 0.68 & 0.79 & -0.34 & \cellcolor[HTML]{FFCE93}-1.03*** & \cellcolor[HTML]{FFCE93}(-2.65) & \cellcolor[HTML]{FFCE93}-0.89*** & \cellcolor[HTML]{FFCE93}(-4.09) \\
+ILL 4 & 0.85 & 0.81 & -0.31 & \cellcolor[HTML]{FFCE93}-1.16*** & \cellcolor[HTML]{FFCE93}(-2.91) & \cellcolor[HTML]{FFCE93}-1.16*** & \cellcolor[HTML]{FFCE93}(-4.61) \\
+ILL High & 0.77 & 0.35 & -0.83 & \cellcolor[HTML]{FFCE93}-1.61*** & \cellcolor[HTML]{FFCE93}(-4.32) & \cellcolor[HTML]{FFCE93}-1.62*** & \cellcolor[HTML]{FFCE93}(-6.93) \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}{Mispricing Channel: Institutional Ownership Ratio (IOR)}
+DOT negatively correlates with IOR, and DOT mainly works on \alert{low IOR groups}.\\
+\bigskip
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccccccc}
+\hline
+\multicolumn{6}{l}{Panel A: Average IOR in DOT Decile Portfolio} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{1-6}
+ & Low & 5 & High & H-L & t-stat & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{1-6}
+IOR & 0.45 & 0.46 & 0.25 & -0.20*** & (-14.43) & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \hline
+\multicolumn{8}{l}{Panel B: Bivariate Portfolio Sort on IOR} \\ \hline
+ & Low & 5 & High & H-L & t-stat & FF5 & t-stat \\ \hline
+IOR Low & 0.76 & 0.34 & -1.50 & \cellcolor[HTML]{FFCE93}-2.26*** & \cellcolor[HTML]{FFCE93}(-4.42) & \cellcolor[HTML]{FFCE93}-1.99*** & \cellcolor[HTML]{FFCE93}(-5.68) \\
+IOR 2 & 0.74 & 1.13 & 0.29 & -0.45 & (-0.78) & -0.23 & (-0.64) \\
+IOR 3 & 0.80 & 0.68 & 0.16 & -0.64 & (-1.27) & -0.39 & (-1.15) \\
+IOR 4 & 0.91 & 0.91 & 0.15 & -0.76* & (-1.79) & -0.59** & (-2.26) \\
+IOR High & 0.82 & 0.82 & 0.46 & -0.36 & (-0.86) & -0.18 & (-0.69) \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}{Mispricing Channel: Mispricing Score (MISP)}
+DOT positively correlates with MISP, and MISP \alert{moderates} DOT’s predictive effect. \\
+% \alert{DOT works in low and high MISP groups}.\\
+\bigskip
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccccccc}
+\hline
+\multicolumn{6}{l}{Panel A: Average MISP in DOT Decile Portfolio} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{1-6}
+ & Low & 5 & High & H-L & t-stat & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{1-6}
+MISP & 46.16 & 48.48 & 60.20 & 14.04*** & (22.58) & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \hline
+\multicolumn{8}{l}{Panel B: Bivariate Portfolio Sort on MISP} \\ \hline
+ & Low & 5 & High & H-L & t-stat & FF5 & t-stat \\ \hline
+MISP Low & 0.65 & 0.89 & 1.12 & \cellcolor[HTML]{FFCE93}0.47 & \cellcolor[HTML]{FFCE93}(1.48) & \cellcolor[HTML]{FFCE93}0.71*** & \cellcolor[HTML]{FFCE93}(3.20) \\
+MISP 2 & 0.60 & 0.80 & 0.74 & 0.13 & (0.40) & 0.49* & (1.66) \\
+MISP 3 & 0.55 & 0.85 & 0.60 & 0.05 & (0.15) & 0.27 & (0.98) \\
+MISP 4 & 0.51 & 0.49 & 0.22 & -0.29 & (-0.65) & -0.08 & (-0.28) \\
+MISP High & 0.30 & 0.06 & -1.39 & \cellcolor[HTML]{FFCE93}-1.69*** & \cellcolor[HTML]{FFCE93}(-3.81) & \cellcolor[HTML]{FFCE93}-1.31*** & \cellcolor[HTML]{FFCE93}(-4.62) \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}{Mispricing Channel: Mispricing Score (MISP)}
+However, the DOT-MISP interaction \alert{vanishes} after tail events. Why? \\
+\bigskip
+\small % 将字体缩小
+\renewcommand{\arraystretch}{0.8} % 调整行距
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccccc}
+\hline
+\multicolumn{1}{c}{} & \multicolumn{3}{c}{Full Sample} & \multicolumn{3}{c}{After Tail Events} \\ \cline{2-7} 
+ & RET & RET & RET & RET & RET & RET \\ \hline
+DOT & -0.26*** &  & \cellcolor[HTML]{FFCE93}-0.12** & -1.29*** &  & \cellcolor[HTML]{FFCE93}-1.15*** \\
+ & (-4.62) &  & \cellcolor[HTML]{FFCE93}(-2.30) & (-3.44) &  & \cellcolor[HTML]{FFCE93}(-3.23) \\
+MISP &  & -0.27*** & -0.27*** &  & -1.54*** & -1.23*** \\
+ &  & (-8.60) & (-8.53) &  & (-4.53) & (-3.42) \\
+DOT*MISP &  &  & \cellcolor[HTML]{FFCE93}-0.12*** &  &  & \cellcolor[HTML]{FFCE93}0.14 \\
+ &  &  & \cellcolor[HTML]{FFCE93}(-5.64) &  &  & \cellcolor[HTML]{FFCE93}(0.50) \\
+Const & 0.71*** & 0.71*** & 0.75*** & -0.10 & -0.09 & -0.14 \\
+ & (2.89) & (2.90) & (3.06) & (-0.10) & (-0.09) & (-0.13) \\ \hline
+Controls & YES & YES & YES & YES & YES & YES\\
+No. Obs. & 2554 & 2554 & 2554 & 270 & 270 & 270 \\
+Adj. R² & 7.17\% & 6.99\% & 7.36\% & 6.87\% & 7.15\% & 7.75\% \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}{Risk-Sharing Channel: Illustration}
+        \centering
+        \includegraphics[width=0.8\linewidth]{pictures/risk_sharing_fig.png}
+    % \hfill
+\end{frame}
+
+\begin{frame}{Risk-Sharing Channel: Portfolio Analysis}
+% \small
+After tail events, the H–L portfolio return more than \alert{doubles}, and the R–L portfolio \\
+return turns \alert{significant}, suggesting a dominant role of the risk-sharing channel.\\
+\bigskip
+\renewcommand{\arraystretch}{0.8} % 调整行距
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccccccc}
+\hline
+\multicolumn{9}{l}{Panel   A: Full Sample} \\ \hline
+ & Low & 2 & 5 & 9 & High & Rest & H-L & R-L \\ \cline{2-9} 
+RET & 0.68*** & 0.65*** & 0.74*** & 0.11 & -0.38 & 0.60*** & \cellcolor[HTML]{FFCE93}-1.06*** & \cellcolor[HTML]{FFCE93}-0.08 \\
+t-stat & (4.77) & (3.61) & (3.09) & (0.30) & (-0.91) & (2.76) & \cellcolor[HTML]{FFCE93}(-2.92) & \cellcolor[HTML]{FFCE93}(-0.64) \\
+% CAPM & 0.24*** & 0.10 & 0.02 & -0.85*** & -1.42*** & -0.09** & -1.66*** & -0.33*** \\
+% t-stat & (3.21) & (1.54) & (0.27) & (-4.34) & (-5.76) & (-2.47) & (-5.54) & (-3.41) \\
+% FF3 & 0.20*** & 0.06 & 0.01 & -0.79*** & -1.40*** & -0.09*** & -1.60*** & -0.29*** \\
+% t-stat & (3.25) & (1.03) & (0.11) & (-5.36) & (-6.56) & (-3.11) & (-6.42) & (-3.70) \\
+% FF5 & -0.01 & -0.11** & 0.06 & -0.38*** & -0.87*** & -0.05* & -0.86*** & -0.04 \\
+% t-stat & (-0.20) & (-2.06) & (0.74) & (-2.94) & (-4.34) & (-1.66) & (-4.15) & (-0.65) \\
+Sharpe & 0.63 & 0.50 & 0.44 & 0.04 & -0.13 & 0.39 & -0.44 & -0.09 \\ \hline
+\multicolumn{9}{l}{Panel B: After Tail   Events} \\ \hline
+ & Low & 2 & 5 & 9 & High & Rest & H-L & R-L \\ \cline{2-9} 
+RET & 1.67** & 0.80 & 0.78 & 0.32 & -0.79 & 0.18 & \cellcolor[HTML]{FFCE93}-2.46*** & \cellcolor[HTML]{FFCE93}-1.49** \\
+t-stat & (2.43) & (1.08) & (0.90) & (0.30) & (-0.87) & (0.25) & \cellcolor[HTML]{FFCE93}(-2.93) & \cellcolor[HTML]{FFCE93}(-2.29) \\
+% CAPM & 0.95* & -0.14 & -0.25 & -0.83 & -1.62** & -0.84* & -2.57*** & -1.80*** \\
+% t-stat & (1.65) & (-0.25) & (-0.35) & (-0.98) & (-2.14) & (-1.67) & (-3.16) & (-2.87) \\
+% FF3 & 0.93* & 0.03 & 0.20 & -0.44 & -1.17 & -0.51 & -2.10** & -1.44** \\
+% t-stat & (1.75) & (0.06) & (0.28) & (-0.51) & (-1.63) & (-1.12) & (-2.48) & (-2.36) \\
+% FF5 & 0.93* & 0.04 & 0.50 & 0.00 & -0.66 & -0.10 & -1.59* & -1.03 \\
+% t-stat & (1.84) & (0.09) & (0.70) & (0.00) & (-0.84) & (-0.22) & (-1.65) & (-1.63) \\
+Sharpe & 0.50 & 0.20 & 0.19 & 0.07 & -0.16 & 0.05 & -0.56 & -0.50 \\ \hline
+\end{tabular}
+}
+\hspace*{1em}{\textit{Rest portfolio includes stocks in deciles 2–10.}}
+\end{frame}
+
+\begin{frame}{Risk-Sharing Channel: Fama-MacBeth Regressions}
+\centering
+DOT’s predictive power more than \alert{doubles} after tail events, \\
+and the coefficient on I(DOT) becomes \alert{significant}. \\
+\bigskip
+\begin{tabular}{lcccc}
+\hline
+\multicolumn{1}{c}{} & \multicolumn{2}{c}{Full Sample} & \multicolumn{2}{c}{After Tail Events} \\ \cline{2-5} 
+ & RET & RET & RET & RET \\ \hline
+DOT & -0.30*** &  & -0.78*** &  \\
+ & (-3.89) &  & (-2.97) &  \\
+I(DOT) &  & \cellcolor[HTML]{FFCE93}0.10 &  & \cellcolor[HTML]{FFCE93}-0.89** \\
+ &  & \cellcolor[HTML]{FFCE93}(1.38) &  & \cellcolor[HTML]{FFCE93}(-2.14) \\
+Const & \cellcolor[HTML]{FFCE93}0.74*** & 0.65*** & \cellcolor[HTML]{FFCE93}2.43** & 3.23*** \\
+ & \cellcolor[HTML]{FFCE93}(3.02) & (2.94) & \cellcolor[HTML]{FFCE93}(2.56) & (3.84) \\ \hline
+Controls & YES & YES & YES & YES \\
+No. Obs. & 3137 & 3137 & 281 & 281 \\
+Adj. R² & 6.53\% & 6.11\% & 5.63\% & 5.10\% \\ \hline
+\end{tabular}\\
+\hspace*{1em}{\textit{I(DOT) = 1 if DOT $>$ 10th pct., 0 otherwise.}}
+\end{frame}
+
+\begin{frame}{Conclusion}
+\begin{wideitemize}
+    \item We propose a statistical \textcolor{red}{classification} method to capture heterogeneous investor beliefs about tail events (DOT).
+    \item DOT exhibits significant asset pricing relevance and can \textcolor{blue}{negatively} predict future stock returns.
+    % \item Tail events generate substantial disagreement despite their rarity. \alert{In other words, even though rare events seldom occur, machine investors strongly disagree about the likelihood of these events.}
+    % \item DOT provides \textcolor{green}{unique information} about future stock returns beyond what is captured by tail risk or total disagreement alone.
+    \item The negative relationship is primarily driven by the \textcolor{orange}{mispricing} channel (Miller, 1977) during normal periods, whereas the \textcolor{blue}{risk-sharing} channel (Chen et al., 2012) prevails  after tail events.
+\end{wideitemize}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\calligra Thanks!}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Large \textbf{\textcolor{blue}{Why does DOT capture disagreement on tail?}}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Disagreement on Tail, Tail Risk, VIX and FSI}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{pictures/dot_tr_vix_fsi.png}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}{0.5\textwidth}
+        \textbf{Comparison:}
+        \begin{itemize}
+            \item the value-weighted average DOT 
+            \item Kelly and Jiang (2014) Tail Risk (TR) 
+            \item CBOE Volatility Index (VIX)
+            \item St. Louis Fed Financial Stress Index (FSI).
+        \end{itemize}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}{DOT and Tail Risk (TR)}
+DOT positively correlate with TR, and DOT works on  \alert{all TR groups}.\\
+\bigskip
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccccccc}
+\hline
+\multicolumn{6}{l}{Panel A: Average TR in DOT Decile Portfolio} &  &  \\ \cline{1-6}
+ & Low & 5 & High & H-L & t-stat &  &  \\ \cline{1-6}
+TR & 0.14 & 0.13 & -0.09 & -0.24*** & (-5.01) &  &  \\ \hline
+\multicolumn{8}{l}{Panel B: Bivariate Portfolio Sort on TR} \\ \hline
+ & Low & 5 & High & H-L & t-stat & FF5 & t-stat \\ \hline
+TR Low & 0.62 & 0.45 & -0.52 & \cellcolor[HTML]{FFCE93}-1.06** & \cellcolor[HTML]{FFCE93}(-2.23) & \cellcolor[HTML]{FFCE93}-1.04*** & \cellcolor[HTML]{FFCE93}(-3.24) \\
+TR 2 & 0.66 & 0.46 & -0.03 & \cellcolor[HTML]{FFCE93}-0.72** & \cellcolor[HTML]{FFCE93}(-2.06) & \cellcolor[HTML]{FFCE93}-0.72*** & \cellcolor[HTML]{FFCE93}(-3.03) \\
+TR 3 & 0.71 & 0.80 & 0.07 & \cellcolor[HTML]{FFCE93}-0.71** & \cellcolor[HTML]{FFCE93}(-1.98) & \cellcolor[HTML]{FFCE93}-0.57** & \cellcolor[HTML]{FFCE93}(-2.44) \\
+TR 4 & 0.84 & 0.91 & 0.05 & \cellcolor[HTML]{FFCE93}-0.77** & \cellcolor[HTML]{FFCE93}(-2.30) & \cellcolor[HTML]{FFCE93}-0.93*** & \cellcolor[HTML]{FFCE93}(-3.85) \\
+TR High & 0.92 & 0.83 & -0.66 & \cellcolor[HTML]{FFCE93}-0.97** & \cellcolor[HTML]{FFCE93}(-2.21) & \cellcolor[HTML]{FFCE93}-0.87*** & \cellcolor[HTML]{FFCE93}(-2.84) \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}{DOT and Analyst Forecast Dispersion (AFD)}
+DOT positively correlates with AFD, and DOT mainly works on \alert{high AFD groups}\\
+\bigskip
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccccccc}
+\hline
+\multicolumn{6}{l}{Panel A: Average AFD in DOT Decile Portfolio} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{1-6}
+ & Low & 5 & High & H-L & t-stat & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{1-6}
+AFD & 0.00 & 0.01 & 0.04 & 0.04*** & (14.85) & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \hline
+\multicolumn{8}{l}{Panel B: Bivariate Portfolio Sort on AFD} \\ \hline
+ & Low & 5 & High & H-L & t-stat & FF5 & t-stat \\ \hline
+AFD Low & 0.87 & 0.72 & 0.77 & -0.10 & (-0.23) & 0.46 & (1.36) \\
+AFD 2 & 0.80 & 1.22 & 0.78 & -0.02 & (-0.05) & 0.25 & (0.96) \\
+AFD 3 & 0.79 & 0.75 & 0.73 & -0.06 & (-0.13) & 0.14 & (0.47) \\
+AFD 4 & 0.90 & 0.93 & -0.03 & \cellcolor[HTML]{FFCE93}-0.93** & \cellcolor[HTML]{FFCE93}(-2.12) & \cellcolor[HTML]{FFCE93}-0.59** & \cellcolor[HTML]{FFCE93}(-2.17) \\
+AFD High & 0.64 & 0.53 & -0.37 & \cellcolor[HTML]{FFCE93}-1.01 & \cellcolor[HTML]{FFCE93}(-1.62) & \cellcolor[HTML]{FFCE93}-1.11*** & \cellcolor[HTML]{FFCE93}(-2.64) \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}{DOT and Machine Forecast Disagreement (MFD)}
+DOT positively correlates with MFD, and DOT mainly works on \alert{high MFD groups}.\\
+\bigskip
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccccccc}
+\hline
+\multicolumn{6}{l}{Panel A: Average MFD in DOT Decile Portfolio} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{1-6}
+ & Low & 5 & High & H-L & t-stat & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{1-6}
+MFD & 0.84 & 1.13 & 2.43 & 1.59*** & (4.40) & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \hline
+\multicolumn{8}{l}{Panel B: Bivariate Portfolio Sort on MFD} \\ \hline
+ & Low & 5 & High & H-L & t-stat & FF5 & t-stat \\ \hline
+MFD Low & 0.67 & 0.71 & 0.74 & 0.08 & (0.29) & -0.05 & (-0.26) \\
+MFD 2 & 0.80 & 0.77 & 0.36 & -0.44 & (-1.51) & -0.38* & (-1.90) \\
+MFD 3 & 0.61 & 0.77 & -0.13 & \cellcolor[HTML]{FFCE93}-0.74** & \cellcolor[HTML]{FFCE93}(-2.18) & \cellcolor[HTML]{FFCE93}-0.63*** & \cellcolor[HTML]{FFCE93}(-2.73) \\
+MFD 4 & 0.60 & 0.58 & -0.32 & \cellcolor[HTML]{FFCE93}-0.92** & \cellcolor[HTML]{FFCE93}(-2.50) & \cellcolor[HTML]{FFCE93}-0.85*** & \cellcolor[HTML]{FFCE93}(-3.09) \\
+MFD High & 0.79 & 0.07 & -0.89 & \cellcolor[HTML]{FFCE93}-1.68*** & \cellcolor[HTML]{FFCE93}(-4.19) & \cellcolor[HTML]{FFCE93}-1.57*** & \cellcolor[HTML]{FFCE93}(-4.71) \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+% \begin{frame}{DOT and Machine Forecast Disagreement (MFD)}
+% \tiny % 将字体缩小
+% \renewcommand{\arraystretch}{0.8} % 调整行距
+% \centering
+% \resizebox{0.8\textwidth}{0.45\textheight}{
+% \begin{tabular}{lcccccc}
+% \hline
+%  & RET & RET & RET & RET & RET & RET \\ \hline
+% DOT & -0.35*** &  & \cellcolor[HTML]{FFCE93}-0.38*** & -0.29*** &  & \cellcolor[HTML]{FFCE93}-0.32*** \\
+%  & (-4.36) &  & \cellcolor[HTML]{FFCE93}(-4.70) & (-3.92) &  & \cellcolor[HTML]{FFCE93}(-4.33) \\
+% MFD &  & -0.13** & 0.04 &  & -0.10* & 0.04 \\
+%  &  & (-2.28) & (0.97) &  & (-1.82) & (0.89) \\
+% BETA & 0.14* & 0.06 & 0.14* & 0.14** & 0.09 & 0.14** \\
+%  & (1.89) & (0.65) & (1.87) & (2.04) & (1.14) & (2.06) \\
+% SIZE & -0.18*** & -0.07 & -0.18*** & -0.25*** & -0.16*** & -0.24*** \\
+%  & (-3.57) & (-1.20) & (-3.52) & (-4.75) & (-2.67) & (-4.67) \\
+% BM & 0.07* & 0.12*** & 0.07* & 0.06* & 0.10*** & 0.06* \\
+%  & (1.86) & (2.99) & (1.94) & (1.74) & (2.59) & (1.74) \\
+% GP & 0.13*** & 0.17*** & 0.13*** & 0.10*** & 0.14*** & 0.10*** \\
+%  & (3.76) & (4.74) & (3.61) & (3.05) & (3.95) & (2.88) \\
+% AG & -0.22*** & -0.26*** & -0.22*** & -0.21*** & -0.24*** & -0.20*** \\
+%  & (-6.72) & (-8.24) & (-6.54) & (-6.73) & (-8.15) & (-6.55) \\
+% ILL &  &  &  & -0.12*** & -0.15*** & -0.12*** \\
+%  &  &  &  & (-4.03) & (-4.87) & (-3.95) \\
+% TURN &  &  &  & -0.15*** & -0.20*** & -0.14*** \\
+%  &  &  &  & (-4.13) & (-4.67) & (-3.72) \\
+% MOM &  &  &  & 0.35*** & 0.36*** & 0.35*** \\
+%  &  &  &  & (6.27) & (6.27) & (6.27) \\
+% Const & 0.76*** & 0.76*** & 0.76*** & 0.76*** & 0.76*** & 0.76*** \\
+%  & (3.07) & (3.07) & (3.07) & (3.06) & (3.06) & (3.06) \\
+% No. Obs. & 3315 & 3315 & 3315 & 3142 & 3142 & 3142 \\
+% Adj. R² & 5.37\% & 5.09\% & 5.53\% & 6.61\% & 6.43\% & 6.74\% \\ \hline
+% \end{tabular}
+% }
+% \end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Large \textbf{\textcolor{blue}{Why does disagreement on tail (DOT) matters?}}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Disagreement}
+    \begin{wideitemize}
+    \item Belief disagreement is a \alert{primary motivation} for trade; thus understanding disagreement is critical to understanding the financial markets.
+    \item The empirical work is very limited due to the difficulty in measuring investor beliefs.
+    \item To study the impact of disagreement, researchers commonly use \alert{analyst forecast dispersion (AFD)} as a measure of disagreement.
+    \item The drawbacks of AFD: estimates of EPS; representativeness issue; behavioral biases.
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{Literature in Disagreement}
+    \begin{wideitemize}
+    \item The empirical results based on AFD are \textcolor{blue}{conflicting}.
+    \bigskip
+    \begin{itemize}
+        \item Diether et al. (2002), Chen et al. (2002), Goetzmann and Massa (2005), Berkman et al. (2009), and Yu (2011) find a \alert{negative} cross-sectional association between AFD and average stock returns.
+    \bigskip
+        \item Malkiel and Cragg (1970), Qu et al. (2003), Doukas et al. (2006), Avramov et al. (2009), and Carlin et al. (2014) find either a \alert{positive} or \alert{no significant} relation between AFD and future stock returns.
+    % \bigskip
+    %     \item \textcolor{blue}{News}: Manela and Moreira (2017) employ a text-based method to measure news-implied tail risk (NVIX).
+    \end{itemize}
+    \item Bali et al. (2023) proposed the machine forecast disagreement (MFD) and finds a \alert{negative} cross-sectional association between MFD and average stock returns.
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{Prob-adj. Disagreement of Different Events}
+    \begin{wideitemize}
+    \item Now, we explore different events Tail, Down, Up, Surge's probability, disagreement and prob-adj disagreement,
+    % \begin{equation*}
+    %     c_{I} = \frac{DOT}{\mu}, \quad \text{I = T, D, U, S}
+    % \end{equation*}
+    % \item \textcolor{blue}{Coefficient of Variation is applied to compare variation of random variables with different averages.}
+    \item \textcolor{green}{How much disagreement arising from the unit probability of the four events?}
+    \bigskip
+    \end{wideitemize}
+    \makebox[\linewidth][c]{
+\begin{tabular}{lccc}
+\hline
+ & Probability & Disagreement & Prob-adj. Disagreement \\ \hline
+Tail & 0.03 & 0.01 & 0.43 \\
+Down & 0.47 & 0.03 & 0.07 \\
+UP & 0.45 & 0.04 & 0.08 \\
+Surge & 0.04 & 0.01 & 0.31 \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+% \begin{frame}{Persistence of Different Events}
+%     \begin{wideitemize}
+%     \item Next, we explore persistence of different events' disagreement.
+%     \item \textcolor{blue}{The disagreement on Tail and Surge is much more persistent compared to the disagreement on Down and Up.}
+%     \bigskip
+%     \end{wideitemize}
+%     \makebox[\linewidth][c]{
+% \begin{tabular}{lcccccccc}
+% \hline
+%  & 1 & 3 & 6 & 12 & 24 & 36 & 48 & 60 \\ \hline
+% DOT & 0.91 & 0.85 & 0.79 & 0.72 & 0.65 & 0.60 & 0.56 & 0.52 \\
+% DOD & 0.86 & 0.72 & 0.59 & 0.43 & 0.33 & 0.27 & 0.23 & 0.21 \\
+% DOU & 0.83 & 0.68 & 0.54 & 0.38 & 0.29 & 0.23 & 0.19 & 0.18 \\
+% DOS & 0.92 & 0.86 & 0.80 & 0.73 & 0.67 & 0.61 & 0.57 & 0.55 \\ \hline
+% \end{tabular}
+% }
+% \end{frame}
+
+\begin{frame}{Transition Matrix of Different Events}
+    \begin{figure}
+        \vspace{-0.4\baselineskip} % 减少垂直间距
+        \centering
+        \includegraphics[width=0.65\linewidth]{pictures/dif_events_tm.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Univariate Portfolio Sorts on Different Events}
+DOT and DOS have predictive power for stock returns, whereas DOD and DOU do not.\\
+\bigskip
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccccccc}
+\hline
+ & Low & 5 & High & H-L & t-stat & FF5 & t-stat \\ \hline
+DOT & 0.68 & 0.62 & -0.38 & \cellcolor[HTML]{FFCE93}-1.07*** & \cellcolor[HTML]{FFCE93}(-2.98) & \cellcolor[HTML]{FFCE93}-0.86*** & \cellcolor[HTML]{FFCE93}(-4.45) \\
+DOD & 0.82 & 0.65 & 0.47 & -0.35** & (-2.30) & -0.12 & (-1.00) \\
+DOU & 0.77 & 0.68 & 0.53 & -0.25 & (-1.58) & -0.08 & (-0.61) \\
+DOS & 0.67 & 0.68 & -0.01 & \cellcolor[HTML]{FFCE93}-0.68** & \cellcolor[HTML]{FFCE93}(-2.13) & \cellcolor[HTML]{FFCE93}-0.49*** & \cellcolor[HTML]{FFCE93}(-2.84) \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+% \begin{frame}{Fama-MacBeth Regressions on Different Events}
+% \tiny % 将字体缩小
+% \renewcommand{\arraystretch}{0.8} % 调整行距
+% \resizebox{\textwidth}{!}{
+% \begin{tabular}{lcccc}
+% \hline
+%  & RET(EW) & RET(EW) & RET(EW) & RET(EW)  \\ \hline
+% DOT & \cellcolor[HTML]{FFCE93}-0.29*** &  &  &   \\
+%  & \cellcolor[HTML]{FFCE93}(-3.92) &  &  &   \\
+% DOD &  & -0.10*** &  &   \\
+%  &  & (-2.73) &  &   \\
+% DOU &  &  & -0.06** &   \\
+%  &  &  & (-2.22) &   \\
+% DOS &  &  &  & -0.17**  \\
+%  &  &  &  & (-2.49) \\
+% Const & 0.76*** & 0.76*** & 0.76*** & 0.76***  \\
+%  & (3.06) & (3.06) & (3.06) & (3.06)  \\
+% Controls & YES & YES & YES & YES \\
+% No. Obs. & 3142 & 3142 & 3142 & 3142  \\
+% Adj. R² & 6.61\% & 6.34\% & 6.28\% & 6.55\%  \\ \hline
+% \end{tabular}
+% }
+% \end{frame}
+
+\begin{frame}{The contribution of DOT to Total Disagreement}
+    \begin{figure}
+        \vspace{-0.4\baselineskip} % 减少垂直间距
+        \centering
+        \includegraphics[width=0.8\linewidth]{pictures/Contribution.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Large \textbf{\textcolor{blue}{Robustness Check}}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Robustness Check: Randomly Select Characteristics}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccccccccc}
+\hline
+ & \multicolumn{4}{c}{EW} &  & \multicolumn{4}{c}{VW} \\ \cline{2-5} \cline{7-10} 
+ & Low & 5 & High & H-L &  & Low & 5 & High & H-L \\ \hline
+RET & 0.82*** & 0.99*** & -0.21 & \cellcolor[HTML]{FFCE93}-1.04*** &  & 0.64*** & 0.66*** & -0.37 & \cellcolor[HTML]{FFCE93}-1.01*** \\
+t-stat & (5.34) & (4.08) & (-0.51) & \cellcolor[HTML]{FFCE93}(-2.95) &  & (4.35) & (2.73) & (-0.90) & \cellcolor[HTML]{FFCE93}(-2.94) \\
+CAPM & 0.41*** & 0.33*** & -1.16*** & \cellcolor[HTML]{FFCE93}-1.57*** &  & 0.17*** & -0.09 & -1.39*** & \cellcolor[HTML]{FFCE93}-1.57*** \\
+t-stat & (3.98) & (2.68) & (-4.48) & \cellcolor[HTML]{FFCE93}(-5.41) &  & (2.90) & (-1.08) & (-6.14) & \cellcolor[HTML]{FFCE93}(-5.75) \\
+FF3 & 0.29*** & 0.17*** & -1.28*** & \cellcolor[HTML]{FFCE93}-1.57*** &  & 0.15*** & -0.12* & -1.40*** & \cellcolor[HTML]{FFCE93}-1.55*** \\
+t-stat & (3.68) & (3.00) & (-7.66) & \cellcolor[HTML]{FFCE93}(-7.44) &  & (2.98) & (-1.67) & (-7.73) & \cellcolor[HTML]{FFCE93}(-7.24) \\
+FF5 & 0.14** & 0.14** & -0.79*** & \cellcolor[HTML]{FFCE93}-0.93*** &  & -0.02 & -0.05 & -0.88*** & \cellcolor[HTML]{FFCE93}-0.86*** \\
+t-stat & (2.17) & (2.41) & (-4.67) & \cellcolor[HTML]{FFCE93}(-5.16) &  & (-0.42) & (-0.67) & (-5.31) & \cellcolor[HTML]{FFCE93}(-4.82) \\
+Sharpe & 0.79 & 0.61 & -0.08 & \cellcolor[HTML]{FFCE93}-0.45 &  & 0.58 & 0.38 & -0.14 & \cellcolor[HTML]{FFCE93}-0.44 \\ \hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}{Robustness Check: Randomly Select Characteristics}
+\begin{table}[!ht]
+\tiny % 将字体缩小
+\renewcommand{\arraystretch}{0.8} % 调整行距
+\resizebox{0.75\textwidth}{!}{
+\begin{tabular}{lcccc}
+\hline
+ & RET & RET & Industry-adj. RET & Industry-adj. RET \\ \hline
+DOT & \cellcolor[HTML]{FFCE93}-0.41*** & \cellcolor[HTML]{FFCE93}-0.34*** & \cellcolor[HTML]{FFCE93}-0.40*** & \cellcolor[HTML]{FFCE93}-0.34*** \\
+ & \cellcolor[HTML]{FFCE93}(-5.70) & \cellcolor[HTML]{FFCE93}(-5.30) & \cellcolor[HTML]{FFCE93}(-5.85) & \cellcolor[HTML]{FFCE93}(-5.29) \\
+BETA & 0.17** & 0.17** & 0.18*** & 0.17*** \\
+ & (2.24) & (2.30) & (3.14) & (3.46) \\
+SIZE & -0.22*** & -0.27*** & -0.20*** & -0.24*** \\
+ & (-4.26) & (-5.10) & (-4.22) & (-5.07) \\
+BM & 0.07* & 0.06* & 0.07** & 0.07** \\
+ & (1.79) & (1.76) & (2.40) & (2.42) \\
+GP & 0.13*** & 0.11*** & 0.10*** & 0.08*** \\
+ & (3.83) & (3.12) & (3.43) & (2.65) \\
+AG & -0.22*** & -0.21*** & -0.20*** & -0.19*** \\
+ & (-7.01) & (-7.12) & (-7.83) & (-7.91) \\
+ILL &  & -0.11*** &  & -0.10*** \\
+ &  & (-3.63) &  & (-3.41) \\
+TURN &  & -0.14*** &  & -0.14*** \\
+ &  & (-3.65) &  & (-3.86) \\
+MOM &  & 0.34*** &  & 0.30*** \\
+ &  & (6.01) &  & (6.27) \\
+Const & 0.76*** & 0.76*** & 0.10 & 0.10 \\
+ & (3.07) & (3.06) & (1.01) & (1.01) \\ \hline
+No. Obs. & 3315 & 3142 & 3315 & 3142 \\
+Adj. R² & 5.31\% & 6.56\% & 3.71\% & 4.65\% \\ \hline
+\end{tabular}
+}
+\end{table}
+\end{frame}
+
+\end{document}

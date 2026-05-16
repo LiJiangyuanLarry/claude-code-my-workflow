@@ -5,9 +5,9 @@
      Keep this file under ~150 lines — Claude loads it every session.
      See the guide at docs/workflow-guide.html for full documentation. -->
 
-**Project:** [YOUR PROJECT NAME]
-**Institution:** [YOUR INSTITUTION]
-**Branch:** main
+**Project:** The Zero-Sum Game of Mutual Fund Marketing
+**Institution:** Shanghai University of Finance and Economics / Florida State University
+**Branch:** `claude/mutual-fund-presentation-slides-ZnBxu`
 
 ---
 
@@ -26,20 +26,23 @@ Cross-session context lives in [MEMORY.md](MEMORY.md); past plans, specs, and se
 ## Folder Structure
 
 ```
-[YOUR-PROJECT]/
+claude-code-my-workflow/
 ├── CLAUDE.MD                    # This file
 ├── .claude/                     # Rules, skills, agents, hooks
 ├── Bibliography_base.bib        # Centralized bibliography
-├── Figures/                     # Figures and images
-├── Preambles/header.tex         # LaTeX headers
-├── Slides/                      # Beamer .tex files
+├── Figures/                     # Shared figures and images
+├── Preambles/header.tex         # Shared LaTeX/Beamer preamble (palette, TikZ styles)
+├── Slides/                      # Generic Beamer .tex files (HelloWorld sample)
 ├── Quarto/                      # RevealJS .qmd files + theme
 ├── docs/                        # GitHub Pages (auto-generated)
 ├── scripts/                     # Utility scripts + R code
 ├── quality_reports/             # Plans, session logs, merge reports, decision records
 ├── explorations/                # Research sandbox (see rules)
 ├── templates/                   # Session log, quality report templates
-└── master_supporting_docs/      # Papers and existing slides
+├── master_supporting_docs/      # Papers and existing slides
+└── Projects/
+    ├── MutualFundMarketingPaper/    # Paper: Zero-Sum Game of Mutual Fund Marketing
+    └── MutualFundMarketingSlides/   # Conference slides (DFCI 2026)
 ```
 
 ---
@@ -47,11 +50,12 @@ Cross-session context lives in [MEMORY.md](MEMORY.md); past plans, specs, and se
 ## Commands
 
 ```bash
-# LaTeX (3-pass, XeLaTeX only)
-cd Slides && TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
-BIBINPUTS=..:$BIBINPUTS bibtex file
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
+# LaTeX (3-pass, XeLaTeX only) — run from project subfolder
+cd Projects/MutualFundMarketingSlides
+TEXINPUTS=../../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode MutualFundMarketing_slides.tex
+BIBINPUTS=.:$BIBINPUTS bibtex MutualFundMarketing_slides
+TEXINPUTS=../../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode MutualFundMarketing_slides.tex
+TEXINPUTS=../../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode MutualFundMarketing_slides.tex
 
 # Deploy Quarto to GitHub Pages
 ./scripts/sync_to_docs.sh LectureN
@@ -122,27 +126,21 @@ Enforced by `/commit` (halts + asks for override); not enforced by a git pre-com
 <!-- CUSTOMIZE: Replace placeholder rows ([your-env], [.your-class]) with your own.
      Delete the rows marked "(example — delete)" once you've added yours. -->
 
-## Beamer Custom Environments
+## Beamer Custom Environments (Slides)
 
 | Environment | Effect | Use Case |
 | --- | --- | --- |
-| `[your-env]` | [Description] | [When to use] |
-| `keybox` | Gold background box | Key points *(example — delete)* |
-| `definitionbox[Title]` | Blue-bordered titled box | Formal definitions *(example — delete)* |
-
-## Quarto CSS Classes
-
-| Class | Effect | Use Case |
-| --- | --- | --- |
-| `[.your-class]` | [Description] | [When to use] |
-| `.smaller` | 85% font | Dense content *(example — delete)* |
-| `.positive` | Green bold | Good annotations *(example — delete)* |
+| `keybox` | Gold-tinted tcolorbox | Key takeaways at bottom of slide |
+| `resultbox` | Blue-bordered tcolorbox | Main quantitative results |
+| `\transitionslide{title}` | Full-bleed dark frame | Section transitions |
+| `\key{text}` | Gold bold text | Highlight key terms inline |
+| `\muted{text}` | Gray text | De-emphasize secondary info |
 
 ---
 
 ## Current Project State
 
-| Lecture | Beamer | Quarto | Key Content |
+| Item | File | Status | Key Content |
 | --- | --- | --- | --- |
-| HelloWorld *(sample — delete when ready)* | `HelloWorld.tex` | `HelloWorld.qmd` | Minimal deck to verify setup |
-| 1: [Topic] | `Lecture01_Topic.tex` | `Lecture1_Topic.qmd` | [Brief description] |
+| Paper | `Projects/MutualFundMarketingPaper/main.tex` | Draft | Zero-sum game of mutual fund marketing via livestreaming |
+| Slides (DFCI 2026) | `Projects/MutualFundMarketingSlides/MutualFundMarketing_slides.tex` | In progress | 30-min conference talk, ~20 content slides |
