@@ -92,10 +92,6 @@
   \maketitle
 \end{frame}
 
-\begin{frame}{Outline}
-  \tableofcontents
-\end{frame}
-
 % =============================================================================
 \section{Motivation}
 % =============================================================================
@@ -103,7 +99,7 @@
 \begin{frame}{Mutual Fund Marketing: What We Know}
 
 \begin{wideitemize}
-  \item Asset management has grown dramatically — AUM and fund counts have
+  \item Asset management has grown dramatically --- AUM and fund counts have
   surged worldwide; \hl{investor search costs} are a first-order friction in
   capital allocation (Hortaçsu \& Syverson, 2004; Huang, Wei \& Yan, 2007)
 
@@ -127,6 +123,44 @@
 
 % -----------------------------------------------------------------------
 
+\begin{frame}{Mutual Fund Marketing in Practice}
+
+\begin{columns}[T]
+\begin{column}{0.47\textwidth}
+  \centering
+  \textbf{\small Fund Family Marketing}\\[6pt]
+  \includegraphics[width=0.82\textwidth]{pictures/tiantian_portal.jpg}\\[6pt]
+  {\small
+  Fund families compete for \hl{platform real estate}:\\[3pt]
+  \begin{itemize}\addtolength{\itemsep}{2pt}
+    \item Featured slots on the livestream portal
+    \item Themed series curated by platform
+    \item Viewer counts and follower metrics
+    \item Broadcast scheduling and archives
+  \end{itemize}}
+\end{column}
+\begin{column}{0.47\textwidth}
+  \centering
+  \textbf{\small Fund Product Marketing}\\[6pt]
+  \includegraphics[width=0.82\textwidth]{pictures/tiantian_products.jpg}\\[6pt]
+  {\small
+  Individual funds are marketed with \hl{product details}:\\[3pt]
+  \begin{itemize}\addtolength{\itemsep}{2pt}
+    \item ``New Issue'' or ``Featured'' status tags
+    \item Full fund name, asset class, risk rating
+    \item Past performance and subscription window
+    \item One-click purchase from within the stream
+  \end{itemize}}
+\end{column}
+\end{columns}
+
+\vspace{0.15cm}
+\muted{\small \textit{Question:} Fund-level marketing is clearly visible and measurable. But does it expand the family's total assets --- or merely reshuffle them?}
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
 \begin{frame}{This Paper}
 
 \begin{wideitemize}
@@ -134,26 +168,51 @@
   Chinese mutual fund families on the Tiantian Fund platform, 2020--2025
 
   \item We evaluate marketing effects at both the \textbf{fund level} and the
-  \textbf{family level}, using 25,685 livestreaming events across 180 families
+  \textbf{family level}, using \hl{25,685} livestreaming events across
+  \hl{180} families and \hl{5,809} funds
 
-  \item We analyze \textbf{795 transcripts} with a large language model to
+  \item We analyze \hl{795 transcripts} with a large language model to
   understand what communication strategies attract outside capital
+
+  \item We examine \textbf{competitive dynamics}: do families livestream to
+  grow, or to defend existing market share?
 \end{wideitemize}
 
-\vspace{0.3cm}
-\textbf{Main findings:}
-\begin{enumerate}
-  \item Livestreaming generates \hl{zero} family-level flows or revenue change ---
-  it reallocates capital within families, not across them
+\vspace{0.25cm}
+\begin{block}{Setting}
+  China's Tiantian Fund platform provides a uniform observation window
+  across all major families, with verified treatment status (``featured'' funds
+  in the shopping cart) and precise broadcast timestamps.
+\end{block}
 
-  \item Families use livestreams as an \hl{internal open market operation}: steering
-  investors from overcapitalized to undercapitalized funds
+\end{frame}
 
-  \item Market competition creates a \hl{prisoner's dilemma}: families must
-  livestream to defend existing assets, not to attract new ones
+% -----------------------------------------------------------------------
 
-  \item Only \hl{``hard information''} (past performance, social proof) distinguishes
-  families that successfully attract outside capital
+\begin{frame}{Main Findings}
+
+\begin{enumerate}\addtolength{\itemsep}{0.18cm}
+
+  \item[\hlg{(1)}] \textbf{Zero at the family level.}
+  Livestreaming generates large fund-level inflows (\hl{$+$14 pp}) but
+  \hl{zero} family-level flow or revenue change.
+  Featured funds gain at the direct expense of non-featured siblings.
+
+  \item[\hlg{(2)}] \textbf{Intra-family capital optimization.}
+  Families feature recently outperforming (undercapitalized) funds.
+  Post-event performance converges --- consistent with Berk-Green
+  rational learning. Livestreaming acts as an \hl{internal open market operation}.
+
+  \item[\hlg{(3)}] \textbf{Defensive arms race.}
+  When rivals increase livestreaming by 1 SD, non-livestreamers
+  lose $\approx$27 pp in flows. Families livestream to
+  \hl{defend market share}, not to expand it --- a prisoner's dilemma.
+
+  \item[\hlg{(4)}] \textbf{Hard information wins.}
+  Families that do attract outside capital emphasize
+  \hl{past performance} and \hl{social proof} ---
+  not emotional appeals or engagement style.
+
 \end{enumerate}
 
 \end{frame}
@@ -161,54 +220,6 @@
 % =============================================================================
 \section{Institutional Background}
 % =============================================================================
-
-\begin{frame}{China's Mutual Fund Market}
-
-\begin{columns}[T]
-\begin{column}{0.52\textwidth}
-\textbf{A large and rapidly growing market:}
-\begin{itemize}
-  \item Publicly offered fund AUM grew from CNY 8.4 trillion (2015) to
-  over CNY 31 trillion by 2024
-  \item Our sample covers \hl{5,809} actively managed equity/hybrid funds
-  across \hl{180} fund families
-  \item Third-party platforms (Alipay, JD Finance, Tiantian) distribute
-  the majority of retail fund purchases
-\end{itemize}
-
-\vspace{0.25cm}
-\textbf{Retail-dominated investor base:}
-\begin{itemize}
-  \item Retail investors account for the bulk of fund flows
-  \item Strong \hl{flow-performance sensitivity} — investors chase
-  recent winners (Sirri \& Tufano, 1998)
-  \item High turnover: investors redeem quickly after underperformance
-\end{itemize}
-\end{column}
-\begin{column}{0.46\textwidth}
-\textbf{Why marketing matters here:}
-\begin{itemize}
-  \item With thousands of funds across hundreds of families, \hl{search
-  costs} are severe for retail investors
-  \item Fund families compete intensively for investor \hl{attention},
-  particularly on third-party platforms where all families coexist
-  \item Marketing is a primary lever for distinguishing one family's
-  products from another's
-\end{itemize}
-
-\vspace{0.25cm}
-\textbf{Our setting (Tiantian Fund):}
-\begin{itemize}
-  \item One of China's top three retail fund platforms
-  \item Hosts livestream channels for all major fund families
-  \item Provides shopping cart purchase integration
-\end{itemize}
-\end{column}
-\end{columns}
-
-\end{frame}
-
-% -----------------------------------------------------------------------
 
 \begin{frame}{The Rise of Livestream Marketing}
 
@@ -223,35 +234,83 @@
   \item By 2021, every major fund family operated its own livestream channel
 \end{itemize}
 
-\vspace{0.2cm}
+\vspace{0.25cm}
 \textbf{Regulatory framework (AMAC, 2021):}
 \begin{itemize}
   \item Asset Management Association of China formalized
   guidance on livestream marketing
   \item Requirements: investor education, product disclosure,
   compliance pre-approval, and risk warnings
-  \item \hl{Compliance approval is obtained days in advance}:
+  \item \hl{Compliance approval obtained days in advance}:
   topic and featured funds are pre-planned, not spontaneous
 \end{itemize}
 \end{column}
 \begin{column}{0.43\textwidth}
-\textbf{Scale of the phenomenon:}
+\textbf{A new marketing ecosystem:}
 \begin{itemize}
-  \item \hl{25,685} livestreaming events in our sample
-  \item July 2020 -- June 2025
-  \item Families broadcast \hl{multiple times per month}
-  \item Typical broadcast: 1--2 hours
-  \item Live audience: hundreds to tens of thousands of viewers
+  \item Third-party platforms (Tiantian, Alipay, JD Finance)
+  host dedicated livestream portals for all families
+  \item Fund families maintain official channels with
+  \hl{verified broadcaster} status
+  \item Broadcasts are scheduled, indexed, and archived ---
+  providing a complete observational record
 \end{itemize}
 
 \vspace{0.25cm}
+\begin{alertblock}{Key shift}
+  From \textit{intermediary-driven} distribution (brokers, bank advisors)
+  to \textit{direct-to-investor} digital marketing --- families now
+  communicate directly with retail investors in real time.
+\end{alertblock}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}{Scale and Structure of Livestream Marketing}
+
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\textbf{Scale of the phenomenon:}
+\begin{itemize}
+  \item \hl{25,685} livestreaming events in our sample
+  \item July 2020 -- June 2025 (20 quarters)
+  \item Families broadcast \hl{multiple times per month}
+  \item Typical broadcast: 1--2 hours; live audience ranges
+  from hundreds to tens of thousands of viewers
+\end{itemize}
+
+\vspace{0.25cm}
+\textbf{Our platform (Tiantian Fund):}
+\begin{itemize}
+  \item One of China's top three retail fund platforms
+  \item \hl{5,809} actively managed equity/hybrid funds
+  across \hl{180} fund families
+  \item Hosts livestream channels for all major families,
+  giving us a uniform cross-family observation window
+\end{itemize}
+\end{column}
+\begin{column}{0.50\textwidth}
 \textbf{Key institutional feature:}
 \begin{itemize}
   \item Families select \hl{fewer than 4 funds} per broadcast
   from their portfolio of $25+$ products
+  \item The selected funds appear in the \hl{shopping cart}
+  (``Product Basket'') embedded in the livestream interface
   \item This creates sharp within-family variation in
   promotional intensity --- ideal for identification
 \end{itemize}
+
+\vspace{0.2cm}
+\begin{block}{Treatment definition}
+  A fund is \hl{``featured''} in quarter $q$ if any share class
+  appears in the shopping cart during any broadcast.
+  A fund is \hl{``non-featured''} if its family broadcasts
+  but the fund is not selected. Within-family, within-quarter
+  comparison.
+\end{block}
 \end{column}
 \end{columns}
 
@@ -267,31 +326,32 @@
 \begin{itemize}
   \item A \hl{fund manager or professional host} presents to live viewers
   \item Covers market outlook and highlights 1--4 featured funds
-  \item \hl{Danmaku}: real-time viewer comments scroll across the screen,
-  creating interactive dialogue
   \item Risk disclosure banners appear per regulatory requirements
+  \item Viewers can ask questions in real-time via the comment interface
 \end{itemize}
 
-\vspace{0.2cm}
+\vspace{0.25cm}
 \textbf{The shopping cart (``Product Basket''):}
 \begin{itemize}
   \item Icon in the broadcast interface expands to show featured funds
   \item Displays: fund name, asset class, risk rating,
   past performance, subscription window
-  \item Viewers tap \hl{``Subscribe''} to purchase directly, without
-  leaving the livestream
+  \item Viewers tap \hl{``Subscribe''} to purchase directly,
+  without leaving the livestream
 \end{itemize}
 \end{column}
 \begin{column}{0.48\textwidth}
-\textbf{Treatment definition:}
+\textbf{Who presents?}
 
 \medskip
-A fund is \hl{``featured''} in a quarter if any of its share classes
-appears in the shopping cart during any broadcast that quarter.
-
-\medskip
-A fund is \hl{``non-featured''} if its family broadcasts that quarter
-but the fund itself is not in the cart.
+\begin{itemize}
+  \item \textbf{Fund managers:} provide technical commentary
+  and portfolio outlook
+  \item \textbf{Professional hosts:} deliver polished presentations;
+  common at large families
+  \item \textbf{Guest speakers:} economists, market analysts,
+  platform representatives
+\end{itemize}
 
 \vspace{0.3cm}
 \begin{alertblock}{Identification}
@@ -318,7 +378,7 @@ but the fund itself is not in the cart.
   \centering
   \textbf{\small (2) Livestream Room}\\[4pt]
   \includegraphics[width=\textwidth]{pictures/tiantian_livestream.jpg}\\[5pt]
-  {\footnotesize\muted{Host video, danmaku feed, risk disclosure banners, product basket icon}}
+  {\footnotesize\muted{Host video, risk disclosure banners, product basket icon, engagement tools}}
 \end{column}
 \begin{column}{0.31\textwidth}
   \centering
@@ -337,7 +397,7 @@ but the fund itself is not in the cart.
 \section{Data and Empirical Design}
 % =============================================================================
 
-\begin{frame}{Sample and Key Variables}
+\begin{frame}{Sample}
 
 \begin{columns}[T]
 \begin{column}{0.48\textwidth}
@@ -345,26 +405,53 @@ but the fund itself is not in the cart.
 \begin{itemize}
   \item \hl{25,685} events, July 2020 -- June 2025
   \item Source: Tiantian Fund platform
+  \item Records: broadcast date, duration, host identity,
+  featured funds (shopping cart contents)
 \end{itemize}
 
-\vspace{0.2cm}
+\vspace{0.25cm}
 \textbf{Fund universe:}
 \begin{itemize}
-  \item \hl{5,809} actively managed equity/hybrid funds
+  \item \hl{5,809} actively managed equity and hybrid funds
   \item \hl{180} fund families
   \item \hl{90,850} fund-quarter observations
-  \item Exclude: index, closed-end, QDII, umbrella funds
-\end{itemize}
-
-\vspace{0.2cm}
-\textbf{Descriptive highlights:}
-\begin{itemize}
-  \item Mean fund flow: 0.38\%, SD: 42\%
-  \item \hl{14\%} of fund-quarters are featured
-  \item Featured funds outperform siblings in months before event
+  \item Excluded: index, closed-end, QDII, and umbrella funds
 \end{itemize}
 \end{column}
 \begin{column}{0.50\textwidth}
+\textbf{Descriptive highlights:}
+\begin{itemize}
+  \item Mean quarterly fund flow: 0.38\%, SD: 42\%
+  \item \hl{14\%} of fund-quarters are ``featured''
+  \item Featured funds outperform non-featured siblings
+  in the months before the event
+\end{itemize}
+
+\vspace{0.25cm}
+\textbf{Fund flow data:}
+\begin{itemize}
+  \item Total Net Assets (TNA) from Wind Financial
+  \item Quarterly returns from fund prospectuses
+  \item Fund characteristics: inception date, manager,
+  benchmark, share class structure
+\end{itemize}
+
+\vspace{0.2cm}
+\begin{block}{Panel structure}
+  Unbalanced fund-quarter panel, 2020 Q3 -- 2025 Q2.
+  SEs clustered at the family level throughout.
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}{Key Variables}
+
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
 \textbf{Fund flow} (return-adjusted):
 \[
 \text{Flow}_{i,q} = \frac{\text{TNA}_{i,q} - \text{TNA}_{i,q-1}(1+r_{i,q})}{\text{TNA}_{i,q-1}}
@@ -375,16 +462,30 @@ but the fund itself is not in the cart.
 \text{FamilyFlow}_{f,q} = \frac{\displaystyle\sum_{i \in f}\!\Delta\text{TNA}_{i,q}^{\text{adj}}}{\displaystyle\sum_{i \in f} \text{TNA}_{i,q-1}}
 \]
 
-\vspace{0.15cm}
+\vspace{0.1cm}
 \muted{\small $\Delta\text{TNA}_{i,q}^{\text{adj}} = \text{TNA}_{i,q} - \text{TNA}_{i,q-1}(1+r_{i,q})$}
-
-\vspace{0.25cm}
+\end{column}
+\begin{column}{0.46\textwidth}
 \textbf{Treatment indicators:}
-\begin{itemize}
-  \item \textit{Fund Livestream}: fund $i$ featured in quarter $q$
-  \item \textit{Family Livestream (Oth)}: family livestreams\\
-  other funds but not fund $i$
+
+\medskip
+\begin{itemize}\addtolength{\itemsep}{6pt}
+  \item \textbf{Fund Livestream:} fund $i$ appears in the
+  shopping cart in quarter $q$ (``featured'')
+
+  \item \textbf{Family Livestream (Oth):} family $f$ broadcasts
+  in quarter $q$ but fund $i$ is \emph{not} featured ---
+  captures the sibling cannibalization effect
+
+  \item \textbf{Family Livestream:} family $f$ holds any
+  broadcast in quarter $q$ (family-level indicator)
 \end{itemize}
+
+\vspace{0.2cm}
+\begin{alertblock}{Within-family variation}
+  Featured and non-featured funds belong to the \emph{same} family,
+  broadcasting in the \emph{same} quarter.
+\end{alertblock}
 \end{column}
 \end{columns}
 
