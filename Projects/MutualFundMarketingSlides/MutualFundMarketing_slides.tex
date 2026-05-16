@@ -272,7 +272,7 @@
 
 % -----------------------------------------------------------------------
 
-\begin{frame}{Scale and Structure of Livestream Marketing}
+\begin{frame}{Scale of Livestream Marketing}
 
 \begin{columns}[T]
 \begin{column}{0.48\textwidth}
@@ -285,16 +285,43 @@
   from hundreds to tens of thousands of viewers
 \end{itemize}
 
-\vspace{0.25cm}
+\vspace{0.3cm}
 \textbf{Our platform (Tiantian Fund):}
 \begin{itemize}
   \item One of China's top three retail fund platforms
   \item \hl{5,809} actively managed equity/hybrid funds
   across \hl{180} fund families
   \item Hosts livestream channels for all major families,
-  giving us a uniform cross-family observation window
+  giving us a \hl{uniform cross-family} observation window
 \end{itemize}
 \end{column}
+\begin{column}{0.50\textwidth}
+\textbf{Adoption over time:}
+\begin{itemize}
+  \item Near-zero livestream activity before July 2020
+  \item Rapid diffusion: most families adopted within
+  2--3 quarters of the first movers
+  \item By 2021--2022, livestreaming was universal among
+  active equity fund families
+  \item Adoption is \hl{staggered}: families enter at
+  different quarters --- enables DiD identification
+\end{itemize}
+
+\vspace{0.3cm}
+\begin{block}{Our sample}
+  \hl{90,850} fund-quarter observations; unbalanced panel
+  2020~Q3--2025~Q2. SEs clustered at the family level.
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}{Structure of a Livestream Event}
+
+\begin{columns}[T]
 \begin{column}{0.50\textwidth}
 \textbf{Key institutional feature:}
 \begin{itemize}
@@ -302,18 +329,40 @@
   from their portfolio of $25+$ products
   \item The selected funds appear in the \hl{shopping cart}
   (``Product Basket'') embedded in the livestream interface
-  \item This creates sharp within-family variation in
+  \item This creates sharp \hl{within-family variation} in
   promotional intensity --- ideal for identification
 \end{itemize}
 
-\vspace{0.2cm}
+\vspace{0.3cm}
+\textbf{Pre-planned, not spontaneous:}
+\begin{itemize}
+  \item Compliance approval is obtained \hl{days in advance}
+  \item Topic, featured funds, and risk disclosures are
+  all fixed before the broadcast
+  \item Eliminates concern that fund selection reflects
+  real-time information shocks
+\end{itemize}
+\end{column}
+\begin{column}{0.48\textwidth}
 \begin{block}{Treatment definition}
   A fund is \hl{``featured''} in quarter $q$ if any share class
-  appears in the shopping cart during any broadcast.
+  appears in the shopping cart during any broadcast that quarter.
+
+  \medskip
   A fund is \hl{``non-featured''} if its family broadcasts
-  but the fund is not selected. Within-family, within-quarter
-  comparison.
+  but the fund is not selected.
+
+  \medskip
+  Within-family, within-quarter comparison.
 \end{block}
+
+\vspace{0.3cm}
+\begin{alertblock}{Identification}
+  Featured and non-featured funds belong to the \emph{same}
+  family in the \emph{same} quarter --- family $\times$ quarter
+  FE absorbs all common shocks. The only difference is
+  \hl{which fund the family chose to promote}.
+\end{alertblock}
 \end{column}
 \end{columns}
 
@@ -451,43 +500,97 @@
 
 % -----------------------------------------------------------------------
 
-\begin{frame}{Key Variables}
+\begin{frame}{Key Variables: Flow Measures}
 
 \begin{columns}[T]
-\begin{column}{0.52\textwidth}
+\begin{column}{0.54\textwidth}
 \textbf{Fund flow} (return-adjusted):
 \[
 \text{Flow}_{i,q} = \frac{\text{TNA}_{i,q} - \text{TNA}_{i,q-1}(1+r_{i,q})}{\text{TNA}_{i,q-1}}
 \]
 
+\vspace{0.3cm}
 \textbf{Family flow} (AUM-weighted aggregate):
 \[
 \text{FamilyFlow}_{f,q} = \frac{\displaystyle\sum_{i \in f}\!\Delta\text{TNA}_{i,q}^{\text{adj}}}{\displaystyle\sum_{i \in f} \text{TNA}_{i,q-1}}
 \]
 
-\vspace{0.1cm}
-\muted{\small $\Delta\text{TNA}_{i,q}^{\text{adj}} = \text{TNA}_{i,q} - \text{TNA}_{i,q-1}(1+r_{i,q})$}
+\vspace{0.15cm}
+\muted{\small where $\Delta\text{TNA}_{i,q}^{\text{adj}} = \text{TNA}_{i,q} - \text{TNA}_{i,q-1}(1+r_{i,q})$}
 \end{column}
-\begin{column}{0.46\textwidth}
-\textbf{Treatment indicators:}
+\begin{column}{0.44\textwidth}
+\textbf{Why return-adjust?}
 
 \medskip
-\begin{itemize}\addtolength{\itemsep}{6pt}
-  \item \textbf{Fund Livestream:} fund $i$ appears in the
-  shopping cart in quarter $q$ (``featured'')
+Raw TNA changes mix investor flows with capital gains.
+Stripping out returns isolates \hl{investor decisions}
+--- new subscriptions minus redemptions.
 
-  \item \textbf{Family Livestream (Oth):} family $f$ broadcasts
-  in quarter $q$ but fund $i$ is \emph{not} featured ---
-  captures the sibling cannibalization effect
+\vspace{0.3cm}
+\textbf{Why aggregate to the family?}
 
-  \item \textbf{Family Livestream:} family $f$ holds any
-  broadcast in quarter $q$ (family-level indicator)
+\medskip
+A fund family's total AUM is the sum of its funds' TNAs.
+If featured funds gain and non-featured lose by the
+\emph{same} amount, \hl{FamilyFlow = 0} --- even though
+every fund-level regression shows a positive coefficient.
+
+\vspace{0.3cm}
+\begin{block}{Our main test}
+  Is $\widehat{\beta}$ in the family-level regression
+  statistically and economically different from zero?
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}{Key Variables: Treatment Indicators}
+
+\begin{columns}[T]
+\begin{column}{0.52\textwidth}
+\textbf{Three treatment indicators:}
+
+\medskip
+\begin{itemize}\addtolength{\itemsep}{8pt}
+  \item \textbf{Fund Livestream}$_{i,q}$: fund $i$ appears in
+  the shopping cart during any broadcast in quarter $q$
+  (\hl{``featured''})
+
+  \item \textbf{Family Livestream (Oth)}$_{i,q}$: family $f$
+  broadcasts in quarter $q$ but fund $i$ is \emph{not}
+  featured --- the \hl{sibling treatment}; captures
+  cannibalization of non-featured funds
+
+  \item \textbf{Family Livestream}$_{f,q}$: family $f$ holds
+  \emph{any} broadcast in quarter $q$ --- the
+  \hl{family-level indicator} used in the aggregate test
 \end{itemize}
+\end{column}
+\begin{column}{0.46\textwidth}
+\textbf{Descriptive statistics:}
 
-\vspace{0.2cm}
+\medskip
+\begin{tabular}{lc}
+  \toprule
+  Statistic & Value \\
+  \midrule
+  Fund-quarters featured & 14\% \\
+  Fund-quarters with sibling featured & 38\% \\
+  Family-quarters with any broadcast & 52\% \\
+  \midrule
+  Avg.\ broadcasts per family per quarter & 4.3 \\
+  Avg.\ funds per broadcast & 2.1 \\
+  \bottomrule
+\end{tabular}
+
+\vspace{0.3cm}
 \begin{alertblock}{Within-family variation}
-  Featured and non-featured funds belong to the \emph{same} family,
-  broadcasting in the \emph{same} quarter.
+  Featured and non-featured funds are in the \emph{same}
+  family, \emph{same} quarter --- family FE absorbs
+  all common shocks.
 \end{alertblock}
 \end{column}
 \end{columns}
