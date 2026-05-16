@@ -135,14 +135,16 @@
   advertising, broker distribution, and visibility drive significant fund-level inflows
   (Sirri \& Tufano, 1998; Gallaher, Kaniel \& Starks, 2008)
 
-  \item A recent literature studies social media marketing of funds:
-  De Haan et al.\ (2025) show that featured funds on Chinese platforms receive
-  \hl{significant capital inflows}
+  \item A growing literature studies \hl{social media marketing} of funds in China:
+  De Haan et al.\ (2025), Kacperczyk \& Pagnotta (2026), and Li et al.\ (2026)
+  examine mutual fund livestreaming on retail platforms
 \end{wideitemize}
 
 \vspace{0.4cm}
-\begin{block}{Implicit assumption in the literature}
-  Fund-level marketing $\;\Rightarrow\;$ family grows. \quad Is this right?
+\begin{block}{An open question}
+  Prior work evaluates marketing at the \textbf{fund level}. But marketing decisions
+  are made at the \textbf{family level}. Does fund-level marketing translate into
+  family-level growth?
 \end{block}
 
 \end{frame}
@@ -158,20 +160,20 @@
   \item If marketing primarily \hl{reallocates existing assets} within the family,
   then fund-level effects do not translate into family growth
 
-  \item Prior work evaluates marketing at the fund level despite
-  \textbf{family-level decision-making} (Gallaher et al., 2008 is the rare exception)
+  \item Most prior work evaluates marketing at the \textbf{fund level}, even though
+  marketing decisions are made --- and success should be measured --- at the
+  \textbf{family level} (Gallaher et al., 2008)
 \end{wideitemize}
 
 \bigskip
-\textbf{What we need:}
+\textbf{This paper:}
 \begin{enumerate}
-  \item A marketing channel with \hl{sharp within-family variation in exposure}
-  \item Joint observation of fund-level \emph{and} family-level flows
-  \item Transcript-level data to understand what content drives outside capital
+  \item Evaluate livestreaming at both fund \emph{and} family level using \hl{25,685 events}
+  on China's leading platform
+  \item Decompose within-family capital flows to identify reallocation vs.\ new attraction
+  \item Analyze \hl{795 transcripts} with an LLM to understand which communication strategies
+  successfully attract outside capital
 \end{enumerate}
-
-\bigskip
-\muted{$\Rightarrow$ Chinese mutual fund social media livestreaming provides all three.}
 
 \end{frame}
 
@@ -215,6 +217,40 @@
 \end{alertblock}
 \end{column}
 \end{columns}
+
+\end{frame}
+
+% -----------------------------------------------------------------------
+
+\begin{frame}{The Tiantian Fund Livestreaming Platform}
+
+\begin{columns}[T]
+\begin{column}{0.31\textwidth}
+  \centering
+  \textbf{\small (1) Platform Portal}\\[4pt]
+  \includegraphics[width=\textwidth]{pictures/tiantian_portal.jpg}\\[5pt]
+  {\footnotesize\muted{Search interface, featured livestreams, themed series, and schedule}}
+\end{column}
+\begin{column}{0.31\textwidth}
+  \centering
+  \textbf{\small (2) Livestream Room}\\[4pt]
+  \includegraphics[width=\textwidth]{pictures/tiantian_livestream.jpg}\\[5pt]
+  {\footnotesize\muted{Host video, danmaku feed, risk disclosures, product basket}}
+\end{column}
+\begin{column}{0.31\textwidth}
+  \centering
+  \textbf{\small (3) Shopping Cart}\\[4pt]
+  \includegraphics[width=\textwidth]{pictures/tiantian_products.jpg}\\[5pt]
+  {\footnotesize\muted{Fund name, risk level, subscription window, one-click purchase}}
+\end{column}
+\end{columns}
+
+\vspace{0.25cm}
+\begin{block}{Treatment definition}
+  A fund is \hl{``featured''} if any of its share classes appears in the shopping
+  cart during a broadcast. Viewers can purchase directly during the live session.
+  Families typically feature $<4$ of their $25+$ funds per broadcast.
+\end{block}
 
 \end{frame}
 
@@ -349,16 +385,15 @@
 \end{column}
 \begin{column}{0.43\textwidth}
 
-\begin{block}{Striking contrast}
-  De Haan et al.\ (2025) find \hl{+14pp} fund-level inflows using the \textbf{same dataset}.
-
-  \bigskip
-  We find \textbf{zero} family-level flow across all specifications.
+\begin{block}{Our finding}
+  Livestreaming generates \hl{zero} change in family-level flows across all eight
+  specifications. Confidence intervals rule out economically meaningful effects.
 \end{block}
 
 \vspace{0.25cm}
-\begin{alertblock}{Implication}
-  Inflows to featured funds come from \emph{within} the family --- at the expense of non-featured siblings.
+\begin{alertblock}{What is happening?}
+  If inflows to featured funds are real, they must come from \emph{within} the
+  family --- at the expense of non-featured siblings. We test this directly.
 \end{alertblock}
 
 \end{column}
